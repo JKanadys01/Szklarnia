@@ -43,7 +43,7 @@ namespace GreenHouse
             string selectedParameter = comboBoxParameters.SelectedItem?.ToString();
             string selectedTimeFrame = comboBoxTimeFrame.SelectedItem?.ToString();
 
-
+            //TEST
 
             string mysqlconn = "server=127.0.0.1;user=root;database=szklarnia_v2;password=";
             MySqlConnection mySqlConnection = new MySqlConnection(mysqlconn);
