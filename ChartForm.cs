@@ -153,12 +153,12 @@ namespace GreenHouse
 
             // Dodaj nową serię danych
             Series series = new Series();
-            series.ChartType = SeriesChartType.Column;
+            series.ChartType = SeriesChartType.Point;
             chart1.Series.Add(series);
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
             chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Hours;
             // Oblicz szerokość słupków na podstawie ilości danych
-            double barWidth = 0.8;
+            double barWidth = 0.1;
 
 
             foreach (var entry in data)
