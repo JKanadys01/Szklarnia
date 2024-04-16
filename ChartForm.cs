@@ -67,6 +67,7 @@ namespace GreenHouse
                 {
                     // Pobieramy wybraną datę z kontrolki DateTimePicker
                     specificDate = dateTimePicker1.Value;
+                    
                 }
 
                 // Pobierz dane dla wybranego parametru i przedziału czasowego
@@ -154,7 +155,8 @@ namespace GreenHouse
             Series series = new Series();
             series.ChartType = SeriesChartType.Column;
             chart1.Series.Add(series);
-
+            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
+            chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Hours;
             // Oblicz szerokość słupków na podstawie ilości danych
             double barWidth = 0.8;
 
