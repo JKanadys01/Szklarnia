@@ -15,6 +15,7 @@ namespace GreenHouse
     {
         private All_data allData;
         private DateTime specificDate;
+        private Chart chart;
         public ChartForm()
         {
 
@@ -22,10 +23,11 @@ namespace GreenHouse
             InitializeComboBox();
             allData = new All_data();
 
+            
 
-           
 
         }
+
 
         private void InitializeComboBox()
         {
@@ -72,6 +74,7 @@ namespace GreenHouse
 
                 // Pobierz dane dla wybranego parametru i przedziału czasowego
                 Dictionary<DateTime, double> data = GetDataForChart(selectedParameter, selectedTimeFrame);
+
                 DrawChart(data);
             }
             else
@@ -143,6 +146,7 @@ namespace GreenHouse
 
         private void DrawChart(Dictionary<DateTime, double> data)
         {
+            
 
             chart1.Series.Clear();
             chart1.ChartAreas.Clear();
@@ -155,9 +159,20 @@ namespace GreenHouse
             Series series = new Series();
             series.ChartType = SeriesChartType.Line;
             chart1.Series.Add(series);
-            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
-            chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Hours;
-            chart1.ChartAreas[0].AxisY.Interval = 1;
+
+            // Ustawienie formatu osi X w zależności od wybranej opcji czasowej
+            if (comboBoxTimeFrame.SelectedItem.ToString() == "Specific Day" || comboBoxTimeFrame.SelectedItem.ToString() == "Today")
+            {
+                chart1.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
+                chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Hours;
+                chart1.ChartAreas[0].AxisY.Interval = 1;
+            }
+            else
+            {
+                chart1.ChartAreas[0].AxisX.LabelStyle.Format = "MM/dd";
+                chart1.ChartAreas[0].AxisX.Interval = 1;
+            }
+           
             // Oblicz szerokość słupków na podstawie ilości danych
             double barWidth = 0.1;
 
@@ -174,6 +189,7 @@ namespace GreenHouse
 
             series["PixelPointWidth"] = barWidth.ToString();
         }
+
 
 
     }
