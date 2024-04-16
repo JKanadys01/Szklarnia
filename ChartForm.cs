@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using LiveCharts.Wpf;
+using LiveCharts;
 using MySql.Data.MySqlClient;
 namespace GreenHouse
 {
@@ -15,16 +17,20 @@ namespace GreenHouse
     {
         private All_data allData;
         private DateTime specificDate;
-        private Chart chart;
+        private bool automaticUpdateEnabled = false;
+        private System.Windows.Forms.Timer timer;
         public ChartForm()
         {
 
             InitializeComponent();
             InitializeComboBox();
             allData = new All_data();
+            cartesianChart1.Visible = false;
 
-            
-
+            // Inicjalizacja timera
+            timer = new System.Windows.Forms.Timer(); // Zmieniono Timer na System.Windows.Forms.Timer
+            timer.Interval = 5000; // Ustawienie interwału na 5 sekund
+            timer.Tick += Timer_Tick;
 
         }
 
@@ -69,13 +75,20 @@ namespace GreenHouse
                 {
                     // Pobieramy wybraną datę z kontrolki DateTimePicker
                     specificDate = dateTimePicker1.Value;
-                    
+
                 }
 
                 // Pobierz dane dla wybranego parametru i przedziału czasowego
                 Dictionary<DateTime, double> data = GetDataForChart(selectedParameter, selectedTimeFrame);
 
-                DrawChart(data);
+                if (data.Count > 0)
+                {
+                    DrawChart(data);
+                }
+                else
+                {
+                    MessageBox.Show("Nie znaleziono danych dla podanego przedziału czasowego.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
@@ -146,57 +159,62 @@ namespace GreenHouse
 
         private void DrawChart(Dictionary<DateTime, double> data)
         {
-            
+            // Czyszczenie serii danych i obszarów wykresu
+            cartesianChart1.Series.Clear();
+            cartesianChart1.AxisX.Clear();
 
-            chart1.Series.Clear();
-            chart1.ChartAreas.Clear();
+            cartesianChart1.Visible = true;
+            // Tworzenie nowej serii danych (np. LineSeries dla wykresu liniowego)
+            LineSeries series = new LineSeries();
+            series.Title = "Data"; // Tytuł serii danych
+            series.Values = new ChartValues<double>(); // Wartości punktów danych
 
+            // Dodawanie danych do serii
+            foreach (var entry in data)
+            {
+                series.Values.Add(entry.Value);
+            }
 
-            ChartArea chartArea = new ChartArea();
-            chart1.ChartAreas.Add(chartArea);
+            // Dodawanie serii do kolekcji serii wykresu
+            cartesianChart1.Series.Add(series);
 
-            // Dodaj nową serię danych
-            Series series = new Series();
-            series.ChartType = SeriesChartType.Line;
-            chart1.Series.Add(series);
-
-            // Ustawienie formatu osi X w zależności od wybranej opcji czasowej
+            // Ustawianie formatu osi X w zależności od wybranej opcji czasowej
             if (comboBoxTimeFrame.SelectedItem.ToString() == "Specific Day" || comboBoxTimeFrame.SelectedItem.ToString() == "Today")
             {
-                chart1.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
-                chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Hours;
-                chart1.ChartAreas[0].AxisY.Interval = 1;
+                cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
+                {
+                    Title = "Time", // Tytuł osi X
+                    Labels = data.Keys.Select(key => key.ToString("HH:mm:ss")).ToList() // Etykiety osi X
+                });
             }
             else
             {
-                chart1.ChartAreas[0].AxisX.LabelStyle.Format = "MM/dd";
-                chart1.ChartAreas[0].AxisX.Interval = 1;
+                cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
+                {
+                    Title = "Date", // Tytuł osi X
+                    Labels = data.Keys.Select(key => key.ToString("MM/dd")).ToList() // Etykiety osi X
+                });
             }
-           
-            // Oblicz szerokość słupków na podstawie ilości danych
-            double barWidth = 0.1;
-
-
-            chart1.ChartAreas[0].AxisY.Minimum = Math.Round(data.OrderBy(c => c.Value).Select(p => p.Value).FirstOrDefault(), 3) - 0.2;
-            chart1.ChartAreas[0].AxisY.Maximum = Math.Round(data.OrderBy(c => c.Value).Select(p => p.Value).LastOrDefault(), 3) + 0.2;
-
-
-            foreach (var entry in data)
-            {
-                series.Points.AddXY(entry.Key, entry.Value);
-            }
-
-
-            series["PixelPointWidth"] = barWidth.ToString();
         }
 
+        
 
-
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Wywołaj metodę, która ponownie pobierze dane i narysuje wykres
+            buttonDraw_Click(this, EventArgs.Empty);
+        }
+        private void live_button_Click(object sender, EventArgs e)
+        {
+            // Włącz lub wyłącz timer w zależności od jego aktualnego stanu
+            if (!timer.Enabled)
+            {
+                timer.Start();
+            }
+            else
+            {
+                timer.Stop();
+            }
+        }
     }
-    /// <summary>
-    /// /////////////////////////////////////////////////////////////////////////////////////////////Klasa tymczasowoa do generowania danych
-    /// </summary>
-    /// 
-
-
 }

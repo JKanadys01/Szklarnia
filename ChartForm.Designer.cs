@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             comboBoxParameters = new ComboBox();
-            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             comboBoxTimeFrame = new ComboBox();
             buttonDraw = new Button();
             dateTimePicker1 = new DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
+            cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            live_button = new Button();
             SuspendLayout();
             // 
             // comboBoxParameters
@@ -46,22 +43,6 @@
             comboBoxParameters.Name = "comboBoxParameters";
             comboBoxParameters.Size = new Size(121, 23);
             comboBoxParameters.TabIndex = 0;
-            // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            chart1.Legends.Add(legend1);
-            chart1.Location = new Point(3, 3);
-            chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chart1.Series.Add(series1);
-            chart1.Size = new Size(1909, 664);
-            chart1.TabIndex = 2;
-            chart1.Text = "chart1";
             // 
             // comboBoxTimeFrame
             // 
@@ -88,28 +69,47 @@
             dateTimePicker1.Size = new Size(205, 23);
             dateTimePicker1.TabIndex = 5;
             // 
+            // cartesianChart1
+            // 
+            cartesianChart1.Location = new Point(12, 1);
+            cartesianChart1.Name = "cartesianChart1";
+            cartesianChart1.Size = new Size(1900, 598);
+            cartesianChart1.TabIndex = 6;
+            cartesianChart1.Text = "cartesianChart1";
+            // 
+            // live_button
+            // 
+            live_button.Location = new Point(468, 723);
+            live_button.Name = "live_button";
+            live_button.Size = new Size(125, 60);
+            live_button.TabIndex = 7;
+            live_button.Text = "Go live";
+            live_button.UseVisualStyleBackColor = true;
+            live_button.Click += live_button_Click;
+            // 
             // ChartForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1924, 1061);
+            Controls.Add(live_button);
+            Controls.Add(cartesianChart1);
             Controls.Add(dateTimePicker1);
             Controls.Add(buttonDraw);
             Controls.Add(comboBoxTimeFrame);
-            Controls.Add(chart1);
             Controls.Add(comboBoxParameters);
             Name = "ChartForm";
             Text = "ChartForm";
-            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private ComboBox comboBoxParameters;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private ComboBox comboBoxTimeFrame;
         private Button buttonDraw;
         private DateTimePicker dateTimePicker1;
+        private LiveCharts.WinForms.CartesianChart cartesianChart1;
+        private Button live_button;
     }
 }
