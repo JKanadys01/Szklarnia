@@ -153,12 +153,17 @@ namespace GreenHouse
 
             // Dodaj nową serię danych
             Series series = new Series();
-            series.ChartType = SeriesChartType.Point;
+            series.ChartType = SeriesChartType.Line;
             chart1.Series.Add(series);
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
             chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Hours;
+            chart1.ChartAreas[0].AxisY.Interval = 1;
             // Oblicz szerokość słupków na podstawie ilości danych
             double barWidth = 0.1;
+
+
+            chart1.ChartAreas[0].AxisY.Minimum = Math.Round(data.OrderBy(c => c.Value).Select(p => p.Value).FirstOrDefault(), 3) - 0.2;
+            chart1.ChartAreas[0].AxisY.Maximum = Math.Round(data.OrderBy(c => c.Value).Select(p => p.Value).LastOrDefault(), 3) + 0.2;
 
 
             foreach (var entry in data)
