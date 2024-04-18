@@ -34,6 +34,7 @@
             dateTimePicker1 = new DateTimePicker();
             cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             live_button = new Button();
+            go_back_button = new Button();
             SuspendLayout();
             // 
             // comboBoxParameters
@@ -87,11 +88,22 @@
             live_button.UseVisualStyleBackColor = true;
             live_button.Click += live_button_Click;
             // 
+            // go_back_button
+            // 
+            go_back_button.Location = new Point(468, 800);
+            go_back_button.Name = "go_back_button";
+            go_back_button.Size = new Size(125, 60);
+            go_back_button.TabIndex = 8;
+            go_back_button.Text = "Go back";
+            go_back_button.UseVisualStyleBackColor = true;
+            go_back_button.Click += go_back_button_Click;
+            // 
             // ChartForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1924, 1061);
+            Controls.Add(go_back_button);
             Controls.Add(live_button);
             Controls.Add(cartesianChart1);
             Controls.Add(dateTimePicker1);
@@ -111,5 +123,6 @@
         private DateTimePicker dateTimePicker1;
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
         private Button live_button;
+        private Button go_back_button;
     }
 }

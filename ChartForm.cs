@@ -197,7 +197,7 @@ namespace GreenHouse
             }
         }
 
-        
+
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -215,6 +215,15 @@ namespace GreenHouse
             {
                 timer.Stop();
             }
+        }
+
+        private void go_back_button_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 mainForm = new Form1();
+            mainForm.WindowState = FormWindowState.Maximized;
+            mainForm.ShowDialog();
+            this.Close();
         }
     }
 }
