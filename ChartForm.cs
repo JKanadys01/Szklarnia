@@ -19,9 +19,10 @@ namespace GreenHouse
         private DateTime specificDate;
         private bool automaticUpdateEnabled = false;
         private System.Windows.Forms.Timer timer;
-        public ChartForm()
+        User user_log;
+        public ChartForm(User x)
         {
-
+            user_log = x;
             InitializeComponent();
             InitializeComboBox();
             allData = new All_data();
@@ -51,20 +52,30 @@ namespace GreenHouse
             string selectedParameter = comboBoxParameters.SelectedItem?.ToString();
             string selectedTimeFrame = comboBoxTimeFrame.SelectedItem?.ToString();
 
-            //TEST
 
-            string mysqlconn = "server=127.0.0.1;user=root;database=szklarnia_v2;password=";
-            MySqlConnection mySqlConnection = new MySqlConnection(mysqlconn);
+            MySqlConnection mySqlConnection = new MySqlConnection(user_log.get_mysqlconn());
 
             mySqlConnection.Open();
 
-            MySqlCommand cmd = new MySqlCommand("select * from szklarnia_1", mySqlConnection);
-
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            //TEST
+            try 
             {
-                allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(1), reader.GetDouble(2), reader.GetDateTime(3)));
+        
+            
+                MySqlCommand cmd = new MySqlCommand("select * from szklarnia_1", mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(1), reader.GetDouble(2), reader.GetDateTime(3)));
+                }
+
+               
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Nie masz dostępnu do tych danych", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             mySqlConnection.Close();
@@ -220,7 +231,7 @@ namespace GreenHouse
         private void go_back_button_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form1 mainForm = new Form1();
+            Form1 mainForm = new Form1(user_log);
             mainForm.WindowState = FormWindowState.Maximized;
             mainForm.ShowDialog();
             this.Close();

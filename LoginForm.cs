@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,23 +23,31 @@ namespace GreenHouse
 
         private void login_button_Click(object sender, EventArgs e)
         {
-            string username = login_textBox.Text;
-            string password = password_textBox.Text;
 
-            if (userManager.Authenticate(username, password)) 
+           
+            User user_log=new User(login_textBox.Text,password_textBox.Text);
+            MySqlConnection mySqlConnection;
+
+            try
             {
-                this.Hide();
+             mySqlConnection = new MySqlConnection(user_log.get_mysqlconn());
 
-                Form1 mainForm = new Form1();
-                mainForm.LoggedInUsername = username;
+                mySqlConnection.Open();
+
+               // MessageBox.Show("Git", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                mySqlConnection.Close();
+
+                Form1 mainForm = new Form1(user_log);
                 mainForm.ShowDialog();
                 this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Nieprawidłowy login lub hasło. Spróbuj ponownie.", "Błąd logowania", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+            catch(Exception ex) 
+            {
+                MessageBox.Show("Błędne login lub hasło", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+         
+
         }
     }
 }

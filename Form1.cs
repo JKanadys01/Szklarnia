@@ -3,30 +3,26 @@ namespace GreenHouse
     public partial class Form1 : Form
     {
         private All_data allData;
-        private string loggedInUsername;
-        public Form1()
+     
+
+        private User user_log;
+        public Form1(User x)
         {
+            
+            user_log = x;
             InitializeComponent();
             allData = new All_data();
             this.WindowState = FormWindowState.Maximized;
-            
+
+            username_textBox.Text = user_log.get_name();
         }
 
-        public string LoggedInUsername
-        {
-            get { return loggedInUsername; }
-            set
-            {
-                loggedInUsername = value;
-                
-                username_textBox.Text = loggedInUsername;
-            }
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ChartForm chartForm = new ChartForm();
+            ChartForm chartForm = new ChartForm(user_log);
             chartForm.WindowState = FormWindowState.Maximized;
             chartForm.ShowDialog();
             this.Close();

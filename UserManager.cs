@@ -9,6 +9,9 @@ namespace GreenHouse
     internal class UserManager
     {
         private Dictionary<string, string> users;
+
+
+
         public UserManager() 
         {
             users = new Dictionary<string, string>();
