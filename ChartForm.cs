@@ -11,6 +11,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using LiveCharts.Wpf;
 using LiveCharts;
 using MySql.Data.MySqlClient;
+using Google.Protobuf.WellKnownTypes;
 namespace GreenHouse
 {
     public partial class ChartForm : Form
@@ -75,6 +76,7 @@ namespace GreenHouse
             }
             catch (Exception ex) 
             {
+                timer.Stop();
                 MessageBox.Show("Nie masz dostępnu do tych danych", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
@@ -94,10 +96,11 @@ namespace GreenHouse
 
                 if (data.Count > 0)
                 {
-                    DrawChart(data);
+                    DrawChart(data,selectedParameter);
                 }
                 else
                 {
+                    timer.Stop();
                     MessageBox.Show("Nie znaleziono danych dla podanego przedziału czasowego.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -114,7 +117,7 @@ namespace GreenHouse
             List<Record> selectedRecords = GetSelectedRecords(parameter, timeFrame);
             foreach (Record record in selectedRecords)
             {
-                double value = 0;
+                double value = 0.0;
                 switch (parameter)
                 {
                     case "Temperature":
@@ -124,7 +127,7 @@ namespace GreenHouse
                         value = record.humidity; // Załóżmy, że mamy pole humidity w rekordzie
                         break;
                     case "Insolation":
-                        value = record.temperature; // Załóżmy, że mamy pole insolation w rekordzie
+                        value = record.humidity; // Załóżmy, że mamy pole insolation w rekordzie
                         break;
                     default:
                         break;
@@ -168,18 +171,20 @@ namespace GreenHouse
             return selectedRecords;
         }
 
-        private void DrawChart(Dictionary<DateTime, double> data)
+        private void DrawChart(Dictionary<DateTime, double> data, string parameter)
         {
             // Czyszczenie serii danych i obszarów wykresu
             cartesianChart1.Series.Clear();
             cartesianChart1.AxisX.Clear();
-
+            cartesianChart1.AxisY.Clear();
             cartesianChart1.Visible = true;
+
             // Tworzenie nowej serii danych (np. LineSeries dla wykresu liniowego)
             LineSeries series = new LineSeries();
-            series.Title = "Data"; // Tytuł serii danych
-            series.Values = new ChartValues<double>(); // Wartości punktów danych
+           
 
+            series.Values = new ChartValues<double>(); // Wartości punktów danych
+            
             // Dodawanie danych do serii
             foreach (var entry in data)
             {
@@ -188,6 +193,36 @@ namespace GreenHouse
 
             // Dodawanie serii do kolekcji serii wykresu
             cartesianChart1.Series.Add(series);
+
+            if (comboBoxParameters.SelectedItem.ToString() == "Temperature") 
+            {
+                series.Title = "Temperature";
+                cartesianChart1.AxisY.Add(new LiveCharts.Wpf.Axis
+                {
+                    Title = "Temperature (°C)", // Tytuł osi Y
+                    LabelFormatter = data => data.ToString("N2") + "°C"
+                });
+            }
+            else if (comboBoxParameters.SelectedItem.ToString() == "Humidity")
+            {
+                series.Title = "Humidity";
+                cartesianChart1.AxisY.Add(new LiveCharts.Wpf.Axis
+                {
+                    Title = "Humidity (%)", // Tytuł osi Y
+                    LabelFormatter = data => data.ToString("N2") + "%"
+                });
+            }
+            else if (comboBoxParameters.SelectedItem.ToString() == "Insolation")
+            {
+                series.Title = "Insolation";
+                cartesianChart1.AxisY.Add(new LiveCharts.Wpf.Axis
+                {
+                    Title = "Insolation (%)", // Tytuł osi Y
+                    LabelFormatter = data => data.ToString("N2") + "%"
+                });
+
+            }
+
 
             // Ustawianie formatu osi X w zależności od wybranej opcji czasowej
             if (comboBoxTimeFrame.SelectedItem.ToString() == "Specific Day" || comboBoxTimeFrame.SelectedItem.ToString() == "Today")
@@ -203,9 +238,12 @@ namespace GreenHouse
                 cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
                 {
                     Title = "Date", // Tytuł osi X
-                    Labels = data.Keys.Select(key => key.ToString("MM/dd")).ToList() // Etykiety osi X
+                    Labels = data.Keys.Select(key => key.ToString("MM/dd HH:mm:ss")).ToList() // Etykiety osi X
                 });
             }
+
+            
+
         }
 
 

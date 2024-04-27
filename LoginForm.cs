@@ -36,9 +36,10 @@ namespace GreenHouse
 
                // MessageBox.Show("Git", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 mySqlConnection.Close();
-
+                this.Hide();
                 Form1 mainForm = new Form1(user_log);
                 mainForm.ShowDialog();
+                
                 this.Close();
 
             }

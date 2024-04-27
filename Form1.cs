@@ -36,10 +36,9 @@ namespace GreenHouse
 
         private void logout_button_Click(object sender, EventArgs e)
         {
-            
+
             // Zamknij bie¿¹cy formularz
             this.Hide();
-
             // Otwórz ponownie formularz logowania
             LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
