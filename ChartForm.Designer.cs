@@ -40,7 +40,7 @@
             // comboBoxParameters
             // 
             comboBoxParameters.FormattingEnabled = true;
-            comboBoxParameters.Location = new Point(12, 694);
+            comboBoxParameters.Location = new Point(558, 766);
             comboBoxParameters.Name = "comboBoxParameters";
             comboBoxParameters.Size = new Size(121, 23);
             comboBoxParameters.TabIndex = 0;
@@ -48,14 +48,14 @@
             // comboBoxTimeFrame
             // 
             comboBoxTimeFrame.FormattingEnabled = true;
-            comboBoxTimeFrame.Location = new Point(139, 694);
+            comboBoxTimeFrame.Location = new Point(685, 766);
             comboBoxTimeFrame.Name = "comboBoxTimeFrame";
             comboBoxTimeFrame.Size = new Size(121, 23);
             comboBoxTimeFrame.TabIndex = 3;
             // 
             // buttonDraw
             // 
-            buttonDraw.Location = new Point(73, 723);
+            buttonDraw.Location = new Point(619, 795);
             buttonDraw.Name = "buttonDraw";
             buttonDraw.Size = new Size(121, 60);
             buttonDraw.TabIndex = 4;
@@ -65,14 +65,14 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(33, 789);
+            dateTimePicker1.Location = new Point(579, 861);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(205, 23);
             dateTimePicker1.TabIndex = 5;
             // 
             // cartesianChart1
             // 
-            cartesianChart1.Location = new Point(12, 1);
+            cartesianChart1.Location = new Point(18, 118);
             cartesianChart1.Name = "cartesianChart1";
             cartesianChart1.Size = new Size(1900, 598);
             cartesianChart1.TabIndex = 6;
@@ -80,7 +80,7 @@
             // 
             // live_button
             // 
-            live_button.Location = new Point(468, 723);
+            live_button.Location = new Point(865, 766);
             live_button.Name = "live_button";
             live_button.Size = new Size(125, 60);
             live_button.TabIndex = 7;
@@ -90,7 +90,7 @@
             // 
             // go_back_button
             // 
-            go_back_button.Location = new Point(468, 800);
+            go_back_button.Location = new Point(865, 843);
             go_back_button.Name = "go_back_button";
             go_back_button.Size = new Size(125, 60);
             go_back_button.TabIndex = 8;
@@ -111,7 +111,7 @@
             Controls.Add(comboBoxTimeFrame);
             Controls.Add(comboBoxParameters);
             Name = "ChartForm";
-            Text = "ChartForm";
+            Text = "Charts";
             ResumeLayout(false);
         }
 

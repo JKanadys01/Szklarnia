@@ -28,67 +28,105 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            login_button = new Button();
-            login_textBox = new TextBox();
-            password_textBox = new TextBox();
+            materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            loginmaterialTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            passwordmaterialTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             SuspendLayout();
             // 
-            // label1
+            // materialButton1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(335, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(37, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Login";
+            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Depth = 0;
+            materialButton1.HighEmphasis = true;
+            materialButton1.Icon = null;
+            materialButton1.Location = new Point(319, 303);
+            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton1.Name = "materialButton1";
+            materialButton1.NoAccentTextColor = Color.Empty;
+            materialButton1.Size = new Size(67, 36);
+            materialButton1.TabIndex = 5;
+            materialButton1.Text = "Enter";
+            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.UseAccentColor = false;
+            materialButton1.UseVisualStyleBackColor = true;
+            materialButton1.Click += materialButton1_Click;
             // 
-            // label2
+            // loginmaterialTextBox
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(328, 89);
-            label2.Name = "label2";
-            label2.Size = new Size(57, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Password";
+            loginmaterialTextBox.AnimateReadOnly = false;
+            loginmaterialTextBox.BorderStyle = BorderStyle.None;
+            loginmaterialTextBox.Depth = 0;
+            loginmaterialTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            loginmaterialTextBox.LeadingIcon = null;
+            loginmaterialTextBox.Location = new Point(306, 132);
+            loginmaterialTextBox.MaxLength = 50;
+            loginmaterialTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            loginmaterialTextBox.Multiline = false;
+            loginmaterialTextBox.Name = "loginmaterialTextBox";
+            loginmaterialTextBox.Size = new Size(100, 50);
+            loginmaterialTextBox.TabIndex = 6;
+            loginmaterialTextBox.Text = "";
+            loginmaterialTextBox.TrailingIcon = null;
             // 
-            // login_button
+            // materialLabel1
             // 
-            login_button.Location = new Point(306, 153);
-            login_button.Name = "login_button";
-            login_button.Size = new Size(100, 37);
-            login_button.TabIndex = 2;
-            login_button.Text = "Enter";
-            login_button.UseVisualStyleBackColor = true;
-            login_button.Click += login_button_Click;
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(330, 110);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(41, 19);
+            materialLabel1.TabIndex = 7;
+            materialLabel1.Text = "Login";
             // 
-            // login_textBox
+            // passwordmaterialTextBox
             // 
-            login_textBox.Location = new Point(306, 43);
-            login_textBox.Name = "login_textBox";
-            login_textBox.Size = new Size(100, 23);
-            login_textBox.TabIndex = 3;
+            passwordmaterialTextBox.AnimateReadOnly = false;
+            passwordmaterialTextBox.BorderStyle = BorderStyle.None;
+            passwordmaterialTextBox.Depth = 0;
+            passwordmaterialTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            passwordmaterialTextBox.LeadingIcon = null;
+            passwordmaterialTextBox.Location = new Point(306, 233);
+            passwordmaterialTextBox.MaxLength = 50;
+            passwordmaterialTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            passwordmaterialTextBox.Multiline = false;
+            passwordmaterialTextBox.Name = "passwordmaterialTextBox";
+            passwordmaterialTextBox.Size = new Size(100, 50);
+            passwordmaterialTextBox.TabIndex = 8;
+            passwordmaterialTextBox.Text = "";
+            passwordmaterialTextBox.TrailingIcon = null;
             // 
-            // password_textBox
+            // materialLabel2
             // 
-            password_textBox.Location = new Point(306, 107);
-            password_textBox.Name = "password_textBox";
-            password_textBox.Size = new Size(100, 23);
-            password_textBox.TabIndex = 4;
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.Location = new Point(315, 209);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(71, 19);
+            materialLabel2.TabIndex = 9;
+            materialLabel2.Text = "Password";
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(password_textBox);
-            Controls.Add(login_textBox);
-            Controls.Add(login_button);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(materialLabel2);
+            Controls.Add(passwordmaterialTextBox);
+            Controls.Add(materialLabel1);
+            Controls.Add(loginmaterialTextBox);
+            Controls.Add(materialButton1);
             Name = "LoginForm";
-            Text = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "GreenHouse";
+            Load += LoginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -97,8 +135,10 @@
 
         private Label label1;
         private Label label2;
-        private Button login_button;
-        private TextBox login_textBox;
-        private TextBox password_textBox;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialTextBox loginmaterialTextBox;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialTextBox passwordmaterialTextBox;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }

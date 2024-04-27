@@ -12,13 +12,13 @@ using LiveCharts.Wpf;
 using LiveCharts;
 using MySql.Data.MySqlClient;
 using Google.Protobuf.WellKnownTypes;
+using MaterialSkin.Controls;
 namespace GreenHouse
 {
-    public partial class ChartForm : Form
+    public partial class ChartForm : MaterialForm
     {
         private All_data allData;
         private DateTime specificDate;
-        private bool automaticUpdateEnabled = false;
         private System.Windows.Forms.Timer timer;
         User user_log;
         public ChartForm(User x)
@@ -268,9 +268,10 @@ namespace GreenHouse
 
         private void go_back_button_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            
             Form1 mainForm = new Form1(user_log);
             mainForm.WindowState = FormWindowState.Maximized;
+            this.Hide();
             mainForm.ShowDialog();
             this.Close();
         }
