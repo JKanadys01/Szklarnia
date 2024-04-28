@@ -148,6 +148,7 @@
             // 
             // TemperatureTabPage
             // 
+            TemperatureTabPage.BackColor = Color.FromArgb(64, 64, 64);
             TemperatureTabPage.Controls.Add(TemperaturecartesianChart);
             TemperatureTabPage.ImageKey = "temp.png";
             TemperatureTabPage.Location = new Point(4, 39);
@@ -156,7 +157,6 @@
             TemperatureTabPage.Size = new Size(987, 396);
             TemperatureTabPage.TabIndex = 0;
             TemperatureTabPage.Text = "Temperatur";
-            TemperatureTabPage.UseVisualStyleBackColor = true;
             // 
             // TemperaturecartesianChart
             // 
@@ -168,6 +168,7 @@
             // 
             // HumidityTabPage
             // 
+            HumidityTabPage.BackColor = Color.FromArgb(64, 64, 64);
             HumidityTabPage.Controls.Add(humiditycartesianChart);
             HumidityTabPage.ImageKey = "humidity.png";
             HumidityTabPage.Location = new Point(4, 39);
@@ -176,10 +177,10 @@
             HumidityTabPage.Size = new Size(987, 396);
             HumidityTabPage.TabIndex = 1;
             HumidityTabPage.Text = "Humidity";
-            HumidityTabPage.UseVisualStyleBackColor = true;
             // 
             // humiditycartesianChart
             // 
+            humiditycartesianChart.BackColor = Color.FromArgb(64, 64, 64);
             humiditycartesianChart.Location = new Point(6, 7);
             humiditycartesianChart.Name = "humiditycartesianChart";
             humiditycartesianChart.Size = new Size(975, 383);
@@ -188,6 +189,7 @@
             // 
             // InsolationTabPage
             // 
+            InsolationTabPage.BackColor = Color.FromArgb(64, 64, 64);
             InsolationTabPage.Controls.Add(InsolationcartesianChart);
             InsolationTabPage.ImageKey = "Insolation.png";
             InsolationTabPage.Location = new Point(4, 39);
@@ -196,10 +198,10 @@
             InsolationTabPage.Size = new Size(987, 396);
             InsolationTabPage.TabIndex = 2;
             InsolationTabPage.Text = "Insolation";
-            InsolationTabPage.UseVisualStyleBackColor = true;
             // 
             // InsolationcartesianChart
             // 
+            InsolationcartesianChart.BackColor = Color.FromArgb(64, 64, 64);
             InsolationcartesianChart.Location = new Point(4, 2);
             InsolationcartesianChart.Name = "InsolationcartesianChart";
             InsolationcartesianChart.Size = new Size(977, 388);
