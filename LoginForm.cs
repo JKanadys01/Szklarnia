@@ -1,4 +1,5 @@
-﻿using MaterialSkin.Controls;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,23 @@ using System.Windows.Forms;
 
 namespace GreenHouse
 {
+
     public partial class LoginForm : MaterialForm
     {
+        private readonly MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
         private UserManager userManager;
         public LoginForm()
         {
             InitializeComponent();
+
+            //Formatowanie wyglądu okna
+            //dodanie menagera do formatowania tego okna
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Green400, Primary.Green500,
+                Primary.Green800, Accent.LightGreen200, TextShade.WHITE);
 
             passwordmaterialTextBox.Password = true;
             userManager = new UserManager();

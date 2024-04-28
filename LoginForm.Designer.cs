@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
             loginmaterialTextBox = new MaterialSkin.Controls.MaterialTextBox();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             passwordmaterialTextBox = new MaterialSkin.Controls.MaterialTextBox();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // materialButton1
@@ -42,7 +45,7 @@
             materialButton1.Depth = 0;
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
-            materialButton1.Location = new Point(319, 303);
+            materialButton1.Location = new Point(603, 339);
             materialButton1.Margin = new Padding(4, 6, 4, 6);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
@@ -62,7 +65,7 @@
             loginmaterialTextBox.Depth = 0;
             loginmaterialTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             loginmaterialTextBox.LeadingIcon = null;
-            loginmaterialTextBox.Location = new Point(306, 132);
+            loginmaterialTextBox.Location = new Point(590, 168);
             loginmaterialTextBox.MaxLength = 50;
             loginmaterialTextBox.MouseState = MaterialSkin.MouseState.OUT;
             loginmaterialTextBox.Multiline = false;
@@ -77,7 +80,7 @@
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(330, 110);
+            materialLabel1.Location = new Point(614, 146);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(41, 19);
@@ -91,7 +94,7 @@
             passwordmaterialTextBox.Depth = 0;
             passwordmaterialTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             passwordmaterialTextBox.LeadingIcon = null;
-            passwordmaterialTextBox.Location = new Point(306, 233);
+            passwordmaterialTextBox.Location = new Point(590, 269);
             passwordmaterialTextBox.MaxLength = 50;
             passwordmaterialTextBox.MouseState = MaterialSkin.MouseState.OUT;
             passwordmaterialTextBox.Multiline = false;
@@ -106,18 +109,28 @@
             materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(315, 209);
+            materialLabel2.Location = new Point(599, 245);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.Size = new Size(71, 19);
             materialLabel2.TabIndex = 9;
             materialLabel2.Text = "Password";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(60, 79);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(433, 413);
+            pictureBox1.TabIndex = 10;
+            pictureBox1.TabStop = false;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 523);
+            Controls.Add(pictureBox1);
             Controls.Add(materialLabel2);
             Controls.Add(passwordmaterialTextBox);
             Controls.Add(materialLabel1);
@@ -127,6 +140,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GreenHouse";
             Load += LoginForm_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -140,5 +154,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialTextBox passwordmaterialTextBox;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private PictureBox pictureBox1;
     }
 }
