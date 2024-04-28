@@ -30,95 +30,35 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            logoutmaterialButton = new MaterialSkin.Controls.MaterialButton();
-            Chartmenu_materialButton = new MaterialSkin.Controls.MaterialButton();
-            username_materialTextBox = new MaterialSkin.Controls.MaterialTextBox();
             imageList1 = new ImageList(components);
             tabControl1 = new TabControl();
-            TemperaturetabPage = new TabPage();
-            TemperaturecartesianChart = new LiveCharts.WinForms.CartesianChart();
-            humiditytabPage = new TabPage();
-            humiditycartesianChart = new LiveCharts.WinForms.CartesianChart();
-            InsolationtabPage = new TabPage();
-            InsolationcartesianChart = new LiveCharts.WinForms.CartesianChart();
-            materialRadioButton1 = new MaterialSkin.Controls.MaterialRadioButton();
+            tabPage2 = new TabPage();
             StopmaterialRadioButton = new MaterialSkin.Controls.MaterialRadioButton();
+            materialRadioButton1 = new MaterialSkin.Controls.MaterialRadioButton();
+            tabControl2 = new TabControl();
+            TemperatureTabPage = new TabPage();
+            TemperaturecartesianChart = new LiveCharts.WinForms.CartesianChart();
+            HumidityTabPage = new TabPage();
+            humiditycartesianChart = new LiveCharts.WinForms.CartesianChart();
+            InsolationTabPage = new TabPage();
+            InsolationcartesianChart = new LiveCharts.WinForms.CartesianChart();
+            Username_materialTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            logoutmaterialButton = new MaterialSkin.Controls.MaterialButton();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            tabPage3 = new TabPage();
+            TimeFramematerialComboBox = new MaterialSkin.Controls.MaterialComboBox();
+            ParametermaterialComboBox = new MaterialSkin.Controls.MaterialComboBox();
+            DrawchartmaterialButton = new MaterialSkin.Controls.MaterialButton();
+            dateTimePicker = new DateTimePicker();
+            cartesianChart = new LiveCharts.WinForms.CartesianChart();
             tabControl1.SuspendLayout();
-            TemperaturetabPage.SuspendLayout();
-            humiditytabPage.SuspendLayout();
-            InsolationtabPage.SuspendLayout();
+            tabPage2.SuspendLayout();
+            tabControl2.SuspendLayout();
+            TemperatureTabPage.SuspendLayout();
+            HumidityTabPage.SuspendLayout();
+            InsolationTabPage.SuspendLayout();
+            tabPage3.SuspendLayout();
             SuspendLayout();
-            // 
-            // materialLabel1
-            // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(6, 88);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(72, 19);
-            materialLabel1.TabIndex = 5;
-            materialLabel1.Text = "Username";
-            // 
-            // logoutmaterialButton
-            // 
-            logoutmaterialButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            logoutmaterialButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            logoutmaterialButton.Depth = 0;
-            logoutmaterialButton.HighEmphasis = true;
-            logoutmaterialButton.Icon = null;
-            logoutmaterialButton.Location = new Point(132, 135);
-            logoutmaterialButton.Margin = new Padding(4, 6, 4, 6);
-            logoutmaterialButton.MouseState = MaterialSkin.MouseState.HOVER;
-            logoutmaterialButton.Name = "logoutmaterialButton";
-            logoutmaterialButton.NoAccentTextColor = Color.Empty;
-            logoutmaterialButton.Size = new Size(78, 36);
-            logoutmaterialButton.TabIndex = 6;
-            logoutmaterialButton.Text = "Logout";
-            logoutmaterialButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            logoutmaterialButton.UseAccentColor = false;
-            logoutmaterialButton.UseVisualStyleBackColor = true;
-            logoutmaterialButton.Click += logoutmaterialButton_Click;
-            // 
-            // Chartmenu_materialButton
-            // 
-            Chartmenu_materialButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            Chartmenu_materialButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            Chartmenu_materialButton.Depth = 0;
-            Chartmenu_materialButton.HighEmphasis = true;
-            Chartmenu_materialButton.Icon = null;
-            Chartmenu_materialButton.Location = new Point(116, 183);
-            Chartmenu_materialButton.Margin = new Padding(4, 6, 4, 6);
-            Chartmenu_materialButton.MouseState = MaterialSkin.MouseState.HOVER;
-            Chartmenu_materialButton.Name = "Chartmenu_materialButton";
-            Chartmenu_materialButton.NoAccentTextColor = Color.Empty;
-            Chartmenu_materialButton.Size = new Size(114, 36);
-            Chartmenu_materialButton.TabIndex = 7;
-            Chartmenu_materialButton.Text = "Chart menu";
-            Chartmenu_materialButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            Chartmenu_materialButton.UseAccentColor = false;
-            Chartmenu_materialButton.UseVisualStyleBackColor = true;
-            Chartmenu_materialButton.Click += Chartmenu_materialButton_Click;
-            // 
-            // username_materialTextBox
-            // 
-            username_materialTextBox.AnimateReadOnly = false;
-            username_materialTextBox.BorderStyle = BorderStyle.None;
-            username_materialTextBox.Depth = 0;
-            username_materialTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            username_materialTextBox.LeadingIcon = null;
-            username_materialTextBox.Location = new Point(84, 76);
-            username_materialTextBox.MaxLength = 50;
-            username_materialTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            username_materialTextBox.Multiline = false;
-            username_materialTextBox.Name = "username_materialTextBox";
-            username_materialTextBox.ReadOnly = true;
-            username_materialTextBox.Size = new Size(191, 50);
-            username_materialTextBox.TabIndex = 8;
-            username_materialTextBox.Text = "";
-            username_materialTextBox.TrailingIcon = null;
             // 
             // imageList1
             // 
@@ -128,30 +68,95 @@
             imageList1.Images.SetKeyName(0, "humidity.png");
             imageList1.Images.SetKeyName(1, "Insolation.png");
             imageList1.Images.SetKeyName(2, "temp.png");
+            imageList1.Images.SetKeyName(3, "chart.png");
+            imageList1.Images.SetKeyName(4, "home.png");
             // 
             // tabControl1
             // 
-            tabControl1.Controls.Add(TemperaturetabPage);
-            tabControl1.Controls.Add(humiditytabPage);
-            tabControl1.Controls.Add(InsolationtabPage);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Dock = DockStyle.Fill;
             tabControl1.ImageList = imageList1;
-            tabControl1.Location = new Point(923, 71);
+            tabControl1.Location = new Point(3, 64);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(995, 439);
-            tabControl1.TabIndex = 10;
+            tabControl1.Size = new Size(1918, 994);
+            tabControl1.TabIndex = 0;
             // 
-            // TemperaturetabPage
+            // tabPage2
             // 
-            TemperaturetabPage.Controls.Add(TemperaturecartesianChart);
-            TemperaturetabPage.ImageKey = "temp.png";
-            TemperaturetabPage.Location = new Point(4, 39);
-            TemperaturetabPage.Name = "TemperaturetabPage";
-            TemperaturetabPage.Padding = new Padding(3);
-            TemperaturetabPage.Size = new Size(987, 396);
-            TemperaturetabPage.TabIndex = 0;
-            TemperaturetabPage.Text = "Temperatur";
-            TemperaturetabPage.UseVisualStyleBackColor = true;
+            tabPage2.BackColor = Color.FromArgb(64, 64, 64);
+            tabPage2.Controls.Add(StopmaterialRadioButton);
+            tabPage2.Controls.Add(materialRadioButton1);
+            tabPage2.Controls.Add(tabControl2);
+            tabPage2.Controls.Add(Username_materialTextBox);
+            tabPage2.Controls.Add(logoutmaterialButton);
+            tabPage2.Controls.Add(materialLabel1);
+            tabPage2.ImageKey = "home.png";
+            tabPage2.Location = new Point(4, 39);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1910, 951);
+            tabPage2.TabIndex = 0;
+            tabPage2.Text = "Main";
+            // 
+            // StopmaterialRadioButton
+            // 
+            StopmaterialRadioButton.AutoSize = true;
+            StopmaterialRadioButton.Depth = 0;
+            StopmaterialRadioButton.Location = new Point(779, 77);
+            StopmaterialRadioButton.Margin = new Padding(0);
+            StopmaterialRadioButton.MouseLocation = new Point(-1, -1);
+            StopmaterialRadioButton.MouseState = MaterialSkin.MouseState.HOVER;
+            StopmaterialRadioButton.Name = "StopmaterialRadioButton";
+            StopmaterialRadioButton.Ripple = true;
+            StopmaterialRadioButton.Size = new Size(68, 37);
+            StopmaterialRadioButton.TabIndex = 19;
+            StopmaterialRadioButton.TabStop = true;
+            StopmaterialRadioButton.Text = "Stop";
+            StopmaterialRadioButton.UseVisualStyleBackColor = true;
+            StopmaterialRadioButton.CheckedChanged += StopmaterialRadioButton_CheckedChanged_1;
+            // 
+            // materialRadioButton1
+            // 
+            materialRadioButton1.AutoSize = true;
+            materialRadioButton1.Depth = 0;
+            materialRadioButton1.Location = new Point(779, 40);
+            materialRadioButton1.Margin = new Padding(0);
+            materialRadioButton1.MouseLocation = new Point(-1, -1);
+            materialRadioButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialRadioButton1.Name = "materialRadioButton1";
+            materialRadioButton1.Ripple = true;
+            materialRadioButton1.Size = new Size(106, 37);
+            materialRadioButton1.TabIndex = 18;
+            materialRadioButton1.TabStop = true;
+            materialRadioButton1.Text = "Check live";
+            materialRadioButton1.UseVisualStyleBackColor = true;
+            materialRadioButton1.CheckedChanged += materialRadioButton1_CheckedChanged_1;
+            // 
+            // tabControl2
+            // 
+            tabControl2.Controls.Add(TemperatureTabPage);
+            tabControl2.Controls.Add(HumidityTabPage);
+            tabControl2.Controls.Add(InsolationTabPage);
+            tabControl2.ImageList = imageList1;
+            tabControl2.Location = new Point(920, 1);
+            tabControl2.Name = "tabControl2";
+            tabControl2.SelectedIndex = 0;
+            tabControl2.Size = new Size(995, 439);
+            tabControl2.TabIndex = 17;
+            // 
+            // TemperatureTabPage
+            // 
+            TemperatureTabPage.Controls.Add(TemperaturecartesianChart);
+            TemperatureTabPage.ImageKey = "temp.png";
+            TemperatureTabPage.Location = new Point(4, 39);
+            TemperatureTabPage.Name = "TemperatureTabPage";
+            TemperatureTabPage.Padding = new Padding(3);
+            TemperatureTabPage.Size = new Size(987, 396);
+            TemperatureTabPage.TabIndex = 0;
+            TemperatureTabPage.Text = "Temperatur";
+            TemperatureTabPage.UseVisualStyleBackColor = true;
             // 
             // TemperaturecartesianChart
             // 
@@ -161,17 +166,17 @@
             TemperaturecartesianChart.TabIndex = 0;
             TemperaturecartesianChart.Text = "cartesianChart1";
             // 
-            // humiditytabPage
+            // HumidityTabPage
             // 
-            humiditytabPage.Controls.Add(humiditycartesianChart);
-            humiditytabPage.ImageKey = "humidity.png";
-            humiditytabPage.Location = new Point(4, 39);
-            humiditytabPage.Name = "humiditytabPage";
-            humiditytabPage.Padding = new Padding(3);
-            humiditytabPage.Size = new Size(987, 396);
-            humiditytabPage.TabIndex = 1;
-            humiditytabPage.Text = "Humidity";
-            humiditytabPage.UseVisualStyleBackColor = true;
+            HumidityTabPage.Controls.Add(humiditycartesianChart);
+            HumidityTabPage.ImageKey = "humidity.png";
+            HumidityTabPage.Location = new Point(4, 39);
+            HumidityTabPage.Name = "HumidityTabPage";
+            HumidityTabPage.Padding = new Padding(3);
+            HumidityTabPage.Size = new Size(987, 396);
+            HumidityTabPage.TabIndex = 1;
+            HumidityTabPage.Text = "Humidity";
+            HumidityTabPage.UseVisualStyleBackColor = true;
             // 
             // humiditycartesianChart
             // 
@@ -181,17 +186,17 @@
             humiditycartesianChart.TabIndex = 0;
             humiditycartesianChart.Text = "cartesianChart2";
             // 
-            // InsolationtabPage
+            // InsolationTabPage
             // 
-            InsolationtabPage.Controls.Add(InsolationcartesianChart);
-            InsolationtabPage.ImageKey = "Insolation.png";
-            InsolationtabPage.Location = new Point(4, 39);
-            InsolationtabPage.Name = "InsolationtabPage";
-            InsolationtabPage.Padding = new Padding(3);
-            InsolationtabPage.Size = new Size(987, 396);
-            InsolationtabPage.TabIndex = 2;
-            InsolationtabPage.Text = "Insolation";
-            InsolationtabPage.UseVisualStyleBackColor = true;
+            InsolationTabPage.Controls.Add(InsolationcartesianChart);
+            InsolationTabPage.ImageKey = "Insolation.png";
+            InsolationTabPage.Location = new Point(4, 39);
+            InsolationTabPage.Name = "InsolationTabPage";
+            InsolationTabPage.Padding = new Padding(3);
+            InsolationTabPage.Size = new Size(987, 396);
+            InsolationTabPage.TabIndex = 2;
+            InsolationTabPage.Text = "Insolation";
+            InsolationTabPage.UseVisualStyleBackColor = true;
             // 
             // InsolationcartesianChart
             // 
@@ -201,79 +206,195 @@
             InsolationcartesianChart.TabIndex = 0;
             InsolationcartesianChart.Text = "cartesianChart3";
             // 
-            // materialRadioButton1
+            // Username_materialTextBox
             // 
-            materialRadioButton1.AutoSize = true;
-            materialRadioButton1.Depth = 0;
-            materialRadioButton1.Location = new Point(782, 110);
-            materialRadioButton1.Margin = new Padding(0);
-            materialRadioButton1.MouseLocation = new Point(-1, -1);
-            materialRadioButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialRadioButton1.Name = "materialRadioButton1";
-            materialRadioButton1.Ripple = true;
-            materialRadioButton1.Size = new Size(106, 37);
-            materialRadioButton1.TabIndex = 11;
-            materialRadioButton1.TabStop = true;
-            materialRadioButton1.Text = "Check live";
-            materialRadioButton1.UseVisualStyleBackColor = true;
-            materialRadioButton1.CheckedChanged += materialRadioButton1_CheckedChanged;
+            Username_materialTextBox.AnimateReadOnly = false;
+            Username_materialTextBox.BorderStyle = BorderStyle.None;
+            Username_materialTextBox.Depth = 0;
+            Username_materialTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Username_materialTextBox.LeadingIcon = null;
+            Username_materialTextBox.Location = new Point(81, 6);
+            Username_materialTextBox.MaxLength = 50;
+            Username_materialTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            Username_materialTextBox.Multiline = false;
+            Username_materialTextBox.Name = "Username_materialTextBox";
+            Username_materialTextBox.ReadOnly = true;
+            Username_materialTextBox.Size = new Size(191, 50);
+            Username_materialTextBox.TabIndex = 16;
+            Username_materialTextBox.Text = "";
+            Username_materialTextBox.TrailingIcon = null;
             // 
-            // StopmaterialRadioButton
+            // logoutmaterialButton
             // 
-            StopmaterialRadioButton.AutoSize = true;
-            StopmaterialRadioButton.Depth = 0;
-            StopmaterialRadioButton.Location = new Point(782, 147);
-            StopmaterialRadioButton.Margin = new Padding(0);
-            StopmaterialRadioButton.MouseLocation = new Point(-1, -1);
-            StopmaterialRadioButton.MouseState = MaterialSkin.MouseState.HOVER;
-            StopmaterialRadioButton.Name = "StopmaterialRadioButton";
-            StopmaterialRadioButton.Ripple = true;
-            StopmaterialRadioButton.Size = new Size(68, 37);
-            StopmaterialRadioButton.TabIndex = 12;
-            StopmaterialRadioButton.TabStop = true;
-            StopmaterialRadioButton.Text = "Stop";
-            StopmaterialRadioButton.UseVisualStyleBackColor = true;
-            StopmaterialRadioButton.CheckedChanged += StopmaterialRadioButton_CheckedChanged;
+            logoutmaterialButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            logoutmaterialButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            logoutmaterialButton.Depth = 0;
+            logoutmaterialButton.HighEmphasis = true;
+            logoutmaterialButton.Icon = null;
+            logoutmaterialButton.Location = new Point(129, 65);
+            logoutmaterialButton.Margin = new Padding(4, 6, 4, 6);
+            logoutmaterialButton.MouseState = MaterialSkin.MouseState.HOVER;
+            logoutmaterialButton.Name = "logoutmaterialButton";
+            logoutmaterialButton.NoAccentTextColor = Color.Empty;
+            logoutmaterialButton.Size = new Size(78, 36);
+            logoutmaterialButton.TabIndex = 14;
+            logoutmaterialButton.Text = "Logout";
+            logoutmaterialButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            logoutmaterialButton.UseAccentColor = false;
+            logoutmaterialButton.UseVisualStyleBackColor = true;
+            logoutmaterialButton.Click += logoutmaterialButton_Click;
+            // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(3, 18);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(72, 19);
+            materialLabel1.TabIndex = 13;
+            materialLabel1.Text = "Username";
+            // 
+            // tabPage3
+            // 
+            tabPage3.BackColor = Color.FromArgb(64, 64, 64);
+            tabPage3.Controls.Add(TimeFramematerialComboBox);
+            tabPage3.Controls.Add(ParametermaterialComboBox);
+            tabPage3.Controls.Add(DrawchartmaterialButton);
+            tabPage3.Controls.Add(dateTimePicker);
+            tabPage3.Controls.Add(cartesianChart);
+            tabPage3.ImageKey = "chart.png";
+            tabPage3.Location = new Point(4, 39);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1910, 951);
+            tabPage3.TabIndex = 1;
+            tabPage3.Text = "Charts";
+            // 
+            // TimeFramematerialComboBox
+            // 
+            TimeFramematerialComboBox.AutoResize = false;
+            TimeFramematerialComboBox.BackColor = Color.FromArgb(255, 255, 255);
+            TimeFramematerialComboBox.Depth = 0;
+            TimeFramematerialComboBox.DrawMode = DrawMode.OwnerDrawVariable;
+            TimeFramematerialComboBox.DropDownHeight = 174;
+            TimeFramematerialComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            TimeFramematerialComboBox.DropDownWidth = 121;
+            TimeFramematerialComboBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            TimeFramematerialComboBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            TimeFramematerialComboBox.FormattingEnabled = true;
+            TimeFramematerialComboBox.IntegralHeight = false;
+            TimeFramematerialComboBox.ItemHeight = 43;
+            TimeFramematerialComboBox.Location = new Point(701, 619);
+            TimeFramematerialComboBox.MaxDropDownItems = 4;
+            TimeFramematerialComboBox.MouseState = MaterialSkin.MouseState.OUT;
+            TimeFramematerialComboBox.Name = "TimeFramematerialComboBox";
+            TimeFramematerialComboBox.Size = new Size(182, 49);
+            TimeFramematerialComboBox.StartIndex = 0;
+            TimeFramematerialComboBox.TabIndex = 11;
+            // 
+            // ParametermaterialComboBox
+            // 
+            ParametermaterialComboBox.AutoResize = false;
+            ParametermaterialComboBox.BackColor = Color.FromArgb(255, 255, 255);
+            ParametermaterialComboBox.Depth = 0;
+            ParametermaterialComboBox.DrawMode = DrawMode.OwnerDrawVariable;
+            ParametermaterialComboBox.DropDownHeight = 174;
+            ParametermaterialComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ParametermaterialComboBox.DropDownWidth = 121;
+            ParametermaterialComboBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            ParametermaterialComboBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            ParametermaterialComboBox.FormattingEnabled = true;
+            ParametermaterialComboBox.IntegralHeight = false;
+            ParametermaterialComboBox.ItemHeight = 43;
+            ParametermaterialComboBox.Location = new Point(513, 619);
+            ParametermaterialComboBox.MaxDropDownItems = 4;
+            ParametermaterialComboBox.MouseState = MaterialSkin.MouseState.OUT;
+            ParametermaterialComboBox.Name = "ParametermaterialComboBox";
+            ParametermaterialComboBox.Size = new Size(182, 49);
+            ParametermaterialComboBox.StartIndex = 0;
+            ParametermaterialComboBox.TabIndex = 10;
+            // 
+            // DrawchartmaterialButton
+            // 
+            DrawchartmaterialButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            DrawchartmaterialButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            DrawchartmaterialButton.Depth = 0;
+            DrawchartmaterialButton.HighEmphasis = true;
+            DrawchartmaterialButton.Icon = null;
+            DrawchartmaterialButton.Location = new Point(890, 628);
+            DrawchartmaterialButton.Margin = new Padding(4, 6, 4, 6);
+            DrawchartmaterialButton.MouseState = MaterialSkin.MouseState.HOVER;
+            DrawchartmaterialButton.Name = "DrawchartmaterialButton";
+            DrawchartmaterialButton.NoAccentTextColor = Color.Empty;
+            DrawchartmaterialButton.Size = new Size(64, 36);
+            DrawchartmaterialButton.TabIndex = 9;
+            DrawchartmaterialButton.Text = "Draw";
+            DrawchartmaterialButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            DrawchartmaterialButton.UseAccentColor = false;
+            DrawchartmaterialButton.UseVisualStyleBackColor = true;
+            DrawchartmaterialButton.Click += DrawchartmaterialButton_Click;
+            // 
+            // dateTimePicker
+            // 
+            dateTimePicker.Location = new Point(302, 633);
+            dateTimePicker.Name = "dateTimePicker";
+            dateTimePicker.Size = new Size(205, 23);
+            dateTimePicker.TabIndex = 8;
+            // 
+            // cartesianChart
+            // 
+            cartesianChart.Location = new Point(7, 6);
+            cartesianChart.Name = "cartesianChart";
+            cartesianChart.Size = new Size(1900, 598);
+            cartesianChart.TabIndex = 7;
+            cartesianChart.Text = "cartesianChart1";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1924, 1061);
-            Controls.Add(StopmaterialRadioButton);
-            Controls.Add(materialRadioButton1);
             Controls.Add(tabControl1);
-            Controls.Add(username_materialTextBox);
-            Controls.Add(Chartmenu_materialButton);
-            Controls.Add(logoutmaterialButton);
-            Controls.Add(materialLabel1);
             Name = "Form1";
             Text = "Start";
             Load += Form1_Load;
             tabControl1.ResumeLayout(false);
-            TemperaturetabPage.ResumeLayout(false);
-            humiditytabPage.ResumeLayout(false);
-            InsolationtabPage.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            tabControl2.ResumeLayout(false);
+            TemperatureTabPage.ResumeLayout(false);
+            HumidityTabPage.ResumeLayout(false);
+            InsolationTabPage.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialButton logoutmaterialButton;
-        private MaterialSkin.Controls.MaterialButton Chartmenu_materialButton;
-        private MaterialSkin.Controls.MaterialTextBox username_materialTextBox;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
-        private TabPage TemperaturetabPage;
-        private TabPage humiditytabPage;
-        private TabPage InsolationtabPage;
-        private LiveCharts.WinForms.CartesianChart TemperaturecartesianChart;
-        private LiveCharts.WinForms.CartesianChart humiditycartesianChart;
-        private LiveCharts.WinForms.CartesianChart InsolationcartesianChart;
-        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton1;
         private ImageList imageList1;
-        private TabControl tabControl1;
         private TabPage tabPage1;
+        private TabControl tabControl1;
+        private TabPage tabPage2;
         private MaterialSkin.Controls.MaterialRadioButton StopmaterialRadioButton;
+        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton1;
+        private TabControl tabControl2;
+        private TabPage TemperatureTabPage;
+        private LiveCharts.WinForms.CartesianChart TemperaturecartesianChart;
+        private TabPage HumidityTabPage;
+        private LiveCharts.WinForms.CartesianChart humiditycartesianChart;
+        private TabPage InsolationTabPage;
+        private LiveCharts.WinForms.CartesianChart InsolationcartesianChart;
+        private MaterialSkin.Controls.MaterialTextBox Username_materialTextBox;
+        private MaterialSkin.Controls.MaterialButton logoutmaterialButton;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private TabPage tabPage3;
+        private LiveCharts.WinForms.CartesianChart cartesianChart;
+        private DateTimePicker dateTimePicker;
+        private MaterialSkin.Controls.MaterialComboBox TimeFramematerialComboBox;
+        private MaterialSkin.Controls.MaterialComboBox ParametermaterialComboBox;
+        private MaterialSkin.Controls.MaterialButton DrawchartmaterialButton;
     }
 }

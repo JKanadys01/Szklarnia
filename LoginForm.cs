@@ -26,7 +26,7 @@ namespace GreenHouse
             //dodanie menagera do formatowania tego okna
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-
+            
             materialSkinManager.ColorScheme = new ColorScheme(
                 Primary.Green400, Primary.Green500,
                 Primary.Green800, Accent.LightGreen200, TextShade.WHITE);
