@@ -82,13 +82,13 @@ namespace GreenHouse
             {
 
 
-                MySqlCommand cmd = new MySqlCommand("select * from szklarnia_1", mySqlConnection);
+                MySqlCommand cmd = new MySqlCommand("select * from pomiar", mySqlConnection);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(1), reader.GetDouble(2), reader.GetDateTime(3)));
+                    allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2)));
                 }
 
 
@@ -263,7 +263,7 @@ namespace GreenHouse
             catch (Exception ex)
             {
                 timer.Stop();
-                MessageBox.Show("Nie masz dostêpnu do tych danych", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+              //  MessageBox.Show("Nie masz dostêpnu do tych danych", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             mySqlConnection.Close();

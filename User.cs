@@ -18,7 +18,7 @@ namespace GreenHouse
         string name;
         public User() { }
         public User(string login, string password) 
-        { mysqlconn = "server=127.0.0.1;user=" + login + ";database=szklarnia_v2;password=" + password;name = login; }
+        { mysqlconn = "server=127.0.0.1;user=" + login + ";database=szklarnia_v3;password=" + password;name = login; }
         public string get_mysqlconn() { return mysqlconn; }
         public string get_name() { return name;}
     }
