@@ -28,7 +28,7 @@ namespace GreenHouse
             TemperaturecartesianChart.Visible = false;
             humiditycartesianChart.Visible = false;
             InsolationcartesianChart.Visible = false;
-            mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart,tabControl2);
+            mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart,tabControl2,TemperatureProgressBar,HumidityProgressBar,InsolationProgressBar,temperaturematerialLabel,humiditymaterialLabel,insolationmaterialLabel);
             mainPage.Initialize();
             ///Chart page
             cartesianChart.Visible = false;

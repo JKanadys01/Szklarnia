@@ -33,6 +33,12 @@
             imageList1 = new ImageList(components);
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
+            InsolationProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
+            HumidityProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
+            insolationmaterialLabel = new MaterialSkin.Controls.MaterialLabel();
+            humiditymaterialLabel = new MaterialSkin.Controls.MaterialLabel();
+            temperaturematerialLabel = new MaterialSkin.Controls.MaterialLabel();
+            TemperatureProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
             StopmaterialRadioButton = new MaterialSkin.Controls.MaterialRadioButton();
             materialRadioButton1 = new MaterialSkin.Controls.MaterialRadioButton();
             tabControl2 = new TabControl();
@@ -51,6 +57,7 @@
             DrawchartmaterialButton = new MaterialSkin.Controls.MaterialButton();
             dateTimePicker = new DateTimePicker();
             cartesianChart = new LiveCharts.WinForms.CartesianChart();
+            tabPage4 = new TabPage();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabControl2.SuspendLayout();
@@ -70,11 +77,13 @@
             imageList1.Images.SetKeyName(2, "temp.png");
             imageList1.Images.SetKeyName(3, "chart.png");
             imageList1.Images.SetKeyName(4, "home.png");
+            imageList1.Images.SetKeyName(5, "admin.jpg");
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.ImageList = imageList1;
             tabControl1.Location = new Point(3, 64);
@@ -86,6 +95,12 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(64, 64, 64);
+            tabPage2.Controls.Add(InsolationProgressBar);
+            tabPage2.Controls.Add(HumidityProgressBar);
+            tabPage2.Controls.Add(insolationmaterialLabel);
+            tabPage2.Controls.Add(humiditymaterialLabel);
+            tabPage2.Controls.Add(temperaturematerialLabel);
+            tabPage2.Controls.Add(TemperatureProgressBar);
             tabPage2.Controls.Add(StopmaterialRadioButton);
             tabPage2.Controls.Add(materialRadioButton1);
             tabPage2.Controls.Add(tabControl2);
@@ -99,6 +114,74 @@
             tabPage2.Size = new Size(1910, 951);
             tabPage2.TabIndex = 0;
             tabPage2.Text = "Main";
+            // 
+            // InsolationProgressBar
+            // 
+            InsolationProgressBar.Depth = 0;
+            InsolationProgressBar.ForeColor = Color.Yellow;
+            InsolationProgressBar.Location = new Point(920, 557);
+            InsolationProgressBar.MouseState = MaterialSkin.MouseState.HOVER;
+            InsolationProgressBar.Name = "InsolationProgressBar";
+            InsolationProgressBar.Size = new Size(984, 5);
+            InsolationProgressBar.TabIndex = 25;
+            // 
+            // HumidityProgressBar
+            // 
+            HumidityProgressBar.BackColor = Color.FromArgb(64, 64, 64);
+            HumidityProgressBar.Depth = 0;
+            HumidityProgressBar.ForeColor = Color.Blue;
+            HumidityProgressBar.Location = new Point(920, 518);
+            HumidityProgressBar.MouseState = MaterialSkin.MouseState.HOVER;
+            HumidityProgressBar.Name = "HumidityProgressBar";
+            HumidityProgressBar.Size = new Size(984, 5);
+            HumidityProgressBar.TabIndex = 24;
+            // 
+            // insolationmaterialLabel
+            // 
+            insolationmaterialLabel.AutoSize = true;
+            insolationmaterialLabel.Depth = 0;
+            insolationmaterialLabel.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            insolationmaterialLabel.Location = new Point(920, 535);
+            insolationmaterialLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            insolationmaterialLabel.Name = "insolationmaterialLabel";
+            insolationmaterialLabel.Size = new Size(75, 19);
+            insolationmaterialLabel.TabIndex = 23;
+            insolationmaterialLabel.Text = "Insolation:";
+            // 
+            // humiditymaterialLabel
+            // 
+            humiditymaterialLabel.AutoSize = true;
+            humiditymaterialLabel.Depth = 0;
+            humiditymaterialLabel.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            humiditymaterialLabel.Location = new Point(920, 496);
+            humiditymaterialLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            humiditymaterialLabel.Name = "humiditymaterialLabel";
+            humiditymaterialLabel.Size = new Size(69, 19);
+            humiditymaterialLabel.TabIndex = 22;
+            humiditymaterialLabel.Text = "Humidity:";
+            // 
+            // temperaturematerialLabel
+            // 
+            temperaturematerialLabel.AutoSize = true;
+            temperaturematerialLabel.Depth = 0;
+            temperaturematerialLabel.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            temperaturematerialLabel.Location = new Point(924, 457);
+            temperaturematerialLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            temperaturematerialLabel.Name = "temperaturematerialLabel";
+            temperaturematerialLabel.Size = new Size(95, 19);
+            temperaturematerialLabel.TabIndex = 21;
+            temperaturematerialLabel.Text = "Temperature:";
+            // 
+            // TemperatureProgressBar
+            // 
+            TemperatureProgressBar.Depth = 0;
+            TemperatureProgressBar.ForeColor = Color.FromArgb(128, 255, 128);
+            TemperatureProgressBar.Location = new Point(920, 479);
+            TemperatureProgressBar.Maximum = 50;
+            TemperatureProgressBar.MouseState = MaterialSkin.MouseState.HOVER;
+            TemperatureProgressBar.Name = "TemperatureProgressBar";
+            TemperatureProgressBar.Size = new Size(984, 5);
+            TemperatureProgressBar.TabIndex = 20;
             // 
             // StopmaterialRadioButton
             // 
@@ -353,6 +436,16 @@
             cartesianChart.TabIndex = 7;
             cartesianChart.Text = "cartesianChart1";
             // 
+            // tabPage4
+            // 
+            tabPage4.BackColor = Color.FromArgb(64, 64, 64);
+            tabPage4.ImageKey = "admin.jpg";
+            tabPage4.Location = new Point(4, 39);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(1910, 951);
+            tabPage4.TabIndex = 2;
+            tabPage4.Text = "Admin";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -398,5 +491,12 @@
         private MaterialSkin.Controls.MaterialComboBox TimeFramematerialComboBox;
         private MaterialSkin.Controls.MaterialComboBox ParametermaterialComboBox;
         private MaterialSkin.Controls.MaterialButton DrawchartmaterialButton;
+        private TabPage tabPage4;
+        private MaterialSkin.Controls.MaterialProgressBar TemperatureProgressBar;
+        private MaterialSkin.Controls.MaterialProgressBar InsolationProgressBar;
+        private MaterialSkin.Controls.MaterialProgressBar HumidityProgressBar;
+        private MaterialSkin.Controls.MaterialLabel insolationmaterialLabel;
+        private MaterialSkin.Controls.MaterialLabel humiditymaterialLabel;
+        private MaterialSkin.Controls.MaterialLabel temperaturematerialLabel;
     }
 }

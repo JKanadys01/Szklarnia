@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MaterialSkin.Controls;
 
 namespace GreenHouse
 {
@@ -18,8 +19,13 @@ namespace GreenHouse
         private LiveCharts.WinForms.CartesianChart HumidityChart;
         private LiveCharts.WinForms.CartesianChart InsolationChart;
         private TabControl tabControl2;
-
-        public MainPage(All_data allData, User userLog, LiveCharts.WinForms.CartesianChart temperatureChart, LiveCharts.WinForms.CartesianChart humidityChart, LiveCharts.WinForms.CartesianChart insolationChart, TabControl tabControl2)
+        private MaterialProgressBar TemperatureProgresBar;
+        private MaterialProgressBar HumidityProgresBar;
+        private MaterialProgressBar InsolationProgresBar;
+        private MaterialLabel TemperatureLabel;
+        private MaterialLabel HumidityLabel;
+        private MaterialLabel InsolationLabel;
+        public MainPage(All_data allData, User userLog, LiveCharts.WinForms.CartesianChart temperatureChart, LiveCharts.WinForms.CartesianChart humidityChart, LiveCharts.WinForms.CartesianChart insolationChart, TabControl tabControl2,MaterialProgressBar temperatureProgresBar, MaterialProgressBar humidityProgresBar, MaterialProgressBar insolationProgresBar, MaterialLabel temperatureLabel, MaterialLabel humidityLabel, MaterialLabel insolationLabel)
         {
             this.allData = allData;
             user_log = userLog;
@@ -27,18 +33,24 @@ namespace GreenHouse
             HumidityChart = humidityChart;
             InsolationChart = insolationChart;
             this.tabControl2 = tabControl2;
-            
+            this.TemperatureProgresBar = temperatureProgresBar;
+            this.HumidityProgresBar = humidityProgresBar;
+            this.InsolationProgresBar = insolationProgresBar;
+            TemperatureLabel = temperatureLabel;
+            HumidityLabel = humidityLabel;
+            InsolationLabel = insolationLabel;
         }
 
         public void Initialize()
         {
             timer = new System.Windows.Forms.Timer();
-            timer.Interval = 10000;
+            timer.Interval = 15000;
             timer.Tick += Timer_Tick;
         }
 
         public void StartTimer()
         {
+            Timer_Tick(null, EventArgs.Empty);
             timer.Start();
         }
 
@@ -62,6 +74,7 @@ namespace GreenHouse
                 {
                     allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2)));
                 }
+                UpdateProgressBars();
             }
             catch (Exception ex)
             {
@@ -177,6 +190,29 @@ namespace GreenHouse
                     return InsolationChart;
                 default:
                     return null;
+            }
+        }
+
+        private void UpdateProgressBars()
+        {
+            if (allData.records.Count > 0)
+            {
+                var latestRecord = allData.records.Last();
+                TemperatureLabel.Text = $"Temperature:{latestRecord.temperature}°C";
+                HumidityLabel.Text = $"Humidity:{latestRecord.humidity}%";
+                InsolationLabel.Text = $"Insolation:{latestRecord.humidity}%";
+                // Użycie Invoke, aby aktualizować ProgressBar w wątku UI
+                TemperatureProgresBar.Invoke((MethodInvoker)delegate {
+                    TemperatureProgresBar.Value = (int)latestRecord.temperature;
+                });
+
+                HumidityProgresBar.Invoke((MethodInvoker)delegate {
+                    HumidityProgresBar.Value = (int)latestRecord.humidity;
+                });
+
+                InsolationProgresBar.Invoke((MethodInvoker)delegate {
+                    InsolationProgresBar.Value = (int)latestRecord.humidity;
+                });
             }
         }
     }
