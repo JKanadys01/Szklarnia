@@ -33,14 +33,13 @@
             imageList1 = new ImageList(components);
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
+            materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
             InsolationProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
             HumidityProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
             insolationmaterialLabel = new MaterialSkin.Controls.MaterialLabel();
             humiditymaterialLabel = new MaterialSkin.Controls.MaterialLabel();
             temperaturematerialLabel = new MaterialSkin.Controls.MaterialLabel();
             TemperatureProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
-            StopmaterialRadioButton = new MaterialSkin.Controls.MaterialRadioButton();
-            materialRadioButton1 = new MaterialSkin.Controls.MaterialRadioButton();
             tabControl2 = new TabControl();
             TemperatureTabPage = new TabPage();
             TemperaturecartesianChart = new LiveCharts.WinForms.CartesianChart();
@@ -95,14 +94,13 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(64, 64, 64);
+            tabPage2.Controls.Add(materialSwitch1);
             tabPage2.Controls.Add(InsolationProgressBar);
             tabPage2.Controls.Add(HumidityProgressBar);
             tabPage2.Controls.Add(insolationmaterialLabel);
             tabPage2.Controls.Add(humiditymaterialLabel);
             tabPage2.Controls.Add(temperaturematerialLabel);
             tabPage2.Controls.Add(TemperatureProgressBar);
-            tabPage2.Controls.Add(StopmaterialRadioButton);
-            tabPage2.Controls.Add(materialRadioButton1);
             tabPage2.Controls.Add(tabControl2);
             tabPage2.Controls.Add(Username_materialTextBox);
             tabPage2.Controls.Add(logoutmaterialButton);
@@ -114,6 +112,22 @@
             tabPage2.Size = new Size(1910, 951);
             tabPage2.TabIndex = 0;
             tabPage2.Text = "Main";
+            // 
+            // materialSwitch1
+            // 
+            materialSwitch1.AutoSize = true;
+            materialSwitch1.Depth = 0;
+            materialSwitch1.Location = new Point(800, 3);
+            materialSwitch1.Margin = new Padding(0);
+            materialSwitch1.MouseLocation = new Point(-1, -1);
+            materialSwitch1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialSwitch1.Name = "materialSwitch1";
+            materialSwitch1.Ripple = true;
+            materialSwitch1.Size = new Size(117, 37);
+            materialSwitch1.TabIndex = 26;
+            materialSwitch1.Text = "Go live\r\n";
+            materialSwitch1.UseVisualStyleBackColor = true;
+            materialSwitch1.CheckedChanged += materialSwitch1_CheckedChanged;
             // 
             // InsolationProgressBar
             // 
@@ -182,40 +196,6 @@
             TemperatureProgressBar.Name = "TemperatureProgressBar";
             TemperatureProgressBar.Size = new Size(984, 5);
             TemperatureProgressBar.TabIndex = 20;
-            // 
-            // StopmaterialRadioButton
-            // 
-            StopmaterialRadioButton.AutoSize = true;
-            StopmaterialRadioButton.Depth = 0;
-            StopmaterialRadioButton.Location = new Point(779, 77);
-            StopmaterialRadioButton.Margin = new Padding(0);
-            StopmaterialRadioButton.MouseLocation = new Point(-1, -1);
-            StopmaterialRadioButton.MouseState = MaterialSkin.MouseState.HOVER;
-            StopmaterialRadioButton.Name = "StopmaterialRadioButton";
-            StopmaterialRadioButton.Ripple = true;
-            StopmaterialRadioButton.Size = new Size(68, 37);
-            StopmaterialRadioButton.TabIndex = 19;
-            StopmaterialRadioButton.TabStop = true;
-            StopmaterialRadioButton.Text = "Stop";
-            StopmaterialRadioButton.UseVisualStyleBackColor = true;
-            StopmaterialRadioButton.CheckedChanged += StopmaterialRadioButton_CheckedChanged_1;
-            // 
-            // materialRadioButton1
-            // 
-            materialRadioButton1.AutoSize = true;
-            materialRadioButton1.Depth = 0;
-            materialRadioButton1.Location = new Point(779, 40);
-            materialRadioButton1.Margin = new Padding(0);
-            materialRadioButton1.MouseLocation = new Point(-1, -1);
-            materialRadioButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialRadioButton1.Name = "materialRadioButton1";
-            materialRadioButton1.Ripple = true;
-            materialRadioButton1.Size = new Size(106, 37);
-            materialRadioButton1.TabIndex = 18;
-            materialRadioButton1.TabStop = true;
-            materialRadioButton1.Text = "Check live";
-            materialRadioButton1.UseVisualStyleBackColor = true;
-            materialRadioButton1.CheckedChanged += materialRadioButton1_CheckedChanged_1;
             // 
             // tabControl2
             // 
@@ -473,8 +453,6 @@
         private TabPage tabPage1;
         private TabControl tabControl1;
         private TabPage tabPage2;
-        private MaterialSkin.Controls.MaterialRadioButton StopmaterialRadioButton;
-        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton1;
         private TabControl tabControl2;
         private TabPage TemperatureTabPage;
         private LiveCharts.WinForms.CartesianChart TemperaturecartesianChart;
@@ -498,5 +476,6 @@
         private MaterialSkin.Controls.MaterialLabel insolationmaterialLabel;
         private MaterialSkin.Controls.MaterialLabel humiditymaterialLabel;
         private MaterialSkin.Controls.MaterialLabel temperaturematerialLabel;
+        private MaterialSkin.Controls.MaterialSwitch materialSwitch1;
     }
 }
