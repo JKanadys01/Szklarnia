@@ -20,7 +20,7 @@ namespace GreenHouse
         private MaterialComboBox TimeFramematerialComboBox;
         private LiveCharts.WinForms.CartesianChart cartesianChart;
         private DateTimePicker dateTimePicker;
-
+        //Konstruktor przy pomocy którego możliwe jest odwołanie do obiektów Form1
         public ChartPage(All_data allData, User user_log, MainPage mainPage, MaterialComboBox parameterComboBox, MaterialComboBox timeFrameComboBox, LiveCharts.WinForms.CartesianChart chart, DateTimePicker picker)
         {
             this.allData = allData;
@@ -31,7 +31,7 @@ namespace GreenHouse
             this.cartesianChart = chart;
             this.dateTimePicker = picker;
         }
-
+        //Inicjalizacja zawartości combobox
         public void InitializeComboBox()
         {
             ParametermaterialComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -42,7 +42,7 @@ namespace GreenHouse
             TimeFramematerialComboBox.Items.AddRange(new object[] { "Today", "Last Week", "Last Month", "Specific Day" });
             TimeFramematerialComboBox.SelectedIndex = 0;
         }
-
+        //Rysowanie wykresu
         public void DrawChart(Dictionary<DateTime, double> data, string parameter)
         {
             cartesianChart.Series.Clear();
@@ -107,7 +107,7 @@ namespace GreenHouse
                 });
             }
         }
-
+        //Odsiew pomiarów po parametrze
         public Dictionary<DateTime, double> GetDataForChart(string parameter, string timeFrame)
         {
             Dictionary<DateTime, double> data = new Dictionary<DateTime, double>();
@@ -134,7 +134,7 @@ namespace GreenHouse
             }
             return data;
         }
-
+        //Odsiew pomiarów po zakresie czasowym
         public List<Record> GetSelectedRecords(string parameter, string timeFrame)
         {
             List<Record> allRecords = allData.records;
@@ -163,7 +163,7 @@ namespace GreenHouse
             }
             return selectedRecords;
         }
-
+        // Funkcja pomocnicza by nie było informacji o braku dostepu do danych tak jak w MainPage Go_live
         public void GenerateChart()
         {
             // Pobieramy wybrane parametry z ComboBoxów

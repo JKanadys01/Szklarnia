@@ -28,8 +28,14 @@ namespace GreenHouse
             TemperaturecartesianChart.Visible = false;
             humiditycartesianChart.Visible = false;
             InsolationcartesianChart.Visible = false;
-            mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart, tabControl2, TemperatureProgressBar, HumidityProgressBar, InsolationProgressBar, temperaturematerialLabel, humiditymaterialLabel, insolationmaterialLabel);
+            mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart, tabControl2, TemperatureProgressBar, HumidityProgressBar,
+                InsolationProgressBar, temperaturematerialLabel, humiditymaterialLabel, insolationmaterialLabel, TemperatureAlarmButton, HumidityAlarmButton, InsolationAlarmButton, TempMinTextBox,
+                TempMaxTextBox, HumMinTextBox, HumMaxTextBox, InsMinTextBox, InsMaxTextBox);
             mainPage.Initialize();
+            ///Alarmy
+            TemperatureAlarmButton.Visible = false;
+            HumidityAlarmButton.Visible = false;
+            InsolationAlarmButton.Visible = false;
             ///Chart page
             cartesianChart.Visible = false;
             chartPage = new ChartPage(allData, user_log, mainPage, ParametermaterialComboBox, TimeFramematerialComboBox, cartesianChart, dateTimePicker);
@@ -54,7 +60,7 @@ namespace GreenHouse
 
         private void materialSwitch1_CheckedChanged(object sender, EventArgs e)
         {
-            if(materialSwitch1.Checked == true)
+            if (materialSwitch1.Checked == true)
             {
                 mainPage.StartTimer();
             }
@@ -68,7 +74,20 @@ namespace GreenHouse
         {
             chartPage.GenerateChart();
         }
+        /// Obs³uga alarmów
+        private void TemperatureAlarmButton_Click(object sender, EventArgs e)
+        {
+            TemperatureAlarmButton.Visible=false;
+        }
 
-        
+        private void HumidityAlarmButton_Click(object sender, EventArgs e)
+        {
+            HumidityAlarmButton.Visible=false;
+        }
+
+        private void InsolationAlarmButton_Click(object sender, EventArgs e)
+        {
+            InsolationAlarmButton.Visible=false;
+        }
     }
 }

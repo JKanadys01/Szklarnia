@@ -33,6 +33,25 @@
             imageList1 = new ImageList(components);
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
+            InsMaxTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            InsMinTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            HumMaxTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            HumMinTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            TempMaxTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            TempMinTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            materialLabel11 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            InsolationAlarmButton = new MaterialSkin.Controls.MaterialButton();
+            HumidityAlarmButton = new MaterialSkin.Controls.MaterialButton();
+            TemperatureAlarmButton = new MaterialSkin.Controls.MaterialButton();
+            materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
             InsolationProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
             HumidityProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
@@ -94,6 +113,25 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(64, 64, 64);
+            tabPage2.Controls.Add(InsMaxTextBox);
+            tabPage2.Controls.Add(InsMinTextBox);
+            tabPage2.Controls.Add(HumMaxTextBox);
+            tabPage2.Controls.Add(HumMinTextBox);
+            tabPage2.Controls.Add(TempMaxTextBox);
+            tabPage2.Controls.Add(TempMinTextBox);
+            tabPage2.Controls.Add(materialLabel11);
+            tabPage2.Controls.Add(materialLabel10);
+            tabPage2.Controls.Add(materialLabel9);
+            tabPage2.Controls.Add(materialLabel8);
+            tabPage2.Controls.Add(materialLabel7);
+            tabPage2.Controls.Add(materialLabel6);
+            tabPage2.Controls.Add(InsolationAlarmButton);
+            tabPage2.Controls.Add(HumidityAlarmButton);
+            tabPage2.Controls.Add(TemperatureAlarmButton);
+            tabPage2.Controls.Add(materialLabel5);
+            tabPage2.Controls.Add(materialLabel4);
+            tabPage2.Controls.Add(materialLabel3);
+            tabPage2.Controls.Add(materialLabel2);
             tabPage2.Controls.Add(materialSwitch1);
             tabPage2.Controls.Add(InsolationProgressBar);
             tabPage2.Controls.Add(HumidityProgressBar);
@@ -113,11 +151,293 @@
             tabPage2.TabIndex = 0;
             tabPage2.Text = "Main";
             // 
+            // InsMaxTextBox
+            // 
+            InsMaxTextBox.AnimateReadOnly = false;
+            InsMaxTextBox.BorderStyle = BorderStyle.None;
+            InsMaxTextBox.Depth = 0;
+            InsMaxTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            InsMaxTextBox.LeadingIcon = null;
+            InsMaxTextBox.Location = new Point(224, 349);
+            InsMaxTextBox.MaxLength = 50;
+            InsMaxTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            InsMaxTextBox.Multiline = false;
+            InsMaxTextBox.Name = "InsMaxTextBox";
+            InsMaxTextBox.Size = new Size(100, 50);
+            InsMaxTextBox.TabIndex = 45;
+            InsMaxTextBox.Text = "";
+            InsMaxTextBox.TrailingIcon = null;
+            // 
+            // InsMinTextBox
+            // 
+            InsMinTextBox.AnimateReadOnly = false;
+            InsMinTextBox.BorderStyle = BorderStyle.None;
+            InsMinTextBox.Depth = 0;
+            InsMinTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            InsMinTextBox.LeadingIcon = null;
+            InsMinTextBox.Location = new Point(103, 349);
+            InsMinTextBox.MaxLength = 50;
+            InsMinTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            InsMinTextBox.Multiline = false;
+            InsMinTextBox.Name = "InsMinTextBox";
+            InsMinTextBox.Size = new Size(100, 50);
+            InsMinTextBox.TabIndex = 44;
+            InsMinTextBox.Text = "";
+            InsMinTextBox.TrailingIcon = null;
+            // 
+            // HumMaxTextBox
+            // 
+            HumMaxTextBox.AnimateReadOnly = false;
+            HumMaxTextBox.BorderStyle = BorderStyle.None;
+            HumMaxTextBox.Depth = 0;
+            HumMaxTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            HumMaxTextBox.LeadingIcon = null;
+            HumMaxTextBox.Location = new Point(224, 277);
+            HumMaxTextBox.MaxLength = 50;
+            HumMaxTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            HumMaxTextBox.Multiline = false;
+            HumMaxTextBox.Name = "HumMaxTextBox";
+            HumMaxTextBox.Size = new Size(100, 50);
+            HumMaxTextBox.TabIndex = 43;
+            HumMaxTextBox.Text = "";
+            HumMaxTextBox.TrailingIcon = null;
+            // 
+            // HumMinTextBox
+            // 
+            HumMinTextBox.AnimateReadOnly = false;
+            HumMinTextBox.BorderStyle = BorderStyle.None;
+            HumMinTextBox.Depth = 0;
+            HumMinTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            HumMinTextBox.LeadingIcon = null;
+            HumMinTextBox.Location = new Point(103, 277);
+            HumMinTextBox.MaxLength = 50;
+            HumMinTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            HumMinTextBox.Multiline = false;
+            HumMinTextBox.Name = "HumMinTextBox";
+            HumMinTextBox.Size = new Size(100, 50);
+            HumMinTextBox.TabIndex = 42;
+            HumMinTextBox.Text = "";
+            HumMinTextBox.TrailingIcon = null;
+            // 
+            // TempMaxTextBox
+            // 
+            TempMaxTextBox.AnimateReadOnly = false;
+            TempMaxTextBox.BorderStyle = BorderStyle.None;
+            TempMaxTextBox.Depth = 0;
+            TempMaxTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TempMaxTextBox.LeadingIcon = null;
+            TempMaxTextBox.Location = new Point(224, 204);
+            TempMaxTextBox.MaxLength = 50;
+            TempMaxTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            TempMaxTextBox.Multiline = false;
+            TempMaxTextBox.Name = "TempMaxTextBox";
+            TempMaxTextBox.Size = new Size(100, 50);
+            TempMaxTextBox.TabIndex = 41;
+            TempMaxTextBox.Text = "";
+            TempMaxTextBox.TrailingIcon = null;
+            // 
+            // TempMinTextBox
+            // 
+            TempMinTextBox.AnimateReadOnly = false;
+            TempMinTextBox.BorderStyle = BorderStyle.None;
+            TempMinTextBox.Depth = 0;
+            TempMinTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TempMinTextBox.LeadingIcon = null;
+            TempMinTextBox.Location = new Point(103, 204);
+            TempMinTextBox.MaxLength = 50;
+            TempMinTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            TempMinTextBox.Multiline = false;
+            TempMinTextBox.Name = "TempMinTextBox";
+            TempMinTextBox.Size = new Size(100, 50);
+            TempMinTextBox.TabIndex = 40;
+            TempMinTextBox.Text = "";
+            TempMinTextBox.TrailingIcon = null;
+            // 
+            // materialLabel11
+            // 
+            materialLabel11.AutoSize = true;
+            materialLabel11.Depth = 0;
+            materialLabel11.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel11.Location = new Point(6, 363);
+            materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel11.Name = "materialLabel11";
+            materialLabel11.Size = new Size(71, 19);
+            materialLabel11.TabIndex = 39;
+            materialLabel11.Text = "Insolation";
+            // 
+            // materialLabel10
+            // 
+            materialLabel10.AutoSize = true;
+            materialLabel10.Depth = 0;
+            materialLabel10.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel10.Location = new Point(6, 292);
+            materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel10.Name = "materialLabel10";
+            materialLabel10.Size = new Size(65, 19);
+            materialLabel10.TabIndex = 38;
+            materialLabel10.Text = "Humidity";
+            // 
+            // materialLabel9
+            // 
+            materialLabel9.AutoSize = true;
+            materialLabel9.Depth = 0;
+            materialLabel9.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel9.Location = new Point(260, 182);
+            materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel9.Name = "materialLabel9";
+            materialLabel9.Size = new Size(32, 19);
+            materialLabel9.TabIndex = 37;
+            materialLabel9.Text = "Max";
+            // 
+            // materialLabel8
+            // 
+            materialLabel8.AutoSize = true;
+            materialLabel8.Depth = 0;
+            materialLabel8.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel8.Location = new Point(138, 182);
+            materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel8.Name = "materialLabel8";
+            materialLabel8.Size = new Size(28, 19);
+            materialLabel8.TabIndex = 36;
+            materialLabel8.Text = "Min";
+            // 
+            // materialLabel7
+            // 
+            materialLabel7.AutoSize = true;
+            materialLabel7.Depth = 0;
+            materialLabel7.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel7.Location = new Point(6, 219);
+            materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel7.Name = "materialLabel7";
+            materialLabel7.Size = new Size(91, 19);
+            materialLabel7.TabIndex = 35;
+            materialLabel7.Text = "Temperature";
+            // 
+            // materialLabel6
+            // 
+            materialLabel6.AutoSize = true;
+            materialLabel6.Depth = 0;
+            materialLabel6.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel6.Location = new Point(162, 163);
+            materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel6.Name = "materialLabel6";
+            materialLabel6.Size = new Size(100, 19);
+            materialLabel6.TabIndex = 34;
+            materialLabel6.Text = "Alarm Setings";
+            // 
+            // InsolationAlarmButton
+            // 
+            InsolationAlarmButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            InsolationAlarmButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            InsolationAlarmButton.Depth = 0;
+            InsolationAlarmButton.HighEmphasis = true;
+            InsolationAlarmButton.Icon = null;
+            InsolationAlarmButton.Location = new Point(604, 62);
+            InsolationAlarmButton.Margin = new Padding(4, 6, 4, 6);
+            InsolationAlarmButton.MouseState = MaterialSkin.MouseState.HOVER;
+            InsolationAlarmButton.Name = "InsolationAlarmButton";
+            InsolationAlarmButton.NoAccentTextColor = Color.Empty;
+            InsolationAlarmButton.Size = new Size(69, 36);
+            InsolationAlarmButton.TabIndex = 33;
+            InsolationAlarmButton.Text = "Check";
+            InsolationAlarmButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            InsolationAlarmButton.UseAccentColor = false;
+            InsolationAlarmButton.UseVisualStyleBackColor = true;
+            InsolationAlarmButton.Click += InsolationAlarmButton_Click;
+            // 
+            // HumidityAlarmButton
+            // 
+            HumidityAlarmButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            HumidityAlarmButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            HumidityAlarmButton.Depth = 0;
+            HumidityAlarmButton.HighEmphasis = true;
+            HumidityAlarmButton.Icon = null;
+            HumidityAlarmButton.Location = new Point(468, 62);
+            HumidityAlarmButton.Margin = new Padding(4, 6, 4, 6);
+            HumidityAlarmButton.MouseState = MaterialSkin.MouseState.HOVER;
+            HumidityAlarmButton.Name = "HumidityAlarmButton";
+            HumidityAlarmButton.NoAccentTextColor = Color.Empty;
+            HumidityAlarmButton.Size = new Size(69, 36);
+            HumidityAlarmButton.TabIndex = 32;
+            HumidityAlarmButton.Text = "Check";
+            HumidityAlarmButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            HumidityAlarmButton.UseAccentColor = false;
+            HumidityAlarmButton.UseVisualStyleBackColor = true;
+            HumidityAlarmButton.Click += HumidityAlarmButton_Click;
+            // 
+            // TemperatureAlarmButton
+            // 
+            TemperatureAlarmButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            TemperatureAlarmButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            TemperatureAlarmButton.Depth = 0;
+            TemperatureAlarmButton.HighEmphasis = true;
+            TemperatureAlarmButton.Icon = null;
+            TemperatureAlarmButton.Location = new Point(327, 62);
+            TemperatureAlarmButton.Margin = new Padding(4, 6, 4, 6);
+            TemperatureAlarmButton.MouseState = MaterialSkin.MouseState.HOVER;
+            TemperatureAlarmButton.Name = "TemperatureAlarmButton";
+            TemperatureAlarmButton.NoAccentTextColor = Color.Empty;
+            TemperatureAlarmButton.Size = new Size(69, 36);
+            TemperatureAlarmButton.TabIndex = 31;
+            TemperatureAlarmButton.Text = "Check";
+            TemperatureAlarmButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            TemperatureAlarmButton.UseAccentColor = false;
+            TemperatureAlarmButton.UseVisualStyleBackColor = true;
+            TemperatureAlarmButton.Click += TemperatureAlarmButton_Click;
+            // 
+            // materialLabel5
+            // 
+            materialLabel5.AutoSize = true;
+            materialLabel5.Depth = 0;
+            materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel5.Location = new Point(602, 37);
+            materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel5.Name = "materialLabel5";
+            materialLabel5.Size = new Size(71, 19);
+            materialLabel5.TabIndex = 30;
+            materialLabel5.Text = "Insolation";
+            // 
+            // materialLabel4
+            // 
+            materialLabel4.AutoSize = true;
+            materialLabel4.Depth = 0;
+            materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel4.Location = new Point(472, 37);
+            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel4.Name = "materialLabel4";
+            materialLabel4.Size = new Size(65, 19);
+            materialLabel4.TabIndex = 29;
+            materialLabel4.Text = "Humidity";
+            // 
+            // materialLabel3
+            // 
+            materialLabel3.AutoSize = true;
+            materialLabel3.Depth = 0;
+            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel3.Location = new Point(318, 37);
+            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel3.Name = "materialLabel3";
+            materialLabel3.Size = new Size(91, 19);
+            materialLabel3.TabIndex = 28;
+            materialLabel3.Text = "Temperature";
+            // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.Location = new Point(454, 18);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(110, 19);
+            materialLabel2.TabIndex = 27;
+            materialLabel2.Text = "State of alarms";
+            // 
             // materialSwitch1
             // 
             materialSwitch1.AutoSize = true;
             materialSwitch1.Depth = 0;
-            materialSwitch1.Location = new Point(800, 3);
+            materialSwitch1.Location = new Point(800, 9);
             materialSwitch1.Margin = new Padding(0);
             materialSwitch1.MouseLocation = new Point(-1, -1);
             materialSwitch1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -477,5 +797,24 @@
         private MaterialSkin.Controls.MaterialLabel humiditymaterialLabel;
         private MaterialSkin.Controls.MaterialLabel temperaturematerialLabel;
         private MaterialSkin.Controls.MaterialSwitch materialSwitch1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialButton HumidityAlarmButton;
+        private MaterialSkin.Controls.MaterialButton TemperatureAlarmButton;
+        private MaterialSkin.Controls.MaterialLabel materialLabel5;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialButton InsolationAlarmButton;
+        private MaterialSkin.Controls.MaterialTextBox TempMaxTextBox;
+        private MaterialSkin.Controls.MaterialTextBox TempMinTextBox;
+        private MaterialSkin.Controls.MaterialLabel materialLabel11;
+        private MaterialSkin.Controls.MaterialLabel materialLabel10;
+        private MaterialSkin.Controls.MaterialLabel materialLabel9;
+        private MaterialSkin.Controls.MaterialLabel materialLabel8;
+        private MaterialSkin.Controls.MaterialLabel materialLabel7;
+        private MaterialSkin.Controls.MaterialLabel materialLabel6;
+        private MaterialSkin.Controls.MaterialTextBox InsMaxTextBox;
+        private MaterialSkin.Controls.MaterialTextBox InsMinTextBox;
+        private MaterialSkin.Controls.MaterialTextBox HumMaxTextBox;
+        private MaterialSkin.Controls.MaterialTextBox HumMinTextBox;
     }
 }
