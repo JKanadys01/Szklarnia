@@ -174,7 +174,7 @@ namespace GreenHouse
             if (selectedParameter != null && selectedTimeFrame != null)
             {
                 // Tworzymy nowe połączenie z bazą danych
-                MySqlConnection mySqlConnection = new MySqlConnection(user_log.get_mysqlconn());
+                MySqlConnection mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
 
                 mySqlConnection.Open();
 

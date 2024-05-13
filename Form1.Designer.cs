@@ -77,12 +77,12 @@
             dateTimePicker = new DateTimePicker();
             cartesianChart = new LiveCharts.WinForms.CartesianChart();
             tabPage4 = new TabPage();
-            UserLoginTextBox = new MaterialSkin.Controls.MaterialTextBox();
-            UserPasswordTextBox = new MaterialSkin.Controls.MaterialTextBox();
-            UserDescriptionTextBox = new MaterialSkin.Controls.MaterialTextBox();
-            UserCreatelButton = new MaterialSkin.Controls.MaterialButton();
-            UserListTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox();
             PullUserListButton = new MaterialSkin.Controls.MaterialButton();
+            UserListTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox();
+            UserCreatelButton = new MaterialSkin.Controls.MaterialButton();
+            UserDescriptionTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            UserPasswordTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            UserLoginTextBox = new MaterialSkin.Controls.MaterialTextBox();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabControl2.SuspendLayout();
@@ -781,56 +781,38 @@
             tabPage4.TabIndex = 2;
             tabPage4.Text = "Admin";
             // 
-            // UserLoginTextBox
+            // PullUserListButton
             // 
-            UserLoginTextBox.AnimateReadOnly = false;
-            UserLoginTextBox.BorderStyle = BorderStyle.None;
-            UserLoginTextBox.Depth = 0;
-            UserLoginTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            UserLoginTextBox.LeadingIcon = null;
-            UserLoginTextBox.Location = new Point(104, 30);
-            UserLoginTextBox.MaxLength = 50;
-            UserLoginTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            UserLoginTextBox.Multiline = false;
-            UserLoginTextBox.Name = "UserLoginTextBox";
-            UserLoginTextBox.Size = new Size(100, 50);
-            UserLoginTextBox.TabIndex = 0;
-            UserLoginTextBox.Text = "";
-            UserLoginTextBox.TrailingIcon = null;
+            PullUserListButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            PullUserListButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            PullUserListButton.Depth = 0;
+            PullUserListButton.HighEmphasis = true;
+            PullUserListButton.Icon = null;
+            PullUserListButton.Location = new Point(1108, 22);
+            PullUserListButton.Margin = new Padding(4, 6, 4, 6);
+            PullUserListButton.MouseState = MaterialSkin.MouseState.HOVER;
+            PullUserListButton.Name = "PullUserListButton";
+            PullUserListButton.NoAccentTextColor = Color.Empty;
+            PullUserListButton.Size = new Size(87, 36);
+            PullUserListButton.TabIndex = 5;
+            PullUserListButton.Text = "UserList";
+            PullUserListButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            PullUserListButton.UseAccentColor = false;
+            PullUserListButton.UseVisualStyleBackColor = true;
             // 
-            // UserPasswordTextBox
+            // UserListTextBox
             // 
-            UserPasswordTextBox.AnimateReadOnly = false;
-            UserPasswordTextBox.BorderStyle = BorderStyle.None;
-            UserPasswordTextBox.Depth = 0;
-            UserPasswordTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            UserPasswordTextBox.LeadingIcon = null;
-            UserPasswordTextBox.Location = new Point(228, 30);
-            UserPasswordTextBox.MaxLength = 50;
-            UserPasswordTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            UserPasswordTextBox.Multiline = false;
-            UserPasswordTextBox.Name = "UserPasswordTextBox";
-            UserPasswordTextBox.Size = new Size(100, 50);
-            UserPasswordTextBox.TabIndex = 1;
-            UserPasswordTextBox.Text = "";
-            UserPasswordTextBox.TrailingIcon = null;
-            // 
-            // UserDescriptionTextBox
-            // 
-            UserDescriptionTextBox.AnimateReadOnly = false;
-            UserDescriptionTextBox.BorderStyle = BorderStyle.None;
-            UserDescriptionTextBox.Depth = 0;
-            UserDescriptionTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            UserDescriptionTextBox.LeadingIcon = null;
-            UserDescriptionTextBox.Location = new Point(349, 30);
-            UserDescriptionTextBox.MaxLength = 50;
-            UserDescriptionTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            UserDescriptionTextBox.Multiline = false;
-            UserDescriptionTextBox.Name = "UserDescriptionTextBox";
-            UserDescriptionTextBox.Size = new Size(100, 50);
-            UserDescriptionTextBox.TabIndex = 2;
-            UserDescriptionTextBox.Text = "";
-            UserDescriptionTextBox.TrailingIcon = null;
+            UserListTextBox.BackColor = Color.FromArgb(255, 255, 255);
+            UserListTextBox.BorderStyle = BorderStyle.None;
+            UserListTextBox.Depth = 0;
+            UserListTextBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            UserListTextBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            UserListTextBox.Location = new Point(685, 17);
+            UserListTextBox.MouseState = MaterialSkin.MouseState.HOVER;
+            UserListTextBox.Name = "UserListTextBox";
+            UserListTextBox.Size = new Size(405, 339);
+            UserListTextBox.TabIndex = 4;
+            UserListTextBox.Text = "";
             // 
             // UserCreatelButton
             // 
@@ -850,39 +832,58 @@
             UserCreatelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             UserCreatelButton.UseAccentColor = false;
             UserCreatelButton.UseVisualStyleBackColor = true;
+            UserCreatelButton.Click += UserCreatelButton_Click_1;
             // 
-            // UserListTextBox
+            // UserDescriptionTextBox
             // 
-            UserListTextBox.BackColor = Color.FromArgb(255, 255, 255);
-            UserListTextBox.BorderStyle = BorderStyle.None;
-            UserListTextBox.Depth = 0;
-            UserListTextBox.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            UserListTextBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            UserListTextBox.Location = new Point(685, 17);
-            UserListTextBox.MouseState = MaterialSkin.MouseState.HOVER;
-            UserListTextBox.Name = "UserListTextBox";
-            UserListTextBox.Size = new Size(405, 339);
-            UserListTextBox.TabIndex = 4;
-            UserListTextBox.Text = "";
+            UserDescriptionTextBox.AnimateReadOnly = false;
+            UserDescriptionTextBox.BorderStyle = BorderStyle.None;
+            UserDescriptionTextBox.Depth = 0;
+            UserDescriptionTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            UserDescriptionTextBox.LeadingIcon = null;
+            UserDescriptionTextBox.Location = new Point(349, 30);
+            UserDescriptionTextBox.MaxLength = 50;
+            UserDescriptionTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            UserDescriptionTextBox.Multiline = false;
+            UserDescriptionTextBox.Name = "UserDescriptionTextBox";
+            UserDescriptionTextBox.Size = new Size(100, 50);
+            UserDescriptionTextBox.TabIndex = 2;
+            UserDescriptionTextBox.Text = "";
+            UserDescriptionTextBox.TrailingIcon = null;
             // 
-            // PullUserListButton
+            // UserPasswordTextBox
             // 
-            PullUserListButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            PullUserListButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            PullUserListButton.Depth = 0;
-            PullUserListButton.HighEmphasis = true;
-            PullUserListButton.Icon = null;
-            PullUserListButton.Location = new Point(1108, 22);
-            PullUserListButton.Margin = new Padding(4, 6, 4, 6);
-            PullUserListButton.MouseState = MaterialSkin.MouseState.HOVER;
-            PullUserListButton.Name = "PullUserListButton";
-            PullUserListButton.NoAccentTextColor = Color.Empty;
-            PullUserListButton.Size = new Size(87, 36);
-            PullUserListButton.TabIndex = 5;
-            PullUserListButton.Text = "UserList";
-            PullUserListButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            PullUserListButton.UseAccentColor = false;
-            PullUserListButton.UseVisualStyleBackColor = true;
+            UserPasswordTextBox.AnimateReadOnly = false;
+            UserPasswordTextBox.BorderStyle = BorderStyle.None;
+            UserPasswordTextBox.Depth = 0;
+            UserPasswordTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            UserPasswordTextBox.LeadingIcon = null;
+            UserPasswordTextBox.Location = new Point(228, 30);
+            UserPasswordTextBox.MaxLength = 50;
+            UserPasswordTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            UserPasswordTextBox.Multiline = false;
+            UserPasswordTextBox.Name = "UserPasswordTextBox";
+            UserPasswordTextBox.Size = new Size(100, 50);
+            UserPasswordTextBox.TabIndex = 1;
+            UserPasswordTextBox.Text = "";
+            UserPasswordTextBox.TrailingIcon = null;
+            // 
+            // UserLoginTextBox
+            // 
+            UserLoginTextBox.AnimateReadOnly = false;
+            UserLoginTextBox.BorderStyle = BorderStyle.None;
+            UserLoginTextBox.Depth = 0;
+            UserLoginTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            UserLoginTextBox.LeadingIcon = null;
+            UserLoginTextBox.Location = new Point(104, 30);
+            UserLoginTextBox.MaxLength = 50;
+            UserLoginTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            UserLoginTextBox.Multiline = false;
+            UserLoginTextBox.Name = "UserLoginTextBox";
+            UserLoginTextBox.Size = new Size(100, 50);
+            UserLoginTextBox.TabIndex = 0;
+            UserLoginTextBox.Text = "";
+            UserLoginTextBox.TrailingIcon = null;
             // 
             // Form1
             // 

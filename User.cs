@@ -14,12 +14,12 @@ namespace GreenHouse
     */
     public class User
     {
-        string mysqlconn;//polecenie do łączenia z bazą
-        string name;
+        string login{ get; set; }
+        string password{ get; set; }
+       public int token {  get; set; }
         public User() { }
-        public User(string login, string password) 
-        { mysqlconn = "server=127.0.0.1;user=" + login + ";database=szklarnia_v3;password=" + password;name = login; }
-        public string get_mysqlconn() { return mysqlconn; }
-        public string get_name() { return name;}
+        public User(string log, string pass) 
+        { login = log; password = pass; token = 0; }
+       
     }
 }

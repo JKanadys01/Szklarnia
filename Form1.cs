@@ -5,6 +5,7 @@ using LiveCharts.WinForms;
 using LiveCharts.Wpf;
 using MaterialSkin.Controls;
 using MySql.Data.MySqlClient;
+using System.Data;
 using System.Windows.Forms;
 
 namespace GreenHouse
@@ -22,7 +23,7 @@ namespace GreenHouse
             InitializeComponent();
             allData = new All_data();
             this.WindowState = FormWindowState.Maximized;
-            Username_materialTextBox.Text = user_log.get_name();
+            Username_materialTextBox.Text = user_log.token.ToString();
 
             ///Main page
             TemperaturecartesianChart.Visible = false;
@@ -52,11 +53,38 @@ namespace GreenHouse
         private void logoutmaterialButton_Click(object sender, EventArgs e)
         {
             // Zamknij bie¿¹cy formularz
-            this.Hide();
+
             // Otwórz ponownie formularz logowania
-            LoginForm loginForm = new LoginForm();
-            loginForm.ShowDialog();
-            this.Close();
+
+            MySqlConnection mySqlConnection;
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("ResetUserStatusByToken", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userToken", user_log.token);
+                cmd.ExecuteNonQuery();
+
+
+                mySqlConnection.Close();
+                this.Hide();
+                LoginForm loginForm = new LoginForm();
+                loginForm.ShowDialog();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie uda³o siê wylogowaæ", "Nie uda³o siê wylogowaæ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+
+
+
         }
 
         private void materialSwitch1_CheckedChanged(object sender, EventArgs e)
@@ -94,6 +122,44 @@ namespace GreenHouse
         private void SetAlarmlButton_Click(object sender, EventArgs e)
         {
             // procedura setowania alarmu
+        }
+
+        private void UserCreatelButton_Click(object sender, EventArgs e)
+        {
+
+
+          
+
+        }
+
+        private void UserCreatelButton_Click_1(object sender, EventArgs e)
+        {
+            MySqlConnection mySqlConnection;
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("CreateNewUser", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userToken", user_log.token);
+                cmd.Parameters.AddWithValue("@userLogin", UserLoginTextBox.Text);
+                cmd.Parameters.AddWithValue("@userPassword", UserPasswordTextBox.Text);
+                cmd.Parameters.AddWithValue("@userDescription", UserDescriptionTextBox.Text);
+                cmd.ExecuteNonQuery();
+
+
+                mySqlConnection.Close();
+                MessageBox.Show("Uda³o siê", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie uda³o siê utworzyæ u¿ytkownika", "Nie uda³o siê utworzyæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

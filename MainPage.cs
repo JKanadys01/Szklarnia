@@ -102,7 +102,7 @@ namespace GreenHouse
         //Ponowne wyrysowanie wykresu, aktualizacja danych progresBar oraz ponowne sprawdzenie alarmów
         public void Timer_Tick(object sender, EventArgs e)
         {
-            MySqlConnection mySqlConnection = new MySqlConnection(user_log.get_mysqlconn());
+            MySqlConnection mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
 
             mySqlConnection.Open();
 

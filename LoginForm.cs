@@ -43,7 +43,7 @@ namespace GreenHouse
         }
 
 
-        private void materialButton1_Click(object sender, EventArgs e)
+        private async void materialButton1_Click(object sender, EventArgs e)
         {
             User user_log = new User(loginmaterialTextBox.Text, passwordmaterialTextBox.Text);
             MySqlConnection mySqlConnection;
@@ -51,26 +51,44 @@ namespace GreenHouse
             try
             {
                 mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+                
+                    mySqlConnection.Open();
 
-                mySqlConnection.Open();
+                MySqlCommand cmd = new MySqlCommand("LoginUser", mySqlConnection);
+                    
+                        cmd.CommandType=CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@loginParam", loginmaterialTextBox.Text);
+                        cmd.Parameters.AddWithValue("@passwordParam", passwordmaterialTextBox.Text);
 
+                MySqlDataReader reader = cmd.ExecuteReader();
+                        
+                            if (reader.Read()) 
+                            {
+                                user_log.token = reader.GetInt32(0);
+                            }
+                            else
+                            {
+                                  MessageBox.Show("Błędne login lub hasło", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                           }
+                        
+                    
+                
+                     Form1 mainForm = new Form1(user_log);
+                     this.Hide();
+                     mainForm.ShowDialog();
 
-                //Kod procedury Login Do zrobienia
-                MySqlCommand cmd = new MySqlCommand("select * from pomiar", mySqlConnection);
-            
+                     this.Close();
                 mySqlConnection.Close();
-                
-                Form1 mainForm = new Form1(user_log);
-                this.Hide();
-                mainForm.ShowDialog();
-                
-                this.Close();
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błędne login lub hasło", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                  MessageBox.Show("Błąd"+ex.Message, "Notatka" + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+
+
+
+            //  MessageBox.Show("Błędne login lub hasło", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
