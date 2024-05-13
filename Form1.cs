@@ -40,6 +40,7 @@ namespace GreenHouse
             cartesianChart.Visible = false;
             chartPage = new ChartPage(allData, user_log, mainPage, ParametermaterialComboBox, TimeFramematerialComboBox, cartesianChart, dateTimePicker);
             chartPage.InitializeComboBox();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -77,17 +78,22 @@ namespace GreenHouse
         /// Obs³uga alarmów
         private void TemperatureAlarmButton_Click(object sender, EventArgs e)
         {
-            TemperatureAlarmButton.Visible=false;
+            TemperatureAlarmButton.Visible = false;
         }
 
         private void HumidityAlarmButton_Click(object sender, EventArgs e)
         {
-            HumidityAlarmButton.Visible=false;
+            HumidityAlarmButton.Visible = false;
         }
 
         private void InsolationAlarmButton_Click(object sender, EventArgs e)
         {
-            InsolationAlarmButton.Visible=false;
+            InsolationAlarmButton.Visible = false;
+        }
+
+        private void SetAlarmlButton_Click(object sender, EventArgs e)
+        {
+            // procedura setowania alarmu
         }
     }
 }

@@ -33,6 +33,7 @@
             imageList1 = new ImageList(components);
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
+            SetAlarmlButton = new MaterialSkin.Controls.MaterialButton();
             InsMaxTextBox = new MaterialSkin.Controls.MaterialTextBox();
             InsMinTextBox = new MaterialSkin.Controls.MaterialTextBox();
             HumMaxTextBox = new MaterialSkin.Controls.MaterialTextBox();
@@ -76,6 +77,12 @@
             dateTimePicker = new DateTimePicker();
             cartesianChart = new LiveCharts.WinForms.CartesianChart();
             tabPage4 = new TabPage();
+            UserLoginTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            UserPasswordTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            UserDescriptionTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            UserCreatelButton = new MaterialSkin.Controls.MaterialButton();
+            UserListTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox();
+            PullUserListButton = new MaterialSkin.Controls.MaterialButton();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabControl2.SuspendLayout();
@@ -83,6 +90,7 @@
             HumidityTabPage.SuspendLayout();
             InsolationTabPage.SuspendLayout();
             tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
             SuspendLayout();
             // 
             // imageList1
@@ -113,6 +121,7 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(64, 64, 64);
+            tabPage2.Controls.Add(SetAlarmlButton);
             tabPage2.Controls.Add(InsMaxTextBox);
             tabPage2.Controls.Add(InsMinTextBox);
             tabPage2.Controls.Add(HumMaxTextBox);
@@ -150,6 +159,26 @@
             tabPage2.Size = new Size(1910, 951);
             tabPage2.TabIndex = 0;
             tabPage2.Text = "Main";
+            // 
+            // SetAlarmlButton
+            // 
+            SetAlarmlButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            SetAlarmlButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            SetAlarmlButton.Depth = 0;
+            SetAlarmlButton.HighEmphasis = true;
+            SetAlarmlButton.Icon = null;
+            SetAlarmlButton.Location = new Point(178, 408);
+            SetAlarmlButton.Margin = new Padding(4, 6, 4, 6);
+            SetAlarmlButton.MouseState = MaterialSkin.MouseState.HOVER;
+            SetAlarmlButton.Name = "SetAlarmlButton";
+            SetAlarmlButton.NoAccentTextColor = Color.Empty;
+            SetAlarmlButton.Size = new Size(64, 36);
+            SetAlarmlButton.TabIndex = 46;
+            SetAlarmlButton.Text = "Set";
+            SetAlarmlButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            SetAlarmlButton.UseAccentColor = false;
+            SetAlarmlButton.UseVisualStyleBackColor = true;
+            SetAlarmlButton.Click += SetAlarmlButton_Click;
             // 
             // InsMaxTextBox
             // 
@@ -739,12 +768,121 @@
             // tabPage4
             // 
             tabPage4.BackColor = Color.FromArgb(64, 64, 64);
+            tabPage4.Controls.Add(PullUserListButton);
+            tabPage4.Controls.Add(UserListTextBox);
+            tabPage4.Controls.Add(UserCreatelButton);
+            tabPage4.Controls.Add(UserDescriptionTextBox);
+            tabPage4.Controls.Add(UserPasswordTextBox);
+            tabPage4.Controls.Add(UserLoginTextBox);
             tabPage4.ImageKey = "admin.jpg";
             tabPage4.Location = new Point(4, 39);
             tabPage4.Name = "tabPage4";
             tabPage4.Size = new Size(1910, 951);
             tabPage4.TabIndex = 2;
             tabPage4.Text = "Admin";
+            // 
+            // UserLoginTextBox
+            // 
+            UserLoginTextBox.AnimateReadOnly = false;
+            UserLoginTextBox.BorderStyle = BorderStyle.None;
+            UserLoginTextBox.Depth = 0;
+            UserLoginTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            UserLoginTextBox.LeadingIcon = null;
+            UserLoginTextBox.Location = new Point(104, 30);
+            UserLoginTextBox.MaxLength = 50;
+            UserLoginTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            UserLoginTextBox.Multiline = false;
+            UserLoginTextBox.Name = "UserLoginTextBox";
+            UserLoginTextBox.Size = new Size(100, 50);
+            UserLoginTextBox.TabIndex = 0;
+            UserLoginTextBox.Text = "";
+            UserLoginTextBox.TrailingIcon = null;
+            // 
+            // UserPasswordTextBox
+            // 
+            UserPasswordTextBox.AnimateReadOnly = false;
+            UserPasswordTextBox.BorderStyle = BorderStyle.None;
+            UserPasswordTextBox.Depth = 0;
+            UserPasswordTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            UserPasswordTextBox.LeadingIcon = null;
+            UserPasswordTextBox.Location = new Point(228, 30);
+            UserPasswordTextBox.MaxLength = 50;
+            UserPasswordTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            UserPasswordTextBox.Multiline = false;
+            UserPasswordTextBox.Name = "UserPasswordTextBox";
+            UserPasswordTextBox.Size = new Size(100, 50);
+            UserPasswordTextBox.TabIndex = 1;
+            UserPasswordTextBox.Text = "";
+            UserPasswordTextBox.TrailingIcon = null;
+            // 
+            // UserDescriptionTextBox
+            // 
+            UserDescriptionTextBox.AnimateReadOnly = false;
+            UserDescriptionTextBox.BorderStyle = BorderStyle.None;
+            UserDescriptionTextBox.Depth = 0;
+            UserDescriptionTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            UserDescriptionTextBox.LeadingIcon = null;
+            UserDescriptionTextBox.Location = new Point(349, 30);
+            UserDescriptionTextBox.MaxLength = 50;
+            UserDescriptionTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            UserDescriptionTextBox.Multiline = false;
+            UserDescriptionTextBox.Name = "UserDescriptionTextBox";
+            UserDescriptionTextBox.Size = new Size(100, 50);
+            UserDescriptionTextBox.TabIndex = 2;
+            UserDescriptionTextBox.Text = "";
+            UserDescriptionTextBox.TrailingIcon = null;
+            // 
+            // UserCreatelButton
+            // 
+            UserCreatelButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            UserCreatelButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            UserCreatelButton.Depth = 0;
+            UserCreatelButton.HighEmphasis = true;
+            UserCreatelButton.Icon = null;
+            UserCreatelButton.Location = new Point(203, 101);
+            UserCreatelButton.Margin = new Padding(4, 6, 4, 6);
+            UserCreatelButton.MouseState = MaterialSkin.MouseState.HOVER;
+            UserCreatelButton.Name = "UserCreatelButton";
+            UserCreatelButton.NoAccentTextColor = Color.Empty;
+            UserCreatelButton.Size = new Size(90, 36);
+            UserCreatelButton.TabIndex = 3;
+            UserCreatelButton.Text = "Add User";
+            UserCreatelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            UserCreatelButton.UseAccentColor = false;
+            UserCreatelButton.UseVisualStyleBackColor = true;
+            // 
+            // UserListTextBox
+            // 
+            UserListTextBox.BackColor = Color.FromArgb(255, 255, 255);
+            UserListTextBox.BorderStyle = BorderStyle.None;
+            UserListTextBox.Depth = 0;
+            UserListTextBox.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            UserListTextBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            UserListTextBox.Location = new Point(685, 17);
+            UserListTextBox.MouseState = MaterialSkin.MouseState.HOVER;
+            UserListTextBox.Name = "UserListTextBox";
+            UserListTextBox.Size = new Size(405, 339);
+            UserListTextBox.TabIndex = 4;
+            UserListTextBox.Text = "";
+            // 
+            // PullUserListButton
+            // 
+            PullUserListButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            PullUserListButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            PullUserListButton.Depth = 0;
+            PullUserListButton.HighEmphasis = true;
+            PullUserListButton.Icon = null;
+            PullUserListButton.Location = new Point(1108, 22);
+            PullUserListButton.Margin = new Padding(4, 6, 4, 6);
+            PullUserListButton.MouseState = MaterialSkin.MouseState.HOVER;
+            PullUserListButton.Name = "PullUserListButton";
+            PullUserListButton.NoAccentTextColor = Color.Empty;
+            PullUserListButton.Size = new Size(87, 36);
+            PullUserListButton.TabIndex = 5;
+            PullUserListButton.Text = "UserList";
+            PullUserListButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            PullUserListButton.UseAccentColor = false;
+            PullUserListButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -764,6 +902,8 @@
             InsolationTabPage.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -816,5 +956,12 @@
         private MaterialSkin.Controls.MaterialTextBox InsMinTextBox;
         private MaterialSkin.Controls.MaterialTextBox HumMaxTextBox;
         private MaterialSkin.Controls.MaterialTextBox HumMinTextBox;
+        private MaterialSkin.Controls.MaterialButton SetAlarmlButton;
+        private MaterialSkin.Controls.MaterialButton UserCreatelButton;
+        private MaterialSkin.Controls.MaterialTextBox UserDescriptionTextBox;
+        private MaterialSkin.Controls.MaterialTextBox UserPasswordTextBox;
+        private MaterialSkin.Controls.MaterialTextBox UserLoginTextBox;
+        private MaterialSkin.Controls.MaterialButton PullUserListButton;
+        private MaterialSkin.Controls.MaterialMultiLineTextBox UserListTextBox;
     }
 }
