@@ -1,5 +1,6 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using Microsoft.VisualBasic.Logging;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -49,11 +50,14 @@ namespace GreenHouse
 
             try
             {
-                mySqlConnection = new MySqlConnection(user_log.get_mysqlconn());
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
 
                 mySqlConnection.Open();
 
-                // MessageBox.Show("Git", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //Kod procedury Login Do zrobienia
+                MySqlCommand cmd = new MySqlCommand("select * from pomiar", mySqlConnection);
+            
                 mySqlConnection.Close();
                 
                 Form1 mainForm = new Form1(user_log);
