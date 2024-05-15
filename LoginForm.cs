@@ -47,7 +47,7 @@ namespace GreenHouse
         {
             User user_log = new User(loginmaterialTextBox.Text, passwordmaterialTextBox.Text);
             MySqlConnection mySqlConnection;
-
+        
             try
             {
                 mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
@@ -70,15 +70,16 @@ namespace GreenHouse
                             {
                                   MessageBox.Show("Błędne login lub hasło", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                            }
-                        
-                    
-                
+
+
+                mySqlConnection.Close();
                      Form1 mainForm = new Form1(user_log);
+
                      this.Hide();
                      mainForm.ShowDialog();
 
                      this.Close();
-                mySqlConnection.Close();
+              
             }
             catch (Exception ex)
             {

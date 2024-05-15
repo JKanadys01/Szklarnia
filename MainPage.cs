@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MaterialSkin.Controls;
+using System.Data;
 
 namespace GreenHouse
 {
@@ -91,7 +92,39 @@ namespace GreenHouse
         //Start Stop przy starcie wywołujemy od razu Timer_TIck
         public void StartTimer()
         {
+            try
+            {
+                MySqlConnection mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("GetMeasurementsByDeviceId", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userToken", user_log.token);
+                cmd.Parameters.AddWithValue("@deviceId", 1); //Tutaj zmienić trzeba na to urządzenie które jest wybrane
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2)));
+                }
+                mySqlConnection.Close();
+                UpdateProgressBars();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie udało się pobrać danych", "Nie udało się pobrać danych", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+
             Timer_Tick(null, EventArgs.Empty);
+
+
+
+
             timer.Start();
         }
 
@@ -102,6 +135,36 @@ namespace GreenHouse
         //Ponowne wyrysowanie wykresu, aktualizacja danych progresBar oraz ponowne sprawdzenie alarmów
         public void Timer_Tick(object sender, EventArgs e)
         {
+           
+            //Tutaj dopisałem zaczytanie pojedyńczego
+            try
+            {
+                MySqlConnection mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("GetLatestMeasurementByDeviceId", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userToken", user_log.token);
+                cmd.Parameters.AddWithValue("@deviceId", 1); //Tutaj zmienić trzeba na to urządzenie które jest wybrane
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2)));
+                }
+                mySqlConnection.Close();
+                UpdateProgressBars();
+                
+              
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie udało się pobrać danych", "Nie udało się pobrać danych", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            /*
             MySqlConnection mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
 
             mySqlConnection.Open();
@@ -116,7 +179,7 @@ namespace GreenHouse
                     allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2)));
                 }
                 UpdateProgressBars();
-                CHeckAlarms();
+               // CHeckAlarms();
             }
             catch (Exception ex)
             {
@@ -124,7 +187,7 @@ namespace GreenHouse
                 MessageBox.Show("Nie masz dostępu do tych danych", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            mySqlConnection.Close();
+            mySqlConnection.Close(); */
 
             Dictionary<DateTime, double> data = GetDataForChart();
             if (data.Count > 0)

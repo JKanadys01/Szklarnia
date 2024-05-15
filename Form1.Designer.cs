@@ -799,6 +799,7 @@
             PullUserListButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             PullUserListButton.UseAccentColor = false;
             PullUserListButton.UseVisualStyleBackColor = true;
+            PullUserListButton.Click += PullUserListButton_Click;
             // 
             // UserListTextBox
             // 

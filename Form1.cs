@@ -128,7 +128,7 @@ namespace GreenHouse
         {
 
 
-          
+
 
         }
 
@@ -154,6 +154,39 @@ namespace GreenHouse
 
                 mySqlConnection.Close();
                 MessageBox.Show("Uda³o siê", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie uda³o siê utworzyæ u¿ytkownika", "Nie uda³o siê utworzyæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void PullUserListButton_Click(object sender, EventArgs e)
+        {
+            MySqlConnection mySqlConnection;
+            List<User> users = new List<User>();
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("GetAllUsersExceptCaller", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userToken", user_log.token);
+               MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    users.Add(new User(reader.GetInt32(0),reader.GetString(1), reader.GetString(2),reader.GetInt32(4)));
+                }
+                mySqlConnection.Close();
+
+               
+
 
             }
             catch (Exception ex)

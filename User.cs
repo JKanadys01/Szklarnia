@@ -14,12 +14,19 @@ namespace GreenHouse
     */
     public class User
     {
+        int id;
         string login{ get; set; }
         string password{ get; set; }
        public int token {  get; set; }
         public User() { }
         public User(string log, string pass) 
         { login = log; password = pass; token = 0; }
-       
+       public User(int id, string login, string password, int token)
+        {
+            this.id = id;
+            this.login = login;
+            this.password = password;
+            this.token = token;
+        }
     }
 }
