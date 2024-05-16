@@ -276,7 +276,7 @@ namespace GreenHouse
 
 
                 mySqlConnection.Close();
-                
+                MessageBox.Show("Uda³o siê", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
