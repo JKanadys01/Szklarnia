@@ -34,13 +34,13 @@ namespace GreenHouse
         private MaterialComboBox AlarmCombobox;
         private double temperatureMinAlarm;
         private double temperatureMaxAlarm;
-
+        private MaterialComboBox DeviceCombobox;
         
         //Konstruktor przy pomocy którego możliwe jest odwołanie do obiektów Form1
         public MainPage(All_data allData, User userLog, LiveCharts.WinForms.CartesianChart temperatureChart, LiveCharts.WinForms.CartesianChart humidityChart,
             LiveCharts.WinForms.CartesianChart insolationChart, TabControl tabControl2,MaterialProgressBar temperatureProgresBar, MaterialProgressBar humidityProgresBar,
             MaterialProgressBar insolationProgresBar, MaterialLabel temperatureLabel, MaterialLabel humidityLabel, MaterialLabel insolationLabel, MaterialButton temperatureButton,
-            MaterialButton humidityButton, MaterialButton insolationButton, MaterialTextBox tempminTextBox,MaterialTextBox tempmaxTextBox, MaterialComboBox alarmComboBox)
+            MaterialButton humidityButton, MaterialButton insolationButton, MaterialTextBox tempminTextBox,MaterialTextBox tempmaxTextBox, MaterialComboBox alarmComboBox,MaterialComboBox deviceComboBox)
         {
             this.allData = allData;
             user_log = userLog;
@@ -60,6 +60,7 @@ namespace GreenHouse
             TempMinTextBox = tempminTextBox;
             TempMaxTextBox = tempmaxTextBox;
             AlarmCombobox = alarmComboBox;
+            DeviceCombobox = deviceComboBox;
             temperatureMinAlarm = 20.0;
             temperatureMaxAlarm = 30.0;
             
@@ -73,6 +74,42 @@ namespace GreenHouse
             AlarmCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
             AlarmCombobox.Items.AddRange(new object[] { "Temperature", "Humidity", "Insolation" });
             AlarmCombobox.SelectedIndex = 0;
+            DeviceCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            MySqlConnection mySqlConnection;
+            List<Device> device = new List<Device>();
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("GetAllDevices", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userToken", user_log.token);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    device.Add(new Device(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3)));
+                }
+                mySqlConnection.Close();
+                foreach(Device i in device)
+                {
+                    DeviceCombobox.Items.Add(i.serial_number);
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie udało się pobrać listy", "Nie udało się pobrać listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+
         }
         //Inicjalizacja Timera można tu zdefiniować czas po którym Timer_Tick zostanie wywołane
         public void Initialize()

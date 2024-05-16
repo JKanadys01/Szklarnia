@@ -31,7 +31,7 @@ namespace GreenHouse
             InsolationcartesianChart.Visible = false;
             mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart, tabControl2, TemperatureProgressBar, HumidityProgressBar,
                 InsolationProgressBar, temperaturematerialLabel, humiditymaterialLabel, insolationmaterialLabel, TemperatureAlarmButton, HumidityAlarmButton, InsolationAlarmButton, TempMinTextBox,
-                TempMaxTextBox, AlarmComboBox);
+                TempMaxTextBox, AlarmComboBox,DeviceComboBox);
             ///Alarmy
             TemperatureAlarmButton.Visible = false;
             HumidityAlarmButton.Visible = false;
@@ -120,7 +120,35 @@ namespace GreenHouse
 
         private void SetAlarmlButton_Click(object sender, EventArgs e)
         {
-            // procedura setowania alarmu
+            MySqlConnection mySqlConnection;
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("UpdateAlarmParameters", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userToken", user_log.token);
+                cmd.Parameters.AddWithValue("@serialNumber", DeviceComboBox.SelectedItem); 
+                cmd.Parameters.AddWithValue("@parameterName", AlarmComboBox.SelectedItem.ToString() );
+                cmd.Parameters.AddWithValue("@downValue", int.Parse(TempMaxTextBox.Text));
+                cmd.Parameters.AddWithValue("@topValue", int.Parse(TempMinTextBox.Text));
+                cmd.ExecuteNonQuery();
+
+
+                mySqlConnection.Close();
+                MessageBox.Show("Uda³o siê", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie uda³o siê utworzyæ u¿ytkownika", "Nie uda³o siê utworzyæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+
         }
 
         private void UserCreatelButton_Click(object sender, EventArgs e)
