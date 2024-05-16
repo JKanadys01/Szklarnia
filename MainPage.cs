@@ -137,7 +137,7 @@ namespace GreenHouse
 
                 while (reader.Read())
                 {
-                    allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2)));
+                    allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2),reader.GetInt32(1),reader.GetDouble(5)));
                 }
                 mySqlConnection.Close();
                 UpdateProgressBars();
@@ -174,7 +174,7 @@ namespace GreenHouse
 
                 while (reader.Read())
                 {
-                    allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2)));
+                    allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2), reader.GetInt32(1), reader.GetDouble(5)));
                 }
                 mySqlConnection.Close();
                 UpdateProgressBars();
@@ -219,7 +219,7 @@ namespace GreenHouse
             else
             {
                 timer.Stop();
-                MessageBox.Show("Nie znaleziono danych dla podanego przedziału czasowego.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Nie znaleziono danych dla podanego przedziału czasowego lub urządzenia.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //Funckja odśewająca dane
@@ -227,7 +227,7 @@ namespace GreenHouse
         {
             List<Record> allRecords = allData.records;
             Dictionary<DateTime, double> data = new Dictionary<DateTime, double>();
-            List<Record> selectedRecords = allRecords.Where(record => record.date_time.Date == DateTime.Today.Date).ToList();
+            List<Record> selectedRecords = allRecords.Where(record => record.serial_number == int.Parse(DeviceCombobox.SelectedItem.ToString()) && record.date_time.Date == DateTime.Today.Date).ToList();
             string tableName = tabControl2.SelectedTab.Name.ToString();
             foreach (Record record in selectedRecords)
             {

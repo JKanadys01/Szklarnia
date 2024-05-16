@@ -182,20 +182,20 @@ namespace GreenHouse
             switch (timeFrame)
             {
                 case "Today":
-                    selectedRecords = allRecords.Where(record => record.date_time.Date == DateTime.Today.Date).ToList();
+                    selectedRecords = allRecords.Where(record => record.serial_number == int.Parse(DeviceSelectComboBox.SelectedItem.ToString()) && record.date_time.Date == DateTime.Today.Date).ToList();
                     break;
                 case "Last Week":
                     DateTime lastWeekStart = DateTime.Today.AddDays(-6).Date;
                     DateTime lastWeekEnd = DateTime.Today.Date;
-                    selectedRecords = allRecords.Where(record => record.date_time.Date >= lastWeekStart && record.date_time.Date <= lastWeekEnd).ToList();
+                    selectedRecords = allRecords.Where(record => record.serial_number == int.Parse(DeviceSelectComboBox.SelectedItem.ToString()) && record.date_time.Date >= lastWeekStart && record.date_time.Date <= lastWeekEnd).ToList();
                     break;
                 case "Last Month":
                     DateTime lastMonthStart = DateTime.Today.AddMonths(-1).Date;
                     DateTime lastMonthEnd = DateTime.Today.Date;
-                    selectedRecords = allRecords.Where(record => record.date_time.Date >= lastMonthStart && record.date_time.Date <= lastMonthEnd).ToList();
+                    selectedRecords = allRecords.Where(record => record.serial_number == int.Parse(DeviceSelectComboBox.SelectedItem.ToString()) && record.date_time.Date >= lastMonthStart && record.date_time.Date <= lastMonthEnd).ToList();
                     break;
                 case "Specific Day":
-                    selectedRecords = allRecords.Where(record => record.date_time.Date == specificDate.Date).ToList();
+                    selectedRecords = allRecords.Where(record => record.serial_number == int.Parse(DeviceSelectComboBox.SelectedItem.ToString()) && record.date_time.Date == specificDate.Date).ToList();
                     break;
                 default:
                     break;
@@ -224,7 +224,7 @@ namespace GreenHouse
 
                     while (reader.Read())
                     {
-                        allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2)));
+                        allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2), reader.GetInt32(1), reader.GetDouble(5)));
                     }
                 }
                 catch (Exception ex)
@@ -252,7 +252,7 @@ namespace GreenHouse
                 else
                 {
                     // Jeśli nie znaleziono danych, wyświetlamy odpowiedni komunikat
-                    MessageBox.Show("Nie znaleziono danych dla podanego przedziału czasowego.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Nie znaleziono danych dla podanego przedziału czasowego lub urządzenia.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
