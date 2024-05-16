@@ -20,5 +20,10 @@ namespace GreenHouse
             this.status = status;
             this.description = description;
         }
+
+        public override string ToString()
+        {
+            return $"ID: {id}\nSerial Number: {serial_number}\nStatus: {status}\nDescription: {description}";
+        }
     }
 }

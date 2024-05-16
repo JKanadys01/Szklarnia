@@ -101,7 +101,7 @@ namespace GreenHouse
                     DeviceCombobox.Items.Add(i.serial_number);
 
                 }
-
+                DeviceCombobox.SelectedIndex = 0;
 
             }
             catch (Exception ex)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GreenHouse
 {
@@ -27,6 +28,11 @@ namespace GreenHouse
             this.login = login;
             this.password = password;
             this.token = token;
+        }
+
+        public override string ToString()
+        {
+            return $"ID: {id}\nLogin: {login}\nToken: {token}\nDescription:";
         }
     }
 }

@@ -41,6 +41,7 @@ namespace GreenHouse
             chartPage = new ChartPage(allData, user_log, mainPage, ParametermaterialComboBox, TimeFramematerialComboBox, cartesianChart, dateTimePicker);
             chartPage.InitializeComboBox();
             mainPage.InitializeComboBox();
+            mainPage.Initialize();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -80,10 +81,6 @@ namespace GreenHouse
             {
                 MessageBox.Show("Nie uda³o siê wylogowaæ", "Nie uda³o siê wylogowaæ", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
-
-
         }
 
         private void materialSwitch1_CheckedChanged(object sender, EventArgs e)
@@ -211,17 +208,15 @@ namespace GreenHouse
                     users.Add(new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(4)));
                 }
                 mySqlConnection.Close();
-
-
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Nie uda³o siê utworzyæ u¿ytkownika", "Nie uda³o siê utworzyæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
+            foreach (User user in users) 
+            {
+                UserListTextBox.Text += user.ToString() + "\n\n";
+            }
 
         }
 
@@ -248,16 +243,16 @@ namespace GreenHouse
                 }
                 mySqlConnection.Close();
 
-
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Nie uda³o siê pobraæ listy", "Nie uda³o siê pobraæ listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            materialMultiLineTextBox1.Text = device[0].serial_number.ToString();
+            foreach (Device dev in device)
+            {
+                materialMultiLineTextBox1.Text += dev.ToString() + "\n\n";
+            }
         }
 
         private void AddDeviceButton_Click(object sender, EventArgs e)
@@ -286,8 +281,6 @@ namespace GreenHouse
             {
                 MessageBox.Show("Nie uda³o siê utworzyc urzadzenia", "Nie uda³o siê utworzyc urzadzenia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
 
         }
     }
