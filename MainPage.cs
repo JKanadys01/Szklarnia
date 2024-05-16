@@ -31,22 +31,16 @@ namespace GreenHouse
         private MaterialButton InsAlarmButton;
         private MaterialTextBox TempMinTextBox;
         private MaterialTextBox TempMaxTextBox;
-        private MaterialTextBox HumMinTextBox;
-        private MaterialTextBox HumMaxTextBox;
-        private MaterialTextBox InsMinTextBox;
-        private MaterialTextBox InsMaxTextBox;
+        private MaterialComboBox AlarmCombobox;
         private double temperatureMinAlarm;
         private double temperatureMaxAlarm;
-        private double humidityMinAlarm;
-        private double humidityMaxAlarm;
-        private double insolationMinAlarm;
-        private double insolationMaxAlarm;
+
+        
         //Konstruktor przy pomocy którego możliwe jest odwołanie do obiektów Form1
         public MainPage(All_data allData, User userLog, LiveCharts.WinForms.CartesianChart temperatureChart, LiveCharts.WinForms.CartesianChart humidityChart,
             LiveCharts.WinForms.CartesianChart insolationChart, TabControl tabControl2,MaterialProgressBar temperatureProgresBar, MaterialProgressBar humidityProgresBar,
             MaterialProgressBar insolationProgresBar, MaterialLabel temperatureLabel, MaterialLabel humidityLabel, MaterialLabel insolationLabel, MaterialButton temperatureButton,
-            MaterialButton humidityButton, MaterialButton insolationButton, MaterialTextBox tempminTextBox,MaterialTextBox tempmaxTextBox, MaterialTextBox humminTextBox,
-            MaterialTextBox hummaxTextBox, MaterialTextBox insminTextBox,MaterialTextBox insmaxTextBox)
+            MaterialButton humidityButton, MaterialButton insolationButton, MaterialTextBox tempminTextBox,MaterialTextBox tempmaxTextBox, MaterialComboBox alarmComboBox)
         {
             this.allData = allData;
             user_log = userLog;
@@ -65,22 +59,20 @@ namespace GreenHouse
             InsAlarmButton = insolationButton;
             TempMinTextBox = tempminTextBox;
             TempMaxTextBox = tempmaxTextBox;
-            HumMinTextBox = humminTextBox;
-            HumMaxTextBox = hummaxTextBox;
-            InsMinTextBox = insminTextBox;
-            InsMaxTextBox = insmaxTextBox;
+            AlarmCombobox = alarmComboBox;
             temperatureMinAlarm = 20.0;
             temperatureMaxAlarm = 30.0;
-            humidityMinAlarm = 40.0;
-            humidityMaxAlarm = 60.0;
-            insolationMinAlarm = 30.0;
-            insolationMaxAlarm = 70.0;
+            
             TempMinTextBox.Text = temperatureMinAlarm.ToString();
             TempMaxTextBox.Text = temperatureMaxAlarm.ToString();
-            HumMinTextBox.Text = humidityMinAlarm.ToString();
-            HumMaxTextBox.Text = humidityMaxAlarm.ToString();
-            InsMinTextBox.Text = insolationMinAlarm.ToString();
-            InsMaxTextBox.Text = insolationMaxAlarm.ToString();
+            
+        }
+
+        public void InitializeComboBox()
+        {
+            AlarmCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            AlarmCombobox.Items.AddRange(new object[] { "Temperature", "Humidity", "Insolation" });
+            AlarmCombobox.SelectedIndex = 0;
         }
         //Inicjalizacja Timera można tu zdefiniować czas po którym Timer_Tick zostanie wywołane
         public void Initialize()
@@ -335,19 +327,7 @@ namespace GreenHouse
                     TempeAlarmButton.Visible = true;
                 }
 
-                if (latestRecord.humidity < humidityMinAlarm || latestRecord.humidity > humidityMaxAlarm)
-                {
-                    // Wilgotność poza zakresem alarmowym
-                    HumAlarmButton.BackColor = System.Drawing.Color.Red;
-                    HumAlarmButton.Visible = true;
-                }
-
-               // if (latestRecord.insolation < insolationMinAlarm || latestRecord.insolation > insolationMaxAlarm)
-                //{
-                    // Nasłonecznienie poza zakresem alarmowym
-                  //  InsAlarmButton.BackColor = System.Drawing.Color.Red;
-                    //InsAlarmButton.Visible = true;
-                //}
+                
             }
         }
     }

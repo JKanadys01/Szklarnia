@@ -31,8 +31,7 @@ namespace GreenHouse
             InsolationcartesianChart.Visible = false;
             mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart, tabControl2, TemperatureProgressBar, HumidityProgressBar,
                 InsolationProgressBar, temperaturematerialLabel, humiditymaterialLabel, insolationmaterialLabel, TemperatureAlarmButton, HumidityAlarmButton, InsolationAlarmButton, TempMinTextBox,
-                TempMaxTextBox, HumMinTextBox, HumMaxTextBox, InsMinTextBox, InsMaxTextBox);
-            mainPage.Initialize();
+                TempMaxTextBox,AlarmComboBox);
             ///Alarmy
             TemperatureAlarmButton.Visible = false;
             HumidityAlarmButton.Visible = false;
@@ -41,7 +40,7 @@ namespace GreenHouse
             cartesianChart.Visible = false;
             chartPage = new ChartPage(allData, user_log, mainPage, ParametermaterialComboBox, TimeFramematerialComboBox, cartesianChart, dateTimePicker);
             chartPage.InitializeComboBox();
-
+            mainPage.InitializeComboBox();
         }
 
         private void Form1_Load(object sender, EventArgs e)
