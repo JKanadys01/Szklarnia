@@ -1177,6 +1177,7 @@
             Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Start";
+            FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             tabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);

@@ -31,7 +31,7 @@ namespace GreenHouse
             InsolationcartesianChart.Visible = false;
             mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart, tabControl2, TemperatureProgressBar, HumidityProgressBar,
                 InsolationProgressBar, temperaturematerialLabel, humiditymaterialLabel, insolationmaterialLabel, TemperatureAlarmButton, HumidityAlarmButton, InsolationAlarmButton, TempMinTextBox,
-                TempMaxTextBox, AlarmComboBox,DeviceComboBox);
+                TempMaxTextBox, AlarmComboBox, DeviceComboBox);
             ///Alarmy
             TemperatureAlarmButton.Visible = false;
             HumidityAlarmButton.Visible = false;
@@ -47,6 +47,10 @@ namespace GreenHouse
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            logoutmaterialButton_Click(sender, EventArgs.Empty);
         }
 
         /// Obsl³uga Main page
@@ -73,6 +77,7 @@ namespace GreenHouse
 
                 mySqlConnection.Close();
                 this.Hide();
+                mainPage.StopTimer();
                 LoginForm loginForm = new LoginForm();
                 loginForm.ShowDialog();
                 this.Close();
@@ -129,8 +134,8 @@ namespace GreenHouse
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userToken", user_log.token);
-                cmd.Parameters.AddWithValue("@serialNumber", DeviceComboBox.SelectedItem); 
-                cmd.Parameters.AddWithValue("@parameterName", AlarmComboBox.SelectedItem.ToString() );
+                cmd.Parameters.AddWithValue("@serialNumber", DeviceComboBox.SelectedItem);
+                cmd.Parameters.AddWithValue("@parameterName", AlarmComboBox.SelectedItem.ToString());
                 cmd.Parameters.AddWithValue("@downValue", int.Parse(TempMaxTextBox.Text));
                 cmd.Parameters.AddWithValue("@topValue", int.Parse(TempMinTextBox.Text));
                 cmd.ExecuteNonQuery();
@@ -214,7 +219,7 @@ namespace GreenHouse
                 MessageBox.Show("Nie uda³o siê utworzyæ u¿ytkownika", "Nie uda³o siê utworzyæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             UserListTextBox.Clear();
-            foreach (User user in users) 
+            foreach (User user in users)
             {
                 UserListTextBox.Text += user.ToString() + "\n\n";
             }
@@ -270,8 +275,8 @@ namespace GreenHouse
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userToken", user_log.token);
-                cmd.Parameters.AddWithValue("@serialNumber",int.Parse(DeviceIdTextBox.Text));
-                cmd.Parameters.AddWithValue("@deviceDescription",DeviceDescriptionTextBox.Text);
+                cmd.Parameters.AddWithValue("@serialNumber", int.Parse(DeviceIdTextBox.Text));
+                cmd.Parameters.AddWithValue("@deviceDescription", DeviceDescriptionTextBox.Text);
                 cmd.ExecuteNonQuery();
 
 
@@ -282,10 +287,12 @@ namespace GreenHouse
             {
                 MessageBox.Show("Nie uda³o siê utworzyc urzadzenia", "Nie uda³o siê utworzyc urzadzenia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
             chartPage.InitializeComboBox();
             mainPage.InitializeComboBox();
 
         }
+
+        
     }
 }
