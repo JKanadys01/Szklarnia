@@ -38,7 +38,7 @@ namespace GreenHouse
             InsolationAlarmButton.Visible = false;
             ///Chart page
             cartesianChart.Visible = false;
-            chartPage = new ChartPage(allData, user_log, mainPage, ParametermaterialComboBox, TimeFramematerialComboBox, cartesianChart, dateTimePicker);
+            chartPage = new ChartPage(allData, user_log, mainPage, ParametermaterialComboBox, TimeFramematerialComboBox, cartesianChart, dateTimePicker, DeviceChartsPageComboBox);
             chartPage.InitializeComboBox();
             mainPage.InitializeComboBox();
             mainPage.Initialize();

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace GreenHouse
 {
@@ -20,8 +21,10 @@ namespace GreenHouse
         private MaterialComboBox TimeFramematerialComboBox;
         private LiveCharts.WinForms.CartesianChart cartesianChart;
         private DateTimePicker dateTimePicker;
+        private MaterialComboBox DeviceSelectComboBox;
         //Konstruktor przy pomocy którego możliwe jest odwołanie do obiektów Form1
-        public ChartPage(All_data allData, User user_log, MainPage mainPage, MaterialComboBox parameterComboBox, MaterialComboBox timeFrameComboBox, LiveCharts.WinForms.CartesianChart chart, DateTimePicker picker)
+        public ChartPage(All_data allData, User user_log, MainPage mainPage, MaterialComboBox parameterComboBox, MaterialComboBox timeFrameComboBox,
+            LiveCharts.WinForms.CartesianChart chart, DateTimePicker picker, MaterialComboBox deviceselectComboBox)
         {
             this.allData = allData;
             this.user_log = user_log;
@@ -30,6 +33,7 @@ namespace GreenHouse
             this.TimeFramematerialComboBox = timeFrameComboBox;
             this.cartesianChart = chart;
             this.dateTimePicker = picker;
+            this.DeviceSelectComboBox = deviceselectComboBox;
         }
         //Inicjalizacja zawartości combobox
         public void InitializeComboBox()
@@ -41,6 +45,39 @@ namespace GreenHouse
             TimeFramematerialComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             TimeFramematerialComboBox.Items.AddRange(new object[] { "Today", "Last Week", "Last Month", "Specific Day" });
             TimeFramematerialComboBox.SelectedIndex = 0;
+
+            MySqlConnection mySqlConnection;
+            List<Device> device = new List<Device>();
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("GetAllDevices", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userToken", user_log.token);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    device.Add(new Device(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3)));
+                }
+                mySqlConnection.Close();
+                foreach (Device i in device)
+                {
+                    DeviceSelectComboBox.Items.Add(i.serial_number);
+
+                }
+                DeviceSelectComboBox.SelectedIndex = 0;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie udało się pobrać listy", "Nie udało się pobrać listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         //Rysowanie wykresu
         public void DrawChart(Dictionary<DateTime, double> data, string parameter)

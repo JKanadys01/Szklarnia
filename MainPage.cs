@@ -131,7 +131,7 @@ namespace GreenHouse
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userToken", user_log.token);
-                cmd.Parameters.AddWithValue("@deviceId", 1); //Tutaj zmienić trzeba na to urządzenie które jest wybrane
+                cmd.Parameters.AddWithValue("@deviceId", DeviceCombobox.SelectedItem); //Tutaj zmienić trzeba na to urządzenie które jest wybrane
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -140,20 +140,12 @@ namespace GreenHouse
                 }
                 mySqlConnection.Close();
                 UpdateProgressBars();
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Nie udało się pobrać danych", "Nie udało się pobrać danych", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
             Timer_Tick(null, EventArgs.Empty);
-
-
-
-
             timer.Start();
         }
 
@@ -176,7 +168,7 @@ namespace GreenHouse
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userToken", user_log.token);
-                cmd.Parameters.AddWithValue("@deviceId", 1); //Tutaj zmienić trzeba na to urządzenie które jest wybrane
+                cmd.Parameters.AddWithValue("@deviceId", DeviceCombobox.SelectedItem); //Tutaj zmienić trzeba na to urządzenie które jest wybrane
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())

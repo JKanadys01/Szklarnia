@@ -68,6 +68,7 @@
             logoutmaterialButton = new MaterialSkin.Controls.MaterialButton();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             tabPage3 = new TabPage();
+            DeviceChartsPageComboBox = new MaterialSkin.Controls.MaterialComboBox();
             TimeFramematerialComboBox = new MaterialSkin.Controls.MaterialComboBox();
             ParametermaterialComboBox = new MaterialSkin.Controls.MaterialComboBox();
             DrawchartmaterialButton = new MaterialSkin.Controls.MaterialButton();
@@ -654,6 +655,7 @@
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(64, 64, 64);
+            tabPage3.Controls.Add(DeviceChartsPageComboBox);
             tabPage3.Controls.Add(TimeFramematerialComboBox);
             tabPage3.Controls.Add(ParametermaterialComboBox);
             tabPage3.Controls.Add(DrawchartmaterialButton);
@@ -666,6 +668,28 @@
             tabPage3.Size = new Size(1910, 951);
             tabPage3.TabIndex = 1;
             tabPage3.Text = "Charts";
+            // 
+            // DeviceChartsPageComboBox
+            // 
+            DeviceChartsPageComboBox.AutoResize = false;
+            DeviceChartsPageComboBox.BackColor = Color.FromArgb(255, 255, 255);
+            DeviceChartsPageComboBox.Depth = 0;
+            DeviceChartsPageComboBox.DrawMode = DrawMode.OwnerDrawVariable;
+            DeviceChartsPageComboBox.DropDownHeight = 174;
+            DeviceChartsPageComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            DeviceChartsPageComboBox.DropDownWidth = 121;
+            DeviceChartsPageComboBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            DeviceChartsPageComboBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            DeviceChartsPageComboBox.FormattingEnabled = true;
+            DeviceChartsPageComboBox.IntegralHeight = false;
+            DeviceChartsPageComboBox.ItemHeight = 43;
+            DeviceChartsPageComboBox.Location = new Point(889, 620);
+            DeviceChartsPageComboBox.MaxDropDownItems = 4;
+            DeviceChartsPageComboBox.MouseState = MaterialSkin.MouseState.OUT;
+            DeviceChartsPageComboBox.Name = "DeviceChartsPageComboBox";
+            DeviceChartsPageComboBox.Size = new Size(121, 49);
+            DeviceChartsPageComboBox.StartIndex = 0;
+            DeviceChartsPageComboBox.TabIndex = 12;
             // 
             // TimeFramematerialComboBox
             // 
@@ -718,7 +742,7 @@
             DrawchartmaterialButton.Depth = 0;
             DrawchartmaterialButton.HighEmphasis = true;
             DrawchartmaterialButton.Icon = null;
-            DrawchartmaterialButton.Location = new Point(890, 628);
+            DrawchartmaterialButton.Location = new Point(1017, 628);
             DrawchartmaterialButton.Margin = new Padding(4, 6, 4, 6);
             DrawchartmaterialButton.MouseState = MaterialSkin.MouseState.HOVER;
             DrawchartmaterialButton.Name = "DrawchartmaterialButton";
@@ -829,12 +853,12 @@
             materialLabel13.AutoSize = true;
             materialLabel13.Depth = 0;
             materialLabel13.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel13.Location = new Point(1538, 9);
+            materialLabel13.Location = new Point(1524, 10);
             materialLabel13.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel13.Name = "materialLabel13";
-            materialLabel13.Size = new Size(65, 19);
+            materialLabel13.Size = new Size(99, 19);
             materialLabel13.TabIndex = 18;
-            materialLabel13.Text = "Device Id";
+            materialLabel13.Text = "Serial number";
             // 
             // materialMultiLineTextBox1
             // 
@@ -1237,5 +1261,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel14;
         private MaterialSkin.Controls.MaterialLabel materialLabel13;
         private MaterialSkin.Controls.MaterialMultiLineTextBox materialMultiLineTextBox1;
+        private MaterialSkin.Controls.MaterialComboBox DeviceChartsPageComboBox;
     }
 }
