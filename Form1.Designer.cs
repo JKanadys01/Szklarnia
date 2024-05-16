@@ -868,6 +868,7 @@
             DeviceListButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             DeviceListButton.UseAccentColor = false;
             DeviceListButton.UseVisualStyleBackColor = true;
+            DeviceListButton.Click += DeviceListButton_Click;
             // 
             // DeactivateDeviceButton
             // 
@@ -944,6 +945,7 @@
             AddDeviceButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             AddDeviceButton.UseAccentColor = false;
             AddDeviceButton.UseVisualStyleBackColor = true;
+            AddDeviceButton.Click += AddDeviceButton_Click;
             // 
             // ActivateUserButton
             // 

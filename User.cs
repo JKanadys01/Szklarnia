@@ -15,7 +15,7 @@ namespace GreenHouse
     public class User
     {
         int id;
-        string login{ get; set; }
+       public string login{ get; set; }
         string password{ get; set; }
        public int token {  get; set; }
         public User() { }

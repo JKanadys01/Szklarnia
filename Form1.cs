@@ -31,7 +31,7 @@ namespace GreenHouse
             InsolationcartesianChart.Visible = false;
             mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart, tabControl2, TemperatureProgressBar, HumidityProgressBar,
                 InsolationProgressBar, temperaturematerialLabel, humiditymaterialLabel, insolationmaterialLabel, TemperatureAlarmButton, HumidityAlarmButton, InsolationAlarmButton, TempMinTextBox,
-                TempMaxTextBox,AlarmComboBox);
+                TempMaxTextBox, AlarmComboBox);
             ///Alarmy
             TemperatureAlarmButton.Visible = false;
             HumidityAlarmButton.Visible = false;
@@ -176,15 +176,15 @@ namespace GreenHouse
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userToken", user_log.token);
-               MySqlDataReader reader = cmd.ExecuteReader();
+                MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    users.Add(new User(reader.GetInt32(0),reader.GetString(1), reader.GetString(2),reader.GetInt32(4)));
+                    users.Add(new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(4)));
                 }
                 mySqlConnection.Close();
 
-               
+
 
 
             }
@@ -192,6 +192,75 @@ namespace GreenHouse
             {
                 MessageBox.Show("Nie uda³o siê utworzyæ u¿ytkownika", "Nie uda³o siê utworzyæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+
+
+        }
+
+        private void DeviceListButton_Click(object sender, EventArgs e)
+        {
+            MySqlConnection mySqlConnection;
+            List<Device> device = new List<Device>();
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("GetAllDevices", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userToken", user_log.token);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    device.Add(new Device(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3)));
+                }
+                mySqlConnection.Close();
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie uda³o siê pobraæ listy", "Nie uda³o siê pobraæ listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            materialMultiLineTextBox1.Text = device[0].serial_number.ToString();
+        }
+
+        private void AddDeviceButton_Click(object sender, EventArgs e)
+        {
+            MySqlConnection mySqlConnection;
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("CreateNewDevice", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userToken", user_log.token);
+                cmd.Parameters.AddWithValue("@serialNumber",int.Parse(DeviceIdTextBox.Text));
+                cmd.Parameters.AddWithValue("@deviceDescription",DeviceDescriptionTextBox.Text);
+                cmd.ExecuteNonQuery();
+
+
+                mySqlConnection.Close();
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie uda³o siê utworzyc urzadzenia", "Nie uda³o siê utworzyc urzadzenia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+
+
         }
     }
 }
