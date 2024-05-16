@@ -213,6 +213,7 @@ namespace GreenHouse
             {
                 MessageBox.Show("Nie uda³o siê utworzyæ u¿ytkownika", "Nie uda³o siê utworzyæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            UserListTextBox.Clear();
             foreach (User user in users) 
             {
                 UserListTextBox.Text += user.ToString() + "\n\n";
@@ -248,7 +249,7 @@ namespace GreenHouse
             {
                 MessageBox.Show("Nie uda³o siê pobraæ listy", "Nie uda³o siê pobraæ listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
+            materialMultiLineTextBox1.Clear();
             foreach (Device dev in device)
             {
                 materialMultiLineTextBox1.Text += dev.ToString() + "\n\n";
@@ -281,6 +282,9 @@ namespace GreenHouse
             {
                 MessageBox.Show("Nie uda³o siê utworzyc urzadzenia", "Nie uda³o siê utworzyc urzadzenia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            
+            chartPage.InitializeComboBox();
+            mainPage.InitializeComboBox();
 
         }
     }

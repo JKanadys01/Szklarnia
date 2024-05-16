@@ -72,10 +72,11 @@ namespace GreenHouse
         public void InitializeComboBox()
         {
             AlarmCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            AlarmCombobox.Items.Clear();
             AlarmCombobox.Items.AddRange(new object[] { "Temperature", "Humidity", "Insolation" });
             AlarmCombobox.SelectedIndex = 0;
             DeviceCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
-
+            DeviceCombobox.Items.Clear();
             MySqlConnection mySqlConnection;
             List<Device> device = new List<Device>();
 

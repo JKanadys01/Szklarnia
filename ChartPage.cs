@@ -46,6 +46,8 @@ namespace GreenHouse
             TimeFramematerialComboBox.Items.AddRange(new object[] { "Today", "Last Week", "Last Month", "Specific Day" });
             TimeFramematerialComboBox.SelectedIndex = 0;
 
+            DeviceSelectComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            DeviceSelectComboBox.Items.Clear();
             MySqlConnection mySqlConnection;
             List<Device> device = new List<Device>();
 

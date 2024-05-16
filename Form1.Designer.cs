@@ -178,7 +178,7 @@
             materialButton1.Depth = 0;
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
-            materialButton1.Location = new Point(591, 30);
+            materialButton1.Location = new Point(699, 37);
             materialButton1.Margin = new Padding(4, 6, 4, 6);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
@@ -195,7 +195,7 @@
             materialLabel12.AutoSize = true;
             materialLabel12.Depth = 0;
             materialLabel12.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel12.Location = new Point(463, 4);
+            materialLabel12.Location = new Point(571, 11);
             materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel12.Name = "materialLabel12";
             materialLabel12.Size = new Size(115, 19);
@@ -216,7 +216,7 @@
             DeviceComboBox.FormattingEnabled = true;
             DeviceComboBox.IntegralHeight = false;
             DeviceComboBox.ItemHeight = 43;
-            DeviceComboBox.Location = new Point(463, 27);
+            DeviceComboBox.Location = new Point(571, 34);
             DeviceComboBox.MaxDropDownItems = 4;
             DeviceComboBox.MouseState = MaterialSkin.MouseState.OUT;
             DeviceComboBox.Name = "DeviceComboBox";
@@ -238,7 +238,7 @@
             AlarmComboBox.FormattingEnabled = true;
             AlarmComboBox.IntegralHeight = false;
             AlarmComboBox.ItemHeight = 43;
-            AlarmComboBox.Location = new Point(117, 214);
+            AlarmComboBox.Location = new Point(121, 269);
             AlarmComboBox.MaxDropDownItems = 4;
             AlarmComboBox.MouseState = MaterialSkin.MouseState.OUT;
             AlarmComboBox.Name = "AlarmComboBox";
@@ -253,7 +253,7 @@
             SetAlarmlButton.Depth = 0;
             SetAlarmlButton.HighEmphasis = true;
             SetAlarmlButton.Icon = null;
-            SetAlarmlButton.Location = new Point(375, 214);
+            SetAlarmlButton.Location = new Point(379, 269);
             SetAlarmlButton.Margin = new Padding(4, 6, 4, 6);
             SetAlarmlButton.MouseState = MaterialSkin.MouseState.HOVER;
             SetAlarmlButton.Name = "SetAlarmlButton";
@@ -273,7 +273,7 @@
             TempMaxTextBox.Depth = 0;
             TempMaxTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TempMaxTextBox.LeadingIcon = null;
-            TempMaxTextBox.Location = new Point(268, 213);
+            TempMaxTextBox.Location = new Point(272, 268);
             TempMaxTextBox.MaxLength = 50;
             TempMaxTextBox.MouseState = MaterialSkin.MouseState.OUT;
             TempMaxTextBox.Multiline = false;
@@ -290,7 +290,7 @@
             TempMinTextBox.Depth = 0;
             TempMinTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TempMinTextBox.LeadingIcon = null;
-            TempMinTextBox.Location = new Point(11, 213);
+            TempMinTextBox.Location = new Point(15, 268);
             TempMinTextBox.MaxLength = 50;
             TempMinTextBox.MouseState = MaterialSkin.MouseState.OUT;
             TempMinTextBox.Multiline = false;
@@ -305,7 +305,7 @@
             materialLabel9.AutoSize = true;
             materialLabel9.Depth = 0;
             materialLabel9.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel9.Location = new Point(304, 191);
+            materialLabel9.Location = new Point(308, 246);
             materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel9.Name = "materialLabel9";
             materialLabel9.Size = new Size(32, 19);
@@ -317,7 +317,7 @@
             materialLabel8.AutoSize = true;
             materialLabel8.Depth = 0;
             materialLabel8.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel8.Location = new Point(46, 191);
+            materialLabel8.Location = new Point(50, 246);
             materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel8.Name = "materialLabel8";
             materialLabel8.Size = new Size(28, 19);
@@ -329,7 +329,7 @@
             materialLabel6.AutoSize = true;
             materialLabel6.Depth = 0;
             materialLabel6.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel6.Location = new Point(138, 173);
+            materialLabel6.Location = new Point(142, 228);
             materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel6.Name = "materialLabel6";
             materialLabel6.Size = new Size(100, 19);
@@ -343,7 +343,7 @@
             InsolationAlarmButton.Depth = 0;
             InsolationAlarmButton.HighEmphasis = true;
             InsolationAlarmButton.Icon = null;
-            InsolationAlarmButton.Location = new Point(309, 424);
+            InsolationAlarmButton.Location = new Point(290, 169);
             InsolationAlarmButton.Margin = new Padding(4, 6, 4, 6);
             InsolationAlarmButton.MouseState = MaterialSkin.MouseState.HOVER;
             InsolationAlarmButton.Name = "InsolationAlarmButton";
@@ -363,7 +363,7 @@
             HumidityAlarmButton.Depth = 0;
             HumidityAlarmButton.HighEmphasis = true;
             HumidityAlarmButton.Icon = null;
-            HumidityAlarmButton.Location = new Point(173, 424);
+            HumidityAlarmButton.Location = new Point(156, 169);
             HumidityAlarmButton.Margin = new Padding(4, 6, 4, 6);
             HumidityAlarmButton.MouseState = MaterialSkin.MouseState.HOVER;
             HumidityAlarmButton.Name = "HumidityAlarmButton";
@@ -383,7 +383,7 @@
             TemperatureAlarmButton.Depth = 0;
             TemperatureAlarmButton.HighEmphasis = true;
             TemperatureAlarmButton.Icon = null;
-            TemperatureAlarmButton.Location = new Point(32, 424);
+            TemperatureAlarmButton.Location = new Point(15, 169);
             TemperatureAlarmButton.Margin = new Padding(4, 6, 4, 6);
             TemperatureAlarmButton.MouseState = MaterialSkin.MouseState.HOVER;
             TemperatureAlarmButton.Name = "TemperatureAlarmButton";
@@ -401,7 +401,7 @@
             materialLabel5.AutoSize = true;
             materialLabel5.Depth = 0;
             materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel5.Location = new Point(307, 399);
+            materialLabel5.Location = new Point(288, 144);
             materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel5.Name = "materialLabel5";
             materialLabel5.Size = new Size(71, 19);
@@ -413,7 +413,7 @@
             materialLabel4.AutoSize = true;
             materialLabel4.Depth = 0;
             materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel4.Location = new Point(177, 399);
+            materialLabel4.Location = new Point(160, 144);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
             materialLabel4.Size = new Size(65, 19);
@@ -425,7 +425,7 @@
             materialLabel3.AutoSize = true;
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(23, 399);
+            materialLabel3.Location = new Point(6, 144);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
             materialLabel3.Size = new Size(91, 19);
@@ -437,7 +437,7 @@
             materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(159, 380);
+            materialLabel2.Location = new Point(142, 125);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.Size = new Size(110, 19);
