@@ -19,20 +19,23 @@ namespace GreenHouse
        public string login{ get; set; }
         string password{ get; set; }
        public int token {  get; set; }
+
+        public string descripiton { get; set; }
         public User() { }
         public User(string log, string pass) 
         { login = log; password = pass; token = 0; }
-       public User(int id, string login, string password, int token)
+       public User(int id, string login, string password, int token, string descripiton)
         {
             this.id = id;
             this.login = login;
             this.password = password;
             this.token = token;
+            this.descripiton = descripiton;
         }
 
         public override string ToString()
         {
-            return $"ID: {id}\nLogin: {login}\nToken: {token}\nDescription:";
+            return $"ID: {id}\nLogin: {login}\nToken: {token}\nDescription:{descripiton}";
         }
     }
 }

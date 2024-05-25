@@ -136,8 +136,8 @@ namespace GreenHouse
                 cmd.Parameters.AddWithValue("@userToken", user_log.token);
                 cmd.Parameters.AddWithValue("@serialNumber", DeviceComboBox.SelectedItem);
                 cmd.Parameters.AddWithValue("@parameterName", AlarmComboBox.SelectedItem.ToString());
-                cmd.Parameters.AddWithValue("@downValue", int.Parse(TempMaxTextBox.Text));
-                cmd.Parameters.AddWithValue("@topValue", int.Parse(TempMinTextBox.Text));
+                cmd.Parameters.AddWithValue("@downValue", int.Parse(TempMinTextBox.Text));
+                cmd.Parameters.AddWithValue("@topValue", int.Parse(TempMaxTextBox.Text));
                 cmd.ExecuteNonQuery();
 
 
@@ -195,7 +195,7 @@ namespace GreenHouse
         {
             MySqlConnection mySqlConnection;
             List<User> users = new List<User>();
-
+            UserListTextBox.Clear();
             try
             {
                 mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
@@ -210,7 +210,7 @@ namespace GreenHouse
 
                 while (reader.Read())
                 {
-                    users.Add(new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(4)));
+                    users.Add(new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(4), reader.GetString(5)));
                 }
                 mySqlConnection.Close();
             }
@@ -231,6 +231,7 @@ namespace GreenHouse
             MySqlConnection mySqlConnection;
             List<Device> device = new List<Device>();
 
+            materialMultiLineTextBox1.Clear();
             try
             {
                 mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
@@ -293,6 +294,61 @@ namespace GreenHouse
 
         }
 
-        
+        private void EditUserButton_Click(object sender, EventArgs e)
+        {
+            MySqlConnection mySqlConnection;
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("ChangeUserCredentials", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@user_token", user_log.token);
+                cmd.Parameters.AddWithValue("@user_login", UserLoginTextBox.Text);
+                cmd.Parameters.AddWithValue("@new_password", UserPasswordTextBox.Text);
+                cmd.Parameters.AddWithValue("@new_description", UserDescriptionTextBox.Text);
+                cmd.ExecuteNonQuery();
+
+
+                mySqlConnection.Close();
+                MessageBox.Show("Uda³o siê edytowaæ u¿ytkownika", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie uda³o siê edytowaæ u¿ytkownika", "Nie uda³o siê edytowaæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void EditDeviceButton_Click(object sender, EventArgs e)
+        {
+            MySqlConnection mySqlConnection;
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("ChangeDeviceDescription", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@user_token", user_log.token);
+                cmd.Parameters.AddWithValue("@device_serial_number", DeviceIdTextBox.Text);
+                cmd.Parameters.AddWithValue("@new_description", DeviceDescriptionTextBox.Text);
+                cmd.ExecuteNonQuery();
+
+
+                mySqlConnection.Close();
+                MessageBox.Show("Uda³o siê edytowaæ u¿ytkownika", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie uda³o siê edytowaæ u¿ytkownika", "Nie uda³o siê edytowaæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

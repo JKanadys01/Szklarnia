@@ -950,6 +950,7 @@
             EditDeviceButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             EditDeviceButton.UseAccentColor = false;
             EditDeviceButton.UseVisualStyleBackColor = true;
+            EditDeviceButton.Click += EditDeviceButton_Click;
             // 
             // AddDeviceButton
             // 
@@ -1027,6 +1028,7 @@
             EditUserButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             EditUserButton.UseAccentColor = false;
             EditUserButton.UseVisualStyleBackColor = true;
+            EditUserButton.Click += EditUserButton_Click;
             // 
             // materialLabel11
             // 
