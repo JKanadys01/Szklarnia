@@ -33,7 +33,6 @@
             imageList1 = new ImageList(components);
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
-            materialButton1 = new MaterialSkin.Controls.MaterialButton();
             materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
             DeviceComboBox = new MaterialSkin.Controls.MaterialComboBox();
             AlarmComboBox = new MaterialSkin.Controls.MaterialComboBox();
@@ -43,13 +42,6 @@
             materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
-            InsolationAlarmButton = new MaterialSkin.Controls.MaterialButton();
-            HumidityAlarmButton = new MaterialSkin.Controls.MaterialButton();
-            TemperatureAlarmButton = new MaterialSkin.Controls.MaterialButton();
-            materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
             InsolationProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
             HumidityProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
@@ -81,12 +73,8 @@
             materialLabel13 = new MaterialSkin.Controls.MaterialLabel();
             materialMultiLineTextBox1 = new MaterialSkin.Controls.MaterialMultiLineTextBox();
             DeviceListButton = new MaterialSkin.Controls.MaterialButton();
-            DeactivateDeviceButton = new MaterialSkin.Controls.MaterialButton();
-            ActivateDeviceButton = new MaterialSkin.Controls.MaterialButton();
             EditDeviceButton = new MaterialSkin.Controls.MaterialButton();
             AddDeviceButton = new MaterialSkin.Controls.MaterialButton();
-            ActivateUserButton = new MaterialSkin.Controls.MaterialButton();
-            DeactivateUserButton = new MaterialSkin.Controls.MaterialButton();
             EditUserButton = new MaterialSkin.Controls.MaterialButton();
             materialLabel11 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
@@ -97,6 +85,8 @@
             UserDescriptionTextBox = new MaterialSkin.Controls.MaterialTextBox();
             UserPasswordTextBox = new MaterialSkin.Controls.MaterialTextBox();
             UserLoginTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            AlarmTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabControl2.SuspendLayout();
@@ -135,7 +125,8 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(64, 64, 64);
-            tabPage2.Controls.Add(materialButton1);
+            tabPage2.Controls.Add(AlarmTextBox);
+            tabPage2.Controls.Add(materialLabel2);
             tabPage2.Controls.Add(materialLabel12);
             tabPage2.Controls.Add(DeviceComboBox);
             tabPage2.Controls.Add(AlarmComboBox);
@@ -145,13 +136,6 @@
             tabPage2.Controls.Add(materialLabel9);
             tabPage2.Controls.Add(materialLabel8);
             tabPage2.Controls.Add(materialLabel6);
-            tabPage2.Controls.Add(InsolationAlarmButton);
-            tabPage2.Controls.Add(HumidityAlarmButton);
-            tabPage2.Controls.Add(TemperatureAlarmButton);
-            tabPage2.Controls.Add(materialLabel5);
-            tabPage2.Controls.Add(materialLabel4);
-            tabPage2.Controls.Add(materialLabel3);
-            tabPage2.Controls.Add(materialLabel2);
             tabPage2.Controls.Add(materialSwitch1);
             tabPage2.Controls.Add(InsolationProgressBar);
             tabPage2.Controls.Add(HumidityProgressBar);
@@ -171,31 +155,12 @@
             tabPage2.TabIndex = 0;
             tabPage2.Text = "Main";
             // 
-            // materialButton1
-            // 
-            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton1.Depth = 0;
-            materialButton1.HighEmphasis = true;
-            materialButton1.Icon = null;
-            materialButton1.Location = new Point(699, 37);
-            materialButton1.Margin = new Padding(4, 6, 4, 6);
-            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton1.Name = "materialButton1";
-            materialButton1.NoAccentTextColor = Color.Empty;
-            materialButton1.Size = new Size(74, 36);
-            materialButton1.TabIndex = 50;
-            materialButton1.Text = "Select";
-            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton1.UseAccentColor = false;
-            materialButton1.UseVisualStyleBackColor = true;
-            // 
             // materialLabel12
             // 
             materialLabel12.AutoSize = true;
             materialLabel12.Depth = 0;
             materialLabel12.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel12.Location = new Point(571, 11);
+            materialLabel12.Location = new Point(799, 46);
             materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel12.Name = "materialLabel12";
             materialLabel12.Size = new Size(115, 19);
@@ -216,7 +181,7 @@
             DeviceComboBox.FormattingEnabled = true;
             DeviceComboBox.IntegralHeight = false;
             DeviceComboBox.ItemHeight = 43;
-            DeviceComboBox.Location = new Point(571, 34);
+            DeviceComboBox.Location = new Point(799, 69);
             DeviceComboBox.MaxDropDownItems = 4;
             DeviceComboBox.MouseState = MaterialSkin.MouseState.OUT;
             DeviceComboBox.Name = "DeviceComboBox";
@@ -238,7 +203,7 @@
             AlarmComboBox.FormattingEnabled = true;
             AlarmComboBox.IntegralHeight = false;
             AlarmComboBox.ItemHeight = 43;
-            AlarmComboBox.Location = new Point(121, 269);
+            AlarmComboBox.Location = new Point(112, 163);
             AlarmComboBox.MaxDropDownItems = 4;
             AlarmComboBox.MouseState = MaterialSkin.MouseState.OUT;
             AlarmComboBox.Name = "AlarmComboBox";
@@ -253,7 +218,7 @@
             SetAlarmlButton.Depth = 0;
             SetAlarmlButton.HighEmphasis = true;
             SetAlarmlButton.Icon = null;
-            SetAlarmlButton.Location = new Point(379, 269);
+            SetAlarmlButton.Location = new Point(370, 163);
             SetAlarmlButton.Margin = new Padding(4, 6, 4, 6);
             SetAlarmlButton.MouseState = MaterialSkin.MouseState.HOVER;
             SetAlarmlButton.Name = "SetAlarmlButton";
@@ -273,7 +238,7 @@
             TempMaxTextBox.Depth = 0;
             TempMaxTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TempMaxTextBox.LeadingIcon = null;
-            TempMaxTextBox.Location = new Point(272, 268);
+            TempMaxTextBox.Location = new Point(263, 162);
             TempMaxTextBox.MaxLength = 50;
             TempMaxTextBox.MouseState = MaterialSkin.MouseState.OUT;
             TempMaxTextBox.Multiline = false;
@@ -290,7 +255,7 @@
             TempMinTextBox.Depth = 0;
             TempMinTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             TempMinTextBox.LeadingIcon = null;
-            TempMinTextBox.Location = new Point(15, 268);
+            TempMinTextBox.Location = new Point(6, 162);
             TempMinTextBox.MaxLength = 50;
             TempMinTextBox.MouseState = MaterialSkin.MouseState.OUT;
             TempMinTextBox.Multiline = false;
@@ -305,7 +270,7 @@
             materialLabel9.AutoSize = true;
             materialLabel9.Depth = 0;
             materialLabel9.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel9.Location = new Point(308, 246);
+            materialLabel9.Location = new Point(299, 140);
             materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel9.Name = "materialLabel9";
             materialLabel9.Size = new Size(32, 19);
@@ -317,7 +282,7 @@
             materialLabel8.AutoSize = true;
             materialLabel8.Depth = 0;
             materialLabel8.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel8.Location = new Point(50, 246);
+            materialLabel8.Location = new Point(41, 140);
             materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel8.Name = "materialLabel8";
             materialLabel8.Size = new Size(28, 19);
@@ -329,120 +294,12 @@
             materialLabel6.AutoSize = true;
             materialLabel6.Depth = 0;
             materialLabel6.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel6.Location = new Point(142, 228);
+            materialLabel6.Location = new Point(133, 122);
             materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel6.Name = "materialLabel6";
             materialLabel6.Size = new Size(100, 19);
             materialLabel6.TabIndex = 34;
             materialLabel6.Text = "Alarm Setings";
-            // 
-            // InsolationAlarmButton
-            // 
-            InsolationAlarmButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            InsolationAlarmButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            InsolationAlarmButton.Depth = 0;
-            InsolationAlarmButton.HighEmphasis = true;
-            InsolationAlarmButton.Icon = null;
-            InsolationAlarmButton.Location = new Point(290, 169);
-            InsolationAlarmButton.Margin = new Padding(4, 6, 4, 6);
-            InsolationAlarmButton.MouseState = MaterialSkin.MouseState.HOVER;
-            InsolationAlarmButton.Name = "InsolationAlarmButton";
-            InsolationAlarmButton.NoAccentTextColor = Color.Empty;
-            InsolationAlarmButton.Size = new Size(69, 36);
-            InsolationAlarmButton.TabIndex = 33;
-            InsolationAlarmButton.Text = "Check";
-            InsolationAlarmButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            InsolationAlarmButton.UseAccentColor = false;
-            InsolationAlarmButton.UseVisualStyleBackColor = true;
-            InsolationAlarmButton.Click += InsolationAlarmButton_Click;
-            // 
-            // HumidityAlarmButton
-            // 
-            HumidityAlarmButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            HumidityAlarmButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            HumidityAlarmButton.Depth = 0;
-            HumidityAlarmButton.HighEmphasis = true;
-            HumidityAlarmButton.Icon = null;
-            HumidityAlarmButton.Location = new Point(156, 169);
-            HumidityAlarmButton.Margin = new Padding(4, 6, 4, 6);
-            HumidityAlarmButton.MouseState = MaterialSkin.MouseState.HOVER;
-            HumidityAlarmButton.Name = "HumidityAlarmButton";
-            HumidityAlarmButton.NoAccentTextColor = Color.Empty;
-            HumidityAlarmButton.Size = new Size(69, 36);
-            HumidityAlarmButton.TabIndex = 32;
-            HumidityAlarmButton.Text = "Check";
-            HumidityAlarmButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            HumidityAlarmButton.UseAccentColor = false;
-            HumidityAlarmButton.UseVisualStyleBackColor = true;
-            HumidityAlarmButton.Click += HumidityAlarmButton_Click;
-            // 
-            // TemperatureAlarmButton
-            // 
-            TemperatureAlarmButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            TemperatureAlarmButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            TemperatureAlarmButton.Depth = 0;
-            TemperatureAlarmButton.HighEmphasis = true;
-            TemperatureAlarmButton.Icon = null;
-            TemperatureAlarmButton.Location = new Point(15, 169);
-            TemperatureAlarmButton.Margin = new Padding(4, 6, 4, 6);
-            TemperatureAlarmButton.MouseState = MaterialSkin.MouseState.HOVER;
-            TemperatureAlarmButton.Name = "TemperatureAlarmButton";
-            TemperatureAlarmButton.NoAccentTextColor = Color.Empty;
-            TemperatureAlarmButton.Size = new Size(69, 36);
-            TemperatureAlarmButton.TabIndex = 31;
-            TemperatureAlarmButton.Text = "Check";
-            TemperatureAlarmButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            TemperatureAlarmButton.UseAccentColor = false;
-            TemperatureAlarmButton.UseVisualStyleBackColor = true;
-            TemperatureAlarmButton.Click += TemperatureAlarmButton_Click;
-            // 
-            // materialLabel5
-            // 
-            materialLabel5.AutoSize = true;
-            materialLabel5.Depth = 0;
-            materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel5.Location = new Point(288, 144);
-            materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel5.Name = "materialLabel5";
-            materialLabel5.Size = new Size(71, 19);
-            materialLabel5.TabIndex = 30;
-            materialLabel5.Text = "Insolation";
-            // 
-            // materialLabel4
-            // 
-            materialLabel4.AutoSize = true;
-            materialLabel4.Depth = 0;
-            materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel4.Location = new Point(160, 144);
-            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel4.Name = "materialLabel4";
-            materialLabel4.Size = new Size(65, 19);
-            materialLabel4.TabIndex = 29;
-            materialLabel4.Text = "Humidity";
-            // 
-            // materialLabel3
-            // 
-            materialLabel3.AutoSize = true;
-            materialLabel3.Depth = 0;
-            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(6, 144);
-            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel3.Name = "materialLabel3";
-            materialLabel3.Size = new Size(91, 19);
-            materialLabel3.TabIndex = 28;
-            materialLabel3.Text = "Temperature";
-            // 
-            // materialLabel2
-            // 
-            materialLabel2.AutoSize = true;
-            materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(142, 125);
-            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(110, 19);
-            materialLabel2.TabIndex = 27;
-            materialLabel2.Text = "State of alarms";
             // 
             // materialSwitch1
             // 
@@ -779,12 +636,8 @@
             tabPage4.Controls.Add(materialLabel13);
             tabPage4.Controls.Add(materialMultiLineTextBox1);
             tabPage4.Controls.Add(DeviceListButton);
-            tabPage4.Controls.Add(DeactivateDeviceButton);
-            tabPage4.Controls.Add(ActivateDeviceButton);
             tabPage4.Controls.Add(EditDeviceButton);
             tabPage4.Controls.Add(AddDeviceButton);
-            tabPage4.Controls.Add(ActivateUserButton);
-            tabPage4.Controls.Add(DeactivateUserButton);
             tabPage4.Controls.Add(EditUserButton);
             tabPage4.Controls.Add(materialLabel11);
             tabPage4.Controls.Add(materialLabel10);
@@ -870,6 +723,7 @@
             materialMultiLineTextBox1.Location = new Point(1082, 9);
             materialMultiLineTextBox1.MouseState = MaterialSkin.MouseState.HOVER;
             materialMultiLineTextBox1.Name = "materialMultiLineTextBox1";
+            materialMultiLineTextBox1.ReadOnly = true;
             materialMultiLineTextBox1.Size = new Size(405, 339);
             materialMultiLineTextBox1.TabIndex = 17;
             materialMultiLineTextBox1.Text = "";
@@ -893,44 +747,6 @@
             DeviceListButton.UseAccentColor = false;
             DeviceListButton.UseVisualStyleBackColor = true;
             DeviceListButton.Click += DeviceListButton_Click;
-            // 
-            // DeactivateDeviceButton
-            // 
-            DeactivateDeviceButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            DeactivateDeviceButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            DeactivateDeviceButton.Depth = 0;
-            DeactivateDeviceButton.HighEmphasis = true;
-            DeactivateDeviceButton.Icon = null;
-            DeactivateDeviceButton.Location = new Point(1735, 236);
-            DeactivateDeviceButton.Margin = new Padding(4, 6, 4, 6);
-            DeactivateDeviceButton.MouseState = MaterialSkin.MouseState.HOVER;
-            DeactivateDeviceButton.Name = "DeactivateDeviceButton";
-            DeactivateDeviceButton.NoAccentTextColor = Color.Empty;
-            DeactivateDeviceButton.Size = new Size(162, 36);
-            DeactivateDeviceButton.TabIndex = 15;
-            DeactivateDeviceButton.Text = "Deactivate Device";
-            DeactivateDeviceButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            DeactivateDeviceButton.UseAccentColor = false;
-            DeactivateDeviceButton.UseVisualStyleBackColor = true;
-            // 
-            // ActivateDeviceButton
-            // 
-            ActivateDeviceButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ActivateDeviceButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            ActivateDeviceButton.Depth = 0;
-            ActivateDeviceButton.HighEmphasis = true;
-            ActivateDeviceButton.Icon = null;
-            ActivateDeviceButton.Location = new Point(1753, 188);
-            ActivateDeviceButton.Margin = new Padding(4, 6, 4, 6);
-            ActivateDeviceButton.MouseState = MaterialSkin.MouseState.HOVER;
-            ActivateDeviceButton.Name = "ActivateDeviceButton";
-            ActivateDeviceButton.NoAccentTextColor = Color.Empty;
-            ActivateDeviceButton.Size = new Size(144, 36);
-            ActivateDeviceButton.TabIndex = 14;
-            ActivateDeviceButton.Text = "Activate Device";
-            ActivateDeviceButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            ActivateDeviceButton.UseAccentColor = false;
-            ActivateDeviceButton.UseVisualStyleBackColor = true;
             // 
             // EditDeviceButton
             // 
@@ -971,44 +787,6 @@
             AddDeviceButton.UseAccentColor = false;
             AddDeviceButton.UseVisualStyleBackColor = true;
             AddDeviceButton.Click += AddDeviceButton_Click;
-            // 
-            // ActivateUserButton
-            // 
-            ActivateUserButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ActivateUserButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            ActivateUserButton.Depth = 0;
-            ActivateUserButton.HighEmphasis = true;
-            ActivateUserButton.Icon = null;
-            ActivateUserButton.Location = new Point(6, 188);
-            ActivateUserButton.Margin = new Padding(4, 6, 4, 6);
-            ActivateUserButton.MouseState = MaterialSkin.MouseState.HOVER;
-            ActivateUserButton.Name = "ActivateUserButton";
-            ActivateUserButton.NoAccentTextColor = Color.Empty;
-            ActivateUserButton.Size = new Size(130, 36);
-            ActivateUserButton.TabIndex = 11;
-            ActivateUserButton.Text = "Activate User";
-            ActivateUserButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            ActivateUserButton.UseAccentColor = false;
-            ActivateUserButton.UseVisualStyleBackColor = true;
-            // 
-            // DeactivateUserButton
-            // 
-            DeactivateUserButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            DeactivateUserButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            DeactivateUserButton.Depth = 0;
-            DeactivateUserButton.HighEmphasis = true;
-            DeactivateUserButton.Icon = null;
-            DeactivateUserButton.Location = new Point(6, 236);
-            DeactivateUserButton.Margin = new Padding(4, 6, 4, 6);
-            DeactivateUserButton.MouseState = MaterialSkin.MouseState.HOVER;
-            DeactivateUserButton.Name = "DeactivateUserButton";
-            DeactivateUserButton.NoAccentTextColor = Color.Empty;
-            DeactivateUserButton.Size = new Size(148, 36);
-            DeactivateUserButton.TabIndex = 10;
-            DeactivateUserButton.Text = "Deactivate User";
-            DeactivateUserButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            DeactivateUserButton.UseAccentColor = false;
-            DeactivateUserButton.UseVisualStyleBackColor = true;
             // 
             // EditUserButton
             // 
@@ -1096,6 +874,7 @@
             UserListTextBox.Location = new Point(448, 8);
             UserListTextBox.MouseState = MaterialSkin.MouseState.HOVER;
             UserListTextBox.Name = "UserListTextBox";
+            UserListTextBox.ReadOnly = true;
             UserListTextBox.Size = new Size(405, 339);
             UserListTextBox.TabIndex = 4;
             UserListTextBox.Text = "";
@@ -1171,6 +950,33 @@
             UserLoginTextBox.Text = "";
             UserLoginTextBox.TrailingIcon = null;
             // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.Location = new Point(577, 21);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(51, 19);
+            materialLabel2.TabIndex = 50;
+            materialLabel2.Text = "Alarms";
+            // 
+            // AlarmTextBox
+            // 
+            AlarmTextBox.BackColor = Color.FromArgb(255, 255, 255);
+            AlarmTextBox.BorderStyle = BorderStyle.None;
+            AlarmTextBox.Depth = 0;
+            AlarmTextBox.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            AlarmTextBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            AlarmTextBox.Location = new Point(441, 46);
+            AlarmTextBox.MouseState = MaterialSkin.MouseState.HOVER;
+            AlarmTextBox.Name = "AlarmTextBox";
+            AlarmTextBox.ReadOnly = true;
+            AlarmTextBox.Size = new Size(347, 302);
+            AlarmTextBox.TabIndex = 51;
+            AlarmTextBox.Text = "";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1225,13 +1031,6 @@
         private MaterialSkin.Controls.MaterialLabel humiditymaterialLabel;
         private MaterialSkin.Controls.MaterialLabel temperaturematerialLabel;
         private MaterialSkin.Controls.MaterialSwitch materialSwitch1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialButton HumidityAlarmButton;
-        private MaterialSkin.Controls.MaterialButton TemperatureAlarmButton;
-        private MaterialSkin.Controls.MaterialLabel materialLabel5;
-        private MaterialSkin.Controls.MaterialLabel materialLabel4;
-        private MaterialSkin.Controls.MaterialLabel materialLabel3;
-        private MaterialSkin.Controls.MaterialButton InsolationAlarmButton;
         private MaterialSkin.Controls.MaterialTextBox TempMaxTextBox;
         private MaterialSkin.Controls.MaterialTextBox TempMinTextBox;
         private MaterialSkin.Controls.MaterialLabel materialLabel9;
@@ -1248,14 +1047,9 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel11;
         private MaterialSkin.Controls.MaterialLabel materialLabel10;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
         private MaterialSkin.Controls.MaterialLabel materialLabel12;
         private MaterialSkin.Controls.MaterialComboBox DeviceComboBox;
-        private MaterialSkin.Controls.MaterialButton ActivateUserButton;
-        private MaterialSkin.Controls.MaterialButton DeactivateUserButton;
         private MaterialSkin.Controls.MaterialButton EditUserButton;
-        private MaterialSkin.Controls.MaterialButton DeactivateDeviceButton;
-        private MaterialSkin.Controls.MaterialButton ActivateDeviceButton;
         private MaterialSkin.Controls.MaterialButton EditDeviceButton;
         private MaterialSkin.Controls.MaterialButton AddDeviceButton;
         private MaterialSkin.Controls.MaterialButton DeviceListButton;
@@ -1265,5 +1059,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel13;
         private MaterialSkin.Controls.MaterialMultiLineTextBox materialMultiLineTextBox1;
         private MaterialSkin.Controls.MaterialComboBox DeviceChartsPageComboBox;
+        private MaterialSkin.Controls.MaterialMultiLineTextBox AlarmTextBox;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }

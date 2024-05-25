@@ -30,12 +30,8 @@ namespace GreenHouse
             humiditycartesianChart.Visible = false;
             InsolationcartesianChart.Visible = false;
             mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart, tabControl2, TemperatureProgressBar, HumidityProgressBar,
-                InsolationProgressBar, temperaturematerialLabel, humiditymaterialLabel, insolationmaterialLabel, TemperatureAlarmButton, HumidityAlarmButton, InsolationAlarmButton, TempMinTextBox,
-                TempMaxTextBox, AlarmComboBox, DeviceComboBox);
-            ///Alarmy
-            TemperatureAlarmButton.Visible = false;
-            HumidityAlarmButton.Visible = false;
-            InsolationAlarmButton.Visible = false;
+                InsolationProgressBar, temperaturematerialLabel, humiditymaterialLabel, insolationmaterialLabel, TempMinTextBox,
+                TempMaxTextBox, AlarmComboBox, DeviceComboBox,AlarmTextBox);
             ///Chart page
             cartesianChart.Visible = false;
             chartPage = new ChartPage(allData, user_log, mainPage, ParametermaterialComboBox, TimeFramematerialComboBox, cartesianChart, dateTimePicker, DeviceChartsPageComboBox);
@@ -104,22 +100,6 @@ namespace GreenHouse
         {
             chartPage.GenerateChart();
         }
-        /// Obs³uga alarmów
-        private void TemperatureAlarmButton_Click(object sender, EventArgs e)
-        {
-            TemperatureAlarmButton.Visible = false;
-        }
-
-        private void HumidityAlarmButton_Click(object sender, EventArgs e)
-        {
-            HumidityAlarmButton.Visible = false;
-        }
-
-        private void InsolationAlarmButton_Click(object sender, EventArgs e)
-        {
-            InsolationAlarmButton.Visible = false;
-        }
-
         private void SetAlarmlButton_Click(object sender, EventArgs e)
         {
             MySqlConnection mySqlConnection;

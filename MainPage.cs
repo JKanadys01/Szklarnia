@@ -26,21 +26,18 @@ namespace GreenHouse
         private MaterialLabel TemperatureLabel;
         private MaterialLabel HumidityLabel;
         private MaterialLabel InsolationLabel;
-        private MaterialButton TempeAlarmButton;
-        private MaterialButton HumAlarmButton;
-        private MaterialButton InsAlarmButton;
         private MaterialTextBox TempMinTextBox;
         private MaterialTextBox TempMaxTextBox;
         private MaterialComboBox AlarmCombobox;
         private double temperatureMinAlarm;
         private double temperatureMaxAlarm;
         private MaterialComboBox DeviceCombobox;
-        
+        private MaterialMultiLineTextBox AlarmTextBox;
         //Konstruktor przy pomocy którego możliwe jest odwołanie do obiektów Form1
         public MainPage(All_data allData, User userLog, LiveCharts.WinForms.CartesianChart temperatureChart, LiveCharts.WinForms.CartesianChart humidityChart,
             LiveCharts.WinForms.CartesianChart insolationChart, TabControl tabControl2,MaterialProgressBar temperatureProgresBar, MaterialProgressBar humidityProgresBar,
-            MaterialProgressBar insolationProgresBar, MaterialLabel temperatureLabel, MaterialLabel humidityLabel, MaterialLabel insolationLabel, MaterialButton temperatureButton,
-            MaterialButton humidityButton, MaterialButton insolationButton, MaterialTextBox tempminTextBox,MaterialTextBox tempmaxTextBox, MaterialComboBox alarmComboBox,MaterialComboBox deviceComboBox)
+            MaterialProgressBar insolationProgresBar, MaterialLabel temperatureLabel, MaterialLabel humidityLabel, MaterialLabel insolationLabel, 
+            MaterialTextBox tempminTextBox,MaterialTextBox tempmaxTextBox, MaterialComboBox alarmComboBox,MaterialComboBox deviceComboBox,MaterialMultiLineTextBox  alarmTextBox)
         {
             this.allData = allData;
             user_log = userLog;
@@ -54,16 +51,13 @@ namespace GreenHouse
             TemperatureLabel = temperatureLabel;
             HumidityLabel = humidityLabel;
             InsolationLabel = insolationLabel;
-            TempeAlarmButton = temperatureButton;
-            HumAlarmButton = humidityButton;
-            InsAlarmButton = insolationButton;
             TempMinTextBox = tempminTextBox;
             TempMaxTextBox = tempmaxTextBox;
             AlarmCombobox = alarmComboBox;
             DeviceCombobox = deviceComboBox;
             temperatureMinAlarm = 20.0;
             temperatureMaxAlarm = 30.0;
-            
+            AlarmTextBox = alarmTextBox;
             TempMinTextBox.Text = temperatureMinAlarm.ToString();
             TempMaxTextBox.Text = temperatureMaxAlarm.ToString();
             
@@ -347,18 +341,7 @@ namespace GreenHouse
 
         private void CHeckAlarms()
         {
-            if (allData.records.Count >0)
-            {
-                var latestRecord = allData.records.Last();
-                if (latestRecord.temperature < temperatureMinAlarm || latestRecord.temperature > temperatureMaxAlarm)
-                {
-                    // Temperatura poza zakresem alarmowym
-                    TempeAlarmButton.BackColor = System.Drawing.Color.Red;
-                    TempeAlarmButton.Visible = true;
-                }
-
-                
-            }
+            
         }
     }
 }
