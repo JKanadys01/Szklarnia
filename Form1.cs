@@ -38,6 +38,11 @@ namespace GreenHouse
             chartPage.InitializeComboBox();
             mainPage.InitializeComboBox();
             mainPage.Initialize();
+            if(user_log.login != "prime")
+            {
+                tabControl1.TabPages.Remove(tabPage4);
+            }
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
