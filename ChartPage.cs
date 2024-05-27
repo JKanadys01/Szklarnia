@@ -163,7 +163,7 @@ namespace GreenHouse
                         value = record.humidity;
                         break;
                     case "Insolation":
-                        value = record.humidity;
+                        value = record.insolation;
                         break;
                     default:
                         break;

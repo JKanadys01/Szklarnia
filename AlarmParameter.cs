@@ -11,10 +11,10 @@ namespace GreenHouse
         public int id;
         public int device_id;
         public string parameter;
-        public int min_value;
-        public int max_value;
+        public float min_value;
+        public float max_value;
 
-        public AlarmParameter(int id, int device_id, string parameter, int min_value, int max_value)
+        public AlarmParameter(int id, int device_id, string parameter, float min_value, float max_value)
         {
             this.id = id;
             this.device_id = device_id;
@@ -25,7 +25,7 @@ namespace GreenHouse
 
         public override string ToString()
         {
-            return $"ID: {id}\nDevice ID: {device_id}\nParameter: {parameter}\nMin value: {min_value}\nMax value: {max_value}\n";
+            return $"\nID: {id}\nDevice ID: {device_id}\nParameter: {parameter}\nMin value: {min_value}\nMax value: {max_value}\n";
         }
 
     }

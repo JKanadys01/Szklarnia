@@ -126,7 +126,7 @@ namespace GreenHouse
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@userToken", user_log.token);
-                cmd.Parameters.AddWithValue("@deviceId", DeviceCombobox.SelectedItem); //Tutaj zmienić trzeba na to urządzenie które jest wybrane
+                cmd.Parameters.AddWithValue("@deviceId", DeviceCombobox.SelectedItem); 
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -172,7 +172,7 @@ namespace GreenHouse
                 }
                 mySqlConnection.Close();
                 UpdateProgressBars();
-                
+                //CHeckAlarms();
               
             }
             catch (Exception ex)
@@ -235,7 +235,7 @@ namespace GreenHouse
                         value = record.humidity;
                         break;
                     case "InsolationTabPage":
-                        value = record.humidity;
+                        value = record.insolation;
                         break;
                     default:
                         break;
@@ -321,7 +321,7 @@ namespace GreenHouse
                 var latestRecord = allData.records.Last();
                 TemperatureLabel.Text = $"Temperature:{latestRecord.temperature}°C";
                 HumidityLabel.Text = $"Humidity:{latestRecord.humidity}%";
-                InsolationLabel.Text = $"Insolation:{latestRecord.humidity}%";
+                InsolationLabel.Text = $"Insolation:{latestRecord.insolation}%";
                 // Użycie Invoke, aby aktualizować ProgressBar w wątku UI
                 TemperatureProgresBar.Invoke((MethodInvoker)delegate {
                     TemperatureProgresBar.Value = (int)latestRecord.temperature;
@@ -332,16 +332,81 @@ namespace GreenHouse
                 });
 
                 InsolationProgresBar.Invoke((MethodInvoker)delegate {
-                    InsolationProgresBar.Value = (int)latestRecord.humidity;
+                    InsolationProgresBar.Value = (int)latestRecord.insolation;
                 });
             }
         }
 
         //Alarmy pamiętać że ponowne sprawdzenie jest w funkcji Timer_Tick
 
-        private void CHeckAlarms()
+        public void CHeckAlarms()
         {
-            
+            AlarmTextBox.Clear();
+            MySqlConnection mySqlConnection;
+            List<Alarm> alarm = new List<Alarm>();
+            List<AlarmParameter> alarmParameter = new List<AlarmParameter>();
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd1 = new MySqlCommand("GetAlarmParametersByTokenAndDeviceId", mySqlConnection);
+
+                cmd1.CommandType = CommandType.StoredProcedure;
+                cmd1.Parameters.AddWithValue("@user_token", user_log.token);
+                cmd1.Parameters.AddWithValue("@device_id", DeviceCombobox.SelectedItem);
+                MySqlDataReader reader1 = cmd1.ExecuteReader();
+
+                while (reader1.Read())
+                {
+                    alarmParameter.Add(new AlarmParameter(reader1.GetInt32(0), reader1.GetInt32(2), reader1.GetString(3), reader1.GetFloat(4), reader1.GetFloat(5)));
+
+                }
+
+              
+                mySqlConnection.Close();
+               
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie udało się pobrać listy", "Nie udało się pobrać listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("GetUserAlarmsByDevice", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@user_token", user_log.token);
+                cmd.Parameters.AddWithValue("@device_id", DeviceCombobox.SelectedItem);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    alarm.Add(new Alarm(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), 
+                        alarmParameter.FirstOrDefault(x => x.id == reader.GetInt32(1)), allData.records.FirstOrDefault(x => x.id == reader.GetInt32(2))));
+
+                }
+                mySqlConnection.Close();
+                foreach (Alarm i in alarm)
+                {
+                    AlarmTextBox.Text += i.ToString();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie udało się pobrać listy", "Nie udało się pobrać listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
     }
 }

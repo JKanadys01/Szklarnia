@@ -31,18 +31,18 @@ namespace GreenHouse
             InsolationcartesianChart.Visible = false;
             mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart, tabControl2, TemperatureProgressBar, HumidityProgressBar,
                 InsolationProgressBar, temperaturematerialLabel, humiditymaterialLabel, insolationmaterialLabel, TempMinTextBox,
-                TempMaxTextBox, AlarmComboBox, DeviceComboBox,AlarmTextBox);
+                TempMaxTextBox, AlarmComboBox, DeviceComboBox, AlarmTextBox);
             ///Chart page
             cartesianChart.Visible = false;
             chartPage = new ChartPage(allData, user_log, mainPage, ParametermaterialComboBox, TimeFramematerialComboBox, cartesianChart, dateTimePicker, DeviceChartsPageComboBox);
             chartPage.InitializeComboBox();
             mainPage.InitializeComboBox();
             mainPage.Initialize();
-            if(user_log.login != "prime")
+            if (user_log.login != "prime")
             {
                 tabControl1.TabPages.Remove(tabPage4);
             }
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -333,6 +333,38 @@ namespace GreenHouse
             catch (Exception ex)
             {
                 MessageBox.Show("Nie uda³o siê edytowaæ u¿ytkownika", "Nie uda³o siê edytowaæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void AlarmHistoryButton_Click(object sender, EventArgs e)
+        {
+            mainPage.CHeckAlarms();
+        }
+
+        private void AlarmCheckButton_Click(object sender, EventArgs e)
+        {
+            MySqlConnection mySqlConnection;
+
+            try
+            {
+                mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
+
+                mySqlConnection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("UpdateAlarmStatusByTokenAndDeviceId", mySqlConnection);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@user_token", user_log.token);
+                cmd.Parameters.AddWithValue("@device_id", DeviceIdTextBox.Text);
+                cmd.ExecuteNonQuery();
+
+
+                mySqlConnection.Close();
+                MessageBox.Show("Uda³o siê odebraæ alarmy", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie uda³o siê odebraæ alarmu", "Nie uda³o siê edytowaæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

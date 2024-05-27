@@ -28,7 +28,7 @@ namespace GreenHouse
 
         public override string ToString()
         {
-            return $"Id:{id}|temp:{temperature}|time:{date_time}\n";
+            return $"\nId: {id}\nTemperature: {temperature}\nHumidity: {humidity}\nInsolation: {insolation}\ntime: " + date_time.ToString() + "\n\n";
         }
     }
 }
