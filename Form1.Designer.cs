@@ -33,7 +33,6 @@
             imageList1 = new ImageList(components);
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
-            AlarmHistoryButton = new MaterialSkin.Controls.MaterialButton();
             AlarmCheckButton = new MaterialSkin.Controls.MaterialButton();
             AlarmTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
@@ -127,7 +126,6 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(64, 64, 64);
-            tabPage2.Controls.Add(AlarmHistoryButton);
             tabPage2.Controls.Add(AlarmCheckButton);
             tabPage2.Controls.Add(AlarmTextBox);
             tabPage2.Controls.Add(materialLabel2);
@@ -159,26 +157,6 @@
             tabPage2.TabIndex = 0;
             tabPage2.Text = "Main";
             // 
-            // AlarmHistoryButton
-            // 
-            AlarmHistoryButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            AlarmHistoryButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            AlarmHistoryButton.Depth = 0;
-            AlarmHistoryButton.HighEmphasis = true;
-            AlarmHistoryButton.Icon = null;
-            AlarmHistoryButton.Location = new Point(290, 221);
-            AlarmHistoryButton.Margin = new Padding(4, 6, 4, 6);
-            AlarmHistoryButton.MouseState = MaterialSkin.MouseState.HOVER;
-            AlarmHistoryButton.Name = "AlarmHistoryButton";
-            AlarmHistoryButton.NoAccentTextColor = Color.Empty;
-            AlarmHistoryButton.Size = new Size(144, 36);
-            AlarmHistoryButton.TabIndex = 53;
-            AlarmHistoryButton.Text = "Alarms History";
-            AlarmHistoryButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            AlarmHistoryButton.UseAccentColor = false;
-            AlarmHistoryButton.UseVisualStyleBackColor = true;
-            AlarmHistoryButton.Click += AlarmHistoryButton_Click;
-            // 
             // AlarmCheckButton
             // 
             AlarmCheckButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -186,7 +164,7 @@
             AlarmCheckButton.Depth = 0;
             AlarmCheckButton.HighEmphasis = true;
             AlarmCheckButton.Icon = null;
-            AlarmCheckButton.Location = new Point(365, 269);
+            AlarmCheckButton.Location = new Point(370, 211);
             AlarmCheckButton.Margin = new Padding(4, 6, 4, 6);
             AlarmCheckButton.MouseState = MaterialSkin.MouseState.HOVER;
             AlarmCheckButton.Name = "AlarmCheckButton";
@@ -1027,6 +1005,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1924, 1061);
             Controls.Add(tabControl1);
+            ForeColor = Color.Black;
             Name = "Form1";
             Text = "Start";
             FormClosed += Form1_FormClosed;
@@ -1105,7 +1084,6 @@
         private MaterialSkin.Controls.MaterialComboBox DeviceChartsPageComboBox;
         private MaterialSkin.Controls.MaterialMultiLineTextBox AlarmTextBox;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialButton AlarmHistoryButton;
         private MaterialSkin.Controls.MaterialButton AlarmCheckButton;
     }
 }

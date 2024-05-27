@@ -32,6 +32,7 @@ namespace GreenHouse
             mainPage = new MainPage(allData, user_log, TemperaturecartesianChart, humiditycartesianChart, InsolationcartesianChart, tabControl2, TemperatureProgressBar, HumidityProgressBar,
                 InsolationProgressBar, temperaturematerialLabel, humiditymaterialLabel, insolationmaterialLabel, TempMinTextBox,
                 TempMaxTextBox, AlarmComboBox, DeviceComboBox, AlarmTextBox);
+            
             ///Chart page
             cartesianChart.Visible = false;
             chartPage = new ChartPage(allData, user_log, mainPage, ParametermaterialComboBox, TimeFramematerialComboBox, cartesianChart, dateTimePicker, DeviceChartsPageComboBox);
@@ -335,12 +336,6 @@ namespace GreenHouse
                 MessageBox.Show("Nie uda³o siê edytowaæ u¿ytkownika", "Nie uda³o siê edytowaæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void AlarmHistoryButton_Click(object sender, EventArgs e)
-        {
-            mainPage.CHeckAlarms();
-        }
-
         private void AlarmCheckButton_Click(object sender, EventArgs e)
         {
             MySqlConnection mySqlConnection;

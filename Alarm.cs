@@ -24,7 +24,7 @@ namespace GreenHouse
 
         public override string ToString()
         {
-            return $"ID: {id}"+alarmParameter.ToString() + alarmRecord.ToString() ;
+            return $"Alarm ID: {id}\nAlarm Parameters: "+alarmParameter.ToString() + "Alarm Record" +alarmRecord.ToString() ;
         }
 
     }

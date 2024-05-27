@@ -172,7 +172,7 @@ namespace GreenHouse
                 }
                 mySqlConnection.Close();
                 UpdateProgressBars();
-                //CHeckAlarms();
+                CHeckAlarms();
               
             }
             catch (Exception ex)
@@ -180,30 +180,7 @@ namespace GreenHouse
                 MessageBox.Show("Nie udało się pobrać danych", "Nie udało się pobrać danych", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            /*
-            MySqlConnection mySqlConnection = new MySqlConnection("server=127.0.0.1;user=root;database=szklarnia_v3;password=");
-
-            mySqlConnection.Open();
-
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand("select * from pomiar", mySqlConnection);
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    allData.Add(new Record(reader.GetInt32(0), reader.GetDouble(3), reader.GetDouble(4), reader.GetDateTime(2)));
-                }
-                UpdateProgressBars();
-               // CHeckAlarms();
-            }
-            catch (Exception ex)
-            {
-                timer.Stop();
-                MessageBox.Show("Nie masz dostępu do tych danych", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            mySqlConnection.Close(); */
+            
 
             Dictionary<DateTime, double> data = GetDataForChart();
             if (data.Count > 0)
@@ -332,7 +309,7 @@ namespace GreenHouse
                 });
 
                 InsolationProgresBar.Invoke((MethodInvoker)delegate {
-                    InsolationProgresBar.Value = (int)latestRecord.insolation;
+                    InsolationProgresBar.Value = (int)latestRecord.humidity;
                 });
             }
         }
