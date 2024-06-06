@@ -124,7 +124,7 @@ namespace GreenHouse
                 cartesianChart.AxisY.Add(new LiveCharts.Wpf.Axis
                 {
                     Title = "Insolation (%)",
-                    LabelFormatter = data => data.ToString("N2") + "%"
+                    LabelFormatter = data => data.ToString("N2") + "Lx"
                 });
 
             }

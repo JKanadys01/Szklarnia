@@ -265,7 +265,7 @@ namespace GreenHouse
                 GetChartByName(tableName).AxisY.Add(new LiveCharts.Wpf.Axis
                 {
                     Title = "Insolation (%)",
-                    LabelFormatter = data => data.ToString("N2") + "%"
+                    LabelFormatter = data => data.ToString("N2") + "Lx"
                 });
             }
 
@@ -298,7 +298,7 @@ namespace GreenHouse
                 var latestRecord = allData.records.Last();
                 TemperatureLabel.Text = $"Temperature:{latestRecord.temperature}°C";
                 HumidityLabel.Text = $"Humidity:{latestRecord.humidity}%";
-                InsolationLabel.Text = $"Insolation:{latestRecord.insolation}%";
+                InsolationLabel.Text = $"Insolation:{latestRecord.insolation}Lx";
                 // Użycie Invoke, aby aktualizować ProgressBar w wątku UI
                 TemperatureProgresBar.Invoke((MethodInvoker)delegate {
                     TemperatureProgresBar.Value = (int)latestRecord.temperature;
