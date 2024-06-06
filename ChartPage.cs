@@ -78,7 +78,7 @@ namespace GreenHouse
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie udało się pobrać listy", "Nie udało się pobrać listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to download the list", "Failed to download the list", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //Rysowanie wykresu
@@ -229,7 +229,7 @@ namespace GreenHouse
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Nie masz dostępu do tych danych", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You do not have access to this data", "Note", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 mySqlConnection.Close();
@@ -252,13 +252,13 @@ namespace GreenHouse
                 else
                 {
                     // Jeśli nie znaleziono danych, wyświetlamy odpowiedni komunikat
-                    MessageBox.Show("Nie znaleziono danych dla podanego przedziału czasowego lub urządzenia.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No data was found for the specified time period or device.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
                 // Jeśli nie wybrano parametrów, wyświetlamy odpowiedni komunikat
-                MessageBox.Show("Wybierz parametr i przedział czasowy.");
+                MessageBox.Show("Select a parameter and a time period.");
             }
         }
 

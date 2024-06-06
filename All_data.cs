@@ -21,8 +21,6 @@ namespace GreenHouse
             {
                 records.Add(record);
             }
-
-
         }
 
         public Record Last_record()
@@ -38,9 +36,4 @@ namespace GreenHouse
             }
         }
     }
-
-
-
-
-
 }

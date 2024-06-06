@@ -18,13 +18,10 @@ namespace GreenHouse
     public partial class LoginForm : MaterialForm
     {
         private readonly MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-        private UserManager userManager;
         public LoginForm()
         {
             InitializeComponent();
 
-            //Formatowanie wyglądu okna
-            //dodanie menagera do formatowania tego okna
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             
@@ -33,7 +30,6 @@ namespace GreenHouse
                 Primary.Green800, Accent.LightGreen200, TextShade.WHITE);
 
             passwordmaterialTextBox.Password = true;
-            userManager = new UserManager();
         }
 
 
@@ -68,7 +64,7 @@ namespace GreenHouse
                             }
                             else
                             {
-                                  MessageBox.Show("Błędne login lub hasło", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                  MessageBox.Show("Wrong login or password", "Note", MessageBoxButtons.OK, MessageBoxIcon.Information);
                            }
 
 
@@ -79,17 +75,11 @@ namespace GreenHouse
                      mainForm.ShowDialog();
 
                      this.Close();
-              
             }
             catch (Exception ex)
             {
-                  MessageBox.Show("Błąd"+ex.Message, "Notatka" + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                  MessageBox.Show("Error"+ex.Message, "Note" + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
-
-
-            //  MessageBox.Show("Błędne login lub hasło", "Notatka", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

@@ -101,7 +101,7 @@ namespace GreenHouse
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie udało się pobrać listy", "Nie udało się pobrać listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to download the list", "Failed to download the list", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
 
@@ -138,7 +138,7 @@ namespace GreenHouse
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie udało się pobrać danych", "Nie udało się pobrać danych", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to download data", "Failed to download data", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             Timer_Tick(null, EventArgs.Empty);
             timer.Start();
@@ -177,7 +177,7 @@ namespace GreenHouse
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie udało się pobrać danych", "Nie udało się pobrać danych", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to download data", "Failed to download data", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             
@@ -190,7 +190,7 @@ namespace GreenHouse
             else
             {
                 timer.Stop();
-                MessageBox.Show("Nie znaleziono danych dla podanego przedziału czasowego lub urządzenia.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No data was found for the specified time period or device.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //Funckja odśewająca dane
@@ -341,16 +341,11 @@ namespace GreenHouse
                     alarmParameter.Add(new AlarmParameter(reader1.GetInt32(0), reader1.GetInt32(2), reader1.GetString(3), reader1.GetFloat(4), reader1.GetFloat(5)));
 
                 }
-
-              
                 mySqlConnection.Close();
-               
-
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie udało się pobrać listy", "Nie udało się pobrać listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to download the list", "Failed to download the list", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             try
             {
@@ -376,12 +371,10 @@ namespace GreenHouse
                 {
                     AlarmTextBox.Text += i.ToString();
                 }
-
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie udało się pobrać listy", "Nie udało się pobrać listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to download the list", "Failed to download the list", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }

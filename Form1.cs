@@ -86,7 +86,7 @@ namespace GreenHouse
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie uda³o siê wylogowaæ", "Nie uda³o siê wylogowaæ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to log out", "Failed to log out", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -128,12 +128,12 @@ namespace GreenHouse
 
 
                 mySqlConnection.Close();
-                MessageBox.Show("Uda³o siê", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Managed to set the alarm ", "Managed to set the alarm", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie uda³o siê utworzyæ u¿ytkownika", "Nie uda³o siê utworzyæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to set alarm", "Failed to set alarm", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
 
@@ -168,12 +168,12 @@ namespace GreenHouse
 
 
                 mySqlConnection.Close();
-                MessageBox.Show("Uda³o siê", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("User created successfully", "User created successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie uda³o siê utworzyæ u¿ytkownika", "Nie uda³o siê utworzyæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to create user", "Failed to create user", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -202,14 +202,13 @@ namespace GreenHouse
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie uda³o siê utworzyæ u¿ytkownika", "Nie uda³o siê utworzyæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to download the list", "Failed to download the list", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             UserListTextBox.Clear();
             foreach (User user in users)
             {
                 UserListTextBox.Text += user.ToString() + "\n\n";
             }
-
         }
 
         private void DeviceListButton_Click(object sender, EventArgs e)
@@ -239,7 +238,7 @@ namespace GreenHouse
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie uda³o siê pobraæ listy", "Nie uda³o siê pobraæ listy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to download the list", "Failed to download the list", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             materialMultiLineTextBox1.Clear();
             foreach (Device dev in device)
@@ -268,11 +267,11 @@ namespace GreenHouse
 
 
                 mySqlConnection.Close();
-                MessageBox.Show("Uda³o siê", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Device created successfully", "Device created successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie uda³o siê utworzyc urzadzenia", "Nie uda³o siê utworzyc urzadzenia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to create device", "Failed to create device", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             chartPage.InitializeComboBox();
@@ -301,11 +300,11 @@ namespace GreenHouse
 
 
                 mySqlConnection.Close();
-                MessageBox.Show("Uda³o siê edytowaæ u¿ytkownika", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Successfully edited the user", "Successfully edited the user", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie uda³o siê edytowaæ u¿ytkownika", "Nie uda³o siê edytowaæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to edit user", "Failed to edit user", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -329,11 +328,11 @@ namespace GreenHouse
 
 
                 mySqlConnection.Close();
-                MessageBox.Show("Uda³o siê edytowaæ u¿ytkownika", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Successfully edited the device", "Successfully edited the device", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie uda³o siê edytowaæ u¿ytkownika", "Nie uda³o siê edytowaæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to edit device", "Failed to edit device", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void AlarmCheckButton_Click(object sender, EventArgs e)
@@ -355,11 +354,11 @@ namespace GreenHouse
 
 
                 mySqlConnection.Close();
-                MessageBox.Show("Uda³o siê odebraæ alarmy", "Uda³o siê", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Managed to receive the alarms", "Managed to receive the alarms", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Nie uda³o siê odebraæ alarmu", "Nie uda³o siê edytowaæ u¿ytkownika", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to receive the alarm", "Failed to receive the alarm", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

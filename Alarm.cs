@@ -26,6 +26,5 @@ namespace GreenHouse
         {
             return $"Alarm ID: {id}\nAlarm Parameters: "+alarmParameter.ToString() + "Alarm Record" +alarmRecord.ToString() ;
         }
-
     }
 }
