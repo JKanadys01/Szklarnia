@@ -1,0 +1,451 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddAlarmParameters`(
+    IN userId INT,
+    IN deviceId INT
+)
+BEGIN
+    -- Dodaj trzy rekordy do tabeli parametry_alarmu dla nowego urządzenia
+    INSERT INTO parametry_alarmu (User_Id, Device_Id, Parameter, Min_value, Max_value)
+    VALUES (userId, deviceId, 'Temperature', NULL, NULL);
+    
+    INSERT INTO parametry_alarmu (User_Id, Device_Id, Parameter, Min_value, Max_value)
+    VALUES (userId, deviceId, 'Humidity', NULL, NULL);
+    
+    INSERT INTO parametry_alarmu (User_Id, Device_Id, Parameter, Min_value, Max_value)
+    VALUES (userId, deviceId, 'Insolation', NULL, NULL);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ChangeDeviceDescription`(
+    IN user_token INT,
+    IN device_serial_number VARCHAR(255),
+    IN new_description VARCHAR(255)
+)
+BEGIN
+    DECLARE user_id INT;
+    DECLARE user_exists BOOLEAN DEFAULT FALSE;
+
+    -- Sprawdzenie, czy użytkownik o podanym tokenie i statusie 1 istnieje
+    SELECT Id INTO user_id
+    FROM ogrodnik
+    WHERE Token = user_token AND Status = 1
+    LIMIT 1;
+
+    IF user_id IS NOT NULL THEN
+        SET user_exists = TRUE;
+    END IF;
+
+    -- Jeśli użytkownik istnieje, zaktualizuj opis urządzenia o podanym numerze seryjnym
+    IF user_exists THEN
+        UPDATE urzadzenie
+        SET Description = new_description
+        WHERE Serial_number = device_serial_number;
+        
+        IF ROW_COUNT() > 0 THEN
+            SELECT 'Device description updated successfully' AS Message;
+        ELSE
+            SELECT 'Device with specified serial number not found' AS Error;
+        END IF;
+    ELSE
+        -- Jeśli użytkownik nie istnieje lub ma status inny niż 1, zwróć błąd
+        SELECT 'User does not exist or is inactive' AS Error;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ChangeUserCredentials`(
+    IN user_token INT,
+    IN user_login VARCHAR(255),
+    IN new_password VARCHAR(255),
+    IN new_description VARCHAR(255)
+)
+BEGIN
+    DECLARE user_id INT;
+    DECLARE user_exists BOOLEAN DEFAULT FALSE;
+
+    -- Sprawdzenie, czy użytkownik o podanym tokenie i statusie 1 istnieje
+    SELECT Id INTO user_id
+    FROM ogrodnik
+    WHERE Token = user_token AND Status = 1
+    LIMIT 1;
+
+    IF user_id IS NOT NULL THEN
+        SET user_exists = TRUE;
+    END IF;
+
+    -- Jeśli użytkownik istnieje, zaktualizuj hasło i opis użytkownika o podanym loginie
+    IF user_exists THEN
+        UPDATE ogrodnik
+        SET Password = new_password, Description = new_description
+        WHERE Login = user_login;
+        
+        IF ROW_COUNT() > 0 THEN
+            SELECT 'Credentials updated successfully' AS Message;
+        ELSE
+            SELECT 'User with specified login not found' AS Error;
+        END IF;
+    ELSE
+        -- Jeśli użytkownik nie istnieje lub ma status inny niż 1, zwróć błąd
+        SELECT 'User does not exist or is inactive' AS Error;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CheckAndAddAlarm`()
+BEGIN
+    DECLARE last_pomiar_id INT;
+    DECLARE last_device_id INT;
+    DECLARE last_temperature FLOAT;
+    DECLARE last_humidity FLOAT;
+    DECLARE last_insolation FLOAT;
+    DECLARE alarm_id INT;
+    DECLARE alarm_device_id INT;
+
+    -- Pobranie ostatniego pomiaru
+    SELECT ID, Device_id, Temperature, Humidity, Insolation
+    INTO last_pomiar_id, last_device_id, last_temperature, last_humidity, last_insolation
+    FROM pomiar
+    ORDER BY ID DESC
+    LIMIT 1;
+
+    -- Sprawdzenie alarmów dla Temperature
+    SET alarm_id = NULL;
+    SET alarm_device_id = NULL;
+    SELECT Id, Device_Id INTO alarm_id, alarm_device_id
+    FROM parametry_alarmu
+    WHERE Parameter = 'Temperature' 
+      AND (last_temperature < Min_value OR last_temperature > Max_value)
+      AND Device_Id = last_device_id
+    LIMIT 1;
+    
+    IF alarm_id IS NOT NULL THEN
+        INSERT INTO alarm (Parametry_Alarmu_Id, Pomiar_Id)
+        VALUES (alarm_id, last_pomiar_id);
+    END IF;
+
+    -- Sprawdzenie alarmów dla Humidity
+    SET alarm_id = NULL;
+    SET alarm_device_id = NULL;
+    SELECT Id, Device_Id INTO alarm_id, alarm_device_id
+    FROM parametry_alarmu
+    WHERE Parameter = 'Humidity' 
+      AND (last_humidity < Min_value OR last_humidity > Max_value)
+      AND Device_Id = last_device_id
+    LIMIT 1;
+
+    IF alarm_id IS NOT NULL THEN
+        INSERT INTO alarm (Parametry_Alarmu_Id, Pomiar_Id)
+        VALUES (alarm_id, last_pomiar_id);
+    END IF;
+
+    -- Sprawdzenie alarmów dla Insolation
+    SET alarm_id = NULL;
+    SET alarm_device_id = NULL;
+    SELECT Id, Device_Id INTO alarm_id, alarm_device_id
+    FROM parametry_alarmu
+    WHERE Parameter = 'Insolation' 
+      AND (last_insolation < Min_value OR last_insolation > Max_value)
+      AND Device_Id = last_device_id
+    LIMIT 1;
+
+    IF alarm_id IS NOT NULL THEN
+        INSERT INTO alarm (Parametry_Alarmu_Id, Pomiar_Id)
+        VALUES (alarm_id, last_pomiar_id);
+    END IF;
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateNewDevice`(IN `userToken` INT, IN `serialNumber` INT, IN `deviceDescription` TEXT)
+BEGIN
+    DECLARE userId INT;
+    DECLARE deviceId INT;
+
+    -- Sprawdź czy użytkownik o podanym tokenie istnieje i ma status=1
+    SELECT Id INTO userId FROM ogrodnik WHERE token = userToken AND status = 1;
+    
+    IF userId IS NOT NULL THEN
+        -- Utwórz nowe urządzenie
+        INSERT INTO urzadzenie (serial_number, description,status) VALUES (serialNumber, deviceDescription,1);
+        SET deviceId = LAST_INSERT_ID(); -- Pobierz ID ostatnio wstawionego urządzenia
+		
+        -- Wywołaj drugą procedurę do dodawania parametrów alarmowych dla tego urządzenia
+        CALL AddAlarmParameters(userId, serialNumber);
+
+        SELECT 'Nowe urządzenie zostało dodane.' AS message;
+    ELSE
+        SELECT 'Brak uprawnień lub niepoprawny token.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateNewUser`(IN `userToken` INT, IN `userLogin` VARCHAR(50), IN `userPassword` VARCHAR(50), IN `userDescription` TEXT)
+BEGIN
+    DECLARE userCount INT;
+
+    -- Sprawdź czy użytkownik o podanym tokenie istnieje i ma odpowiednie uprawnienia
+    SELECT COUNT(*) INTO userCount FROM ogrodnik WHERE token = userToken AND status = 1;
+
+    IF userCount > 0 THEN
+        -- Utwórz nowego użytkownika
+        INSERT INTO ogrodnik (login, password, description)
+        VALUES (userLogin, userPassword, userDescription);
+
+        SELECT 'Nowy użytkownik został utworzony.' AS message;
+    ELSE
+        SELECT 'Brak uprawnień lub niepoprawny token.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAlarmParametersByTokenAndDeviceId`(
+    IN user_token INT,
+    IN device_id INT
+)
+BEGIN
+    DECLARE user_id INT DEFAULT NULL;
+
+    -- Sprawdzenie czy użytkownik istnieje i pobranie jego Id
+    SELECT Id INTO user_id
+    FROM ogrodnik
+    WHERE token = user_token
+    LIMIT 1;
+
+    -- Jeśli użytkownik nie istnieje, zakończ procedurę
+    IF user_id IS NULL THEN
+        SELECT 'User not found' AS message;
+    ELSE
+        -- Zwrócenie parametrów alarmu dla danego device_id i użytkownika,
+        -- gdzie Min_value i Max_value nie są NULL
+        SELECT *
+        FROM parametry_alarmu
+        WHERE User_Id = user_id 
+          AND Device_Id = device_id
+          AND Min_value IS NOT NULL
+          AND Max_value IS NOT NULL;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllDevices`(IN `userToken` INT)
+BEGIN
+    DECLARE userCount INT;
+
+    -- Sprawdź czy użytkownik o podanym tokenie istnieje i ma status=1
+    SELECT COUNT(*) INTO userCount FROM ogrodnik WHERE token = userToken AND status = 1;
+
+    IF userCount > 0 THEN
+        -- Pobierz listę wszystkich urządzeń
+        SELECT * FROM urzadzenie;
+    ELSE
+        SELECT 'Brak uprawnień lub niepoprawny token.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllUsersExceptCaller`(IN `userToken` INT)
+BEGIN
+    DECLARE callerCount INT;
+
+    -- Sprawdź czy użytkownik o podanym tokenie istnieje i ma status=1
+    SELECT COUNT(*) INTO callerCount FROM ogrodnik WHERE token = userToken AND status = 1;
+
+    IF callerCount > 0 THEN
+        -- Pobierz wszystkich użytkowników, z wyjątkiem użytkownika wywołującego procedurę
+        SELECT * FROM ogrodnik WHERE token <> userToken;
+    ELSE
+        SELECT 'Brak uprawnień lub niepoprawny token.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetLatestMeasurementByDeviceId`(IN `userToken` INT, IN `deviceId` INT)
+BEGIN
+    DECLARE userCount INT;
+
+    -- Sprawdź czy użytkownik o podanym tokenie istnieje i ma odpowiednie uprawnienia
+    SELECT COUNT(*) INTO userCount FROM ogrodnik WHERE token = userToken AND status = 1;
+
+    IF userCount > 0 THEN
+        -- Pobierz najnowszy pomiar dla określonego Device_Id
+        SELECT * FROM pomiar WHERE Device_Id = deviceId ORDER BY date_time DESC LIMIT 1;
+    ELSE
+        SELECT 'Brak uprawnień lub niepoprawny token.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetMeasurementsByDeviceId`(IN `userToken` INT, IN `deviceId` INT)
+BEGIN
+    DECLARE userCount INT;
+
+    -- Sprawdź czy użytkownik o podanym tokenie istnieje i ma odpowiednie uprawnienia
+    SELECT COUNT(*) INTO userCount FROM ogrodnik WHERE token = userToken AND status = 1;
+
+    IF userCount > 0 THEN
+        -- Pobierz pomiary dla określonego Device_Id
+        SELECT * FROM pomiar WHERE Device_Id = deviceId;
+    ELSE
+        SELECT 'Brak uprawnień lub niepoprawny token.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetUserAlarmsByDevice`(
+    IN user_token INT,
+    IN device_id INT
+)
+BEGIN
+    DECLARE user_id INT;
+    DECLARE user_exists BOOLEAN DEFAULT FALSE;
+
+    -- Sprawdzenie, czy użytkownik o podanym tokenie i statusie 1 istnieje
+    SELECT Id INTO user_id
+    FROM ogrodnik
+    WHERE Token = user_token AND Status = 1
+    LIMIT 1;
+
+    IF user_id IS NOT NULL THEN
+        SET user_exists = TRUE;
+    END IF;
+
+    -- Jeśli użytkownik istnieje, zwróć alarmy zdefiniowane przez tego użytkownika
+    IF user_exists THEN
+        SELECT a.*
+        FROM alarm a
+        JOIN parametry_alarmu p ON a.Parametry_Alarmu_Id = p.Id
+        WHERE p.User_Id = user_id AND p.Device_Id = device_id AND a.Status = 1;
+    ELSE
+        -- Jeśli użytkownik nie istnieje, zwróć pusty wynik
+        SELECT 'User does not exist or is inactive' AS ErrorMessage;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LoginUser`(IN `loginParam` VARCHAR(50), IN `passwordParam` VARCHAR(50))
+BEGIN
+    -- Deklaracja zmiennej do przechowywania statusu i tokena
+    DECLARE userStatus INT;
+    DECLARE tokenVal INT;
+
+    -- Sprawdź czy użytkownik jest już zalogowany
+    SELECT `status` INTO userStatus FROM ogrodnik WHERE `login` = loginParam;
+
+    IF userStatus = 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Użytkownik jest już zalogowany.';
+    ELSE
+        -- Sprawdź czy istnieje użytkownik o podanym loginie i haśle
+        IF EXISTS (SELECT 1 FROM ogrodnik WHERE `login` = loginParam AND `password` = passwordParam) THEN
+            -- Ustaw status na 1 dla zalogowanego użytkownika
+            UPDATE ogrodnik SET `status` = 1 WHERE `login` = loginParam;
+
+            -- Wygeneruj losowy token jako liczba z zakresu 1-99999
+            SET tokenVal = FLOOR(RAND() * 99999) + 1;
+
+            -- Zaktualizuj token dla zalogowanego użytkownika
+            UPDATE ogrodnik SET token = tokenVal WHERE `login` = loginParam;
+
+            -- Zwróć token do aplikacji
+            SELECT tokenVal AS token;
+        ELSE
+            -- Jeśli nie ma użytkownika o podanych danych, zwróć komunikat błędu
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Niepoprawny login lub hasło.';
+        END IF;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ResetUserStatusByToken`(IN `userToken` INT)
+BEGIN
+    DECLARE userCount INT;
+
+    -- Sprawdź czy istnieje użytkownik o podanym tokenie
+    SELECT COUNT(*) INTO userCount FROM ogrodnik WHERE token = userToken;
+
+    IF userCount > 0 THEN
+        -- Zresetuj status dla użytkownika o podanym tokenie
+        UPDATE ogrodnik SET `status` = 0 WHERE token = userToken;
+        SELECT 'Status zresetowany dla użytkownika o podanym tokenie.' AS message;
+    ELSE
+        SELECT 'Brak użytkownika o podanym tokenie.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateAlarmParameters`(
+    IN userToken INT,
+    IN serialNumber INT,
+    IN parameterName VARCHAR(50),
+    IN downValue INT,
+    IN topValue INT
+)
+BEGIN
+    DECLARE userId INT;
+    DECLARE deviceId INT;
+
+    -- Sprawdź czy użytkownik o podanym tokenie istnieje i ma status=1
+    SELECT Id INTO userId FROM ogrodnik WHERE token = userToken AND status = 1;
+    
+    IF userId IS NOT NULL THEN
+        -- Pobierz ID urządzenia na podstawie serial_number
+        SELECT Id INTO deviceId FROM urzadzenie WHERE serial_number = serialNumber;
+
+        IF deviceId IS NOT NULL THEN
+            -- Aktualizuj Min_value oraz Max_value w tabeli parametry_alarmu
+            UPDATE parametry_alarmu SET Min_value = downValue, Max_value = topValue 
+            WHERE Device_Id = serialNumber AND Parameter = parameterName;
+
+            SELECT 'Parametry alarmowe zostały zaktualizowane.' AS message;
+        ELSE
+            SELECT 'Nie znaleziono urządzenia o podanym numerze seryjnym.' AS message;
+        END IF;
+    ELSE
+        SELECT 'Brak uprawnień lub niepoprawny token.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateAlarmStatusByTokenAndDeviceId`(
+    IN user_token INT,
+    IN device_id INT
+)
+BEGIN
+    DECLARE user_id INT DEFAULT NULL;
+
+    -- Sprawdzenie czy użytkownik istnieje i pobranie jego Id oraz status
+    SELECT Id INTO user_id
+    FROM ogrodnik
+    WHERE token = user_token AND status = 1
+    LIMIT 1;
+
+    -- Jeśli użytkownik nie istnieje lub jego status nie jest równy 1, zakończ procedurę
+    IF user_id IS NULL THEN
+        SELECT 'User not found or inactive' AS message;
+    ELSE
+        -- Aktualizacja statusu alarmów dla danego device_id
+        UPDATE alarm
+        SET Status = 0
+        WHERE Parametry_Alarmu_Id IN (
+            SELECT Id
+            FROM parametry_alarmu
+            WHERE Device_Id = device_id
+        );
+        SELECT 'Alarms updated' AS message;
+    END IF;
+END$$
+DELIMITER ;
